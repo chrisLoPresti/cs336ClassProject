@@ -23,6 +23,8 @@
     "gravatar": "^1.6.0",
     "jsonwebtoken": "^8.3.0",
     "mongoose": "^5.2.14",
+    "mysql": "^2.16.0",
+    "node-mysql": "^0.4.2",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
     "uuid": "^3.3.2",
