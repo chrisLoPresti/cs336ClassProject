@@ -17,7 +17,10 @@ const Sidenav = props => {
           <i className="fa fa-beer icon" />
           Beer
         </Typography>
-        <Typography className="side-nav-text">
+        <Typography
+          className="side-nav-text"
+          onClick={() => this.props.history.push("/drinker")}
+        >
           <i class="fa fa-user icon" />
           Drinker
         </Typography>
