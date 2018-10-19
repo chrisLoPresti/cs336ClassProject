@@ -12,7 +12,7 @@ const About = () => {
         About Us
       </Typography>
       <Grid container>
-        <Grid className="image-container-grid " item xs={12} sm={4}>
+        <Grid className="image-container-grid " item xs={6} sm={4}>
           <img className="profile-image left" src={chris} alt="Chris" />
           <Typography className="profile-text profile-text-left">
             Christopher LoPresti
@@ -20,7 +20,7 @@ const About = () => {
             Senior
           </Typography>
         </Grid>
-        <Grid className="image-container-grid " item xs={12} sm={4}>
+        <Grid className="image-container-grid " item xs={6} sm={4}>
           <img className="profile-image right" src={chris} alt="Chris" />
           <Typography className="profile-text profile-text-right">
             Christopher LoPresti
@@ -29,8 +29,8 @@ const About = () => {
           </Typography>
         </Grid>
         <Grid className="image-container-grid " item xs={12} sm={4}>
-          <img className="profile-image left" src={chris} alt="Chris" />
-          <Typography className="profile-text profile-text-left">
+          <img className="profile-image bottom" src={chris} alt="Chris" />
+          <Typography className="profile-text profile-text-bottom">
             Christopher LoPresti
             <br />
             Senior
