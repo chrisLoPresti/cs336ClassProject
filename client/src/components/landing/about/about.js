@@ -38,25 +38,24 @@ const About = () => {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={12} sm={6} className="about-us-text-grid">
-          <img className="tech" src={tech} alt="Technologies" />
-        </Grid>
-        <Grid item xs={12} sm={6} className="about-us-text-grid">
-          <Typography variant="h4" id="what-we-used">
-            What we used...
-          </Typography>
-          <Typography id="about-us-text">
-            We are all seniors here at Rutgers University trying to win best
-            design for the bar beer drinker plus project. We each know various
-            programming languages, but for this project we used React js for our
-            front end, python to populate our tables, SQL to interact with our
-            tables, and flask to execute our requests. On the front end we use
-            axios to make api requests, and redux to keep our state in check.
-            This allows us to make api calls and populate our page without
-            needing to get a whole new page from the server.
-          </Typography>
-        </Grid>
+        <Typography variant="h4" id="what-we-used">
+          What we used...
+        </Typography>
+        <Typography id="about-us-text">
+          We are all seniors here at Rutgers University trying to win best
+          design for the bar beer drinker plus project. We each know various
+          programming languages, but for this project we used React js for our
+          front end, python to populate our tables, SQL to interact with our
+          tables, and flask to execute our requests. On the front end we use
+          axios to make api requests, and redux to keep our state in check. This
+          allows us to make api calls and populate our page without needing to
+          get a whole new page from the server.
+        </Typography>
       </Grid>
+      <Grid item xs={12} sm={6} className="about-us-text-grid">
+        <img className="tech" src={tech} alt="Technologies" />
+      </Grid>
+      <Grid item xs={12} sm={6} className="about-us-text-grid" />
     </div>
   );
 };
