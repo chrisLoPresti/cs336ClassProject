@@ -17,6 +17,7 @@ class Drinker extends Component {
     };
   }
   componentWillMount() {
+    window.scrollTo(0, 0);
     this.props.getDrinkers();
   }
 
