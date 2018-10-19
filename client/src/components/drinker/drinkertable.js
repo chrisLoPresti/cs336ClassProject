@@ -201,7 +201,7 @@ class CustomPaginationActionsTable extends React.Component {
                 person.name
                   .toLowerCase()
                   .substring(0, event.target.value.length) ===
-                event.target.value
+                event.target.value.toLowerCase()
             )
     });
   };
