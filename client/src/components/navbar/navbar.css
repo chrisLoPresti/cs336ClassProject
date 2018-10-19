@@ -1,0 +1,85 @@
+#navbar-container {
+  z-index: 100;
+  position: fixed;
+}
+
+#appbar {
+  background: transparent;
+  box-shadow: none;
+  transition: 0.3s;
+}
+
+#nav-title {
+  color: white;
+  font-size: 20px;
+  float: left;
+  cursor: pointer;
+}
+
+.grid-item .nav-content {
+  float: right;
+  color: white;
+  font-size: 15px;
+  cursor: pointer;
+  margin: 0 10px 0 10px;
+}
+.grid-item .nav-text:hover {
+  color: lightgrey;
+}
+
+.grid-item #nav-title:hover {
+  color: lightgrey;
+}
+
+@media only screen and (max-width: 600px) {
+  #buttons {
+    display: none;
+  }
+  #menu {
+    float: right;
+    color: white;
+    display: block;
+  }
+  #nav-title {
+    margin-top: 10px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  #buttons {
+    display: block;
+  }
+  #menu {
+    display: none;
+  }
+}
+
+#side-nav-container {
+  width: 200px;
+  height: 100vh;
+  background-color: #1e2125;
+}
+
+#side-nav-container .side-nav-text {
+  color: whitesmoke;
+  font-size: 20px;
+  padding: 20px 10px 10px 20px;
+  cursor: pointer;
+}
+
+#side-nav-container .side-nav-text:hover {
+  background-color: lightgrey;
+  color: #303030;
+}
+
+.icon {
+  color: whitesmoke;
+  font-size: 20px;
+  margin-right: 40px;
+}
+
+#navbar-container .scrolled {
+  background-color: slategrey;
+  transition: 0.3s;
+  opacity: 0.9;
+}

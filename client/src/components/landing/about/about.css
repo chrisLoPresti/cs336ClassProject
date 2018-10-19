@@ -1,0 +1,73 @@
+.profile-image {
+  border-radius: 50%;
+  height: 180px;
+}
+
+.image-container-grid {
+  text-align: center;
+  padding: 20px;
+  background-color: #ffffff;
+}
+
+.image-container-grid .profile-text {
+  padding: 20px;
+  color: #303030;
+  font-family: Georgia, serif;
+  font-size: 20px;
+}
+
+#about-container {
+  background-color: #ffffff;
+}
+
+#about-us-title {
+  text-align: center;
+  font-size: 50px;
+  padding: 20px;
+  background-color: #303030;
+  color: #ffffff;
+}
+
+#about-us-text {
+  padding: 20px;
+  font-size: 18px;
+}
+
+.tech {
+  padding: 20px;
+  display: block;
+  margin: auto;
+  width: 80%;
+}
+
+.about-us-text-grid {
+  background-color: #ffffff;
+}
+#what-we-used {
+  padding: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  .profile-image {
+    height: 120px;
+  }
+
+  .left {
+    float: left;
+  }
+  .right {
+    float: right;
+  }
+
+  .image-container-grid .profile-text-right {
+    float: left;
+    margin-top: 20px;
+  }
+  .image-container-grid .profile-text-left {
+    float: right;
+    margin-top: 20px;
+  }
+  #about-us-title {
+    text-align: center;
+  }
+}
