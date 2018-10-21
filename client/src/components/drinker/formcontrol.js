@@ -40,7 +40,12 @@ class ControlledOpenSelect extends React.Component {
     const { classes } = this.props;
 
     return (
-      <form autoComplete="off">
+      <form
+        autoComplete="off"
+        style={{
+          margin: "12px"
+        }}
+      >
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="demo-controlled-open-select">
             Sort By:

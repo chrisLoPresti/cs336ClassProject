@@ -18,7 +18,8 @@ import {
   FirstPage,
   KeyboardArrowLeft,
   KeyboardArrowRight,
-  LastPage
+  LastPage,
+  Close
 } from "@material-ui/icons";
 import Form from "./formcontrol";
 
@@ -206,6 +207,13 @@ class CustomPaginationActionsTable extends React.Component {
     });
   };
 
+  clearSearch = () => {
+    document.getElementById("search-box").value = null;
+    this.setState({
+      rows: this.props.drinkers.drinkers
+    });
+  };
+
   render() {
     const { classes } = this.props;
     const { rows, rowsPerPage, page } = this.state;
@@ -213,81 +221,86 @@ class CustomPaginationActionsTable extends React.Component {
       rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     return (
       <div id="table-container">
-        <Grid container>
-          <Grid item xs={6}>
-            <Form changeOrder={this.changeOrder} />
-          </Grid>
-          <Grid item xs={6}>
-            <TextField
-              style={{
-                width: "90%"
-              }}
-              id="standard-name"
-              label="Search By Name"
-              value={this.state.name}
-              onChange={this.handleChange}
-              margin="normal"
+        <Grid container id="table-grid">
+          <Grid item xs={12} sm={4}>
+            <Form
+              changeOrder={this.changeOrder}
+              style={{ backgroundColor: "blue" }}
             />
           </Grid>
-          <Paper className={classes.root}>
-            <div className={classes.tableWrapper}>
-              <Table className={classes.table}>
-                <TableHead>
-                  <TableRow>
-                    <CustomTableCell>Name</CustomTableCell>
-                    <CustomTableCell>Number</CustomTableCell>
-                    <CustomTableCell>State</CustomTableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {stableSort(
-                    rows,
-                    getSorting(this.state.order, this.state.orderBy)
-                  )
-                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map(row => {
-                      return (
-                        <TableRow
-                          hover
-                          selected
-                          key={row.name}
-                          id="info-row"
-                          className={
-                            this.props.selectedName === row.name
-                              ? "selected"
-                              : ""
-                          }
-                          onClick={this.selectedNameChange(row.name)}
-                        >
-                          <TableCell>{row.name}</TableCell>
-                          <TableCell>{row.phone}</TableCell>
-                          <TableCell>{row.state}</TableCell>
-                        </TableRow>
-                      );
-                    })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 48 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
-                </TableBody>
-                <TableFooter>
-                  <TableRow>
-                    <TablePagination
-                      colSpan={3}
-                      count={rows.length}
-                      rowsPerPage={rowsPerPage}
-                      page={page}
-                      onChangePage={this.handleChangePage}
-                      onChangeRowsPerPage={this.handleChangeRowsPerPage}
-                      ActionsComponent={TablePaginationActionsWrapped}
-                    />
-                  </TableRow>
-                </TableFooter>
-              </Table>
-            </div>
-          </Paper>
+          <Grid item xs={10} sm={6}>
+            <TextField
+              id="search-box"
+              className="search-box"
+              label="Search By Name"
+              onChange={this.handleChange}
+            />
+          </Grid>
+          <Grid item xs={2} sm={2}>
+            <IconButton
+              className="clear-button-searched-drinker"
+              onClick={this.clearSearch}
+            >
+              <Close className="close-button-searched-drinker" />
+            </IconButton>
+          </Grid>
         </Grid>
+        <Paper className={classes.root}>
+          <div className={classes.tableWrapper}>
+            <Table className={classes.table}>
+              <TableHead>
+                <TableRow>
+                  <CustomTableCell>Name</CustomTableCell>
+                  <CustomTableCell>Number</CustomTableCell>
+                  <CustomTableCell>State</CustomTableCell>
+                </TableRow>
+              </TableHead>
+              <TableBody>
+                {stableSort(
+                  rows,
+                  getSorting(this.state.order, this.state.orderBy)
+                )
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map(row => {
+                    return (
+                      <TableRow
+                        hover
+                        selected
+                        key={row.name}
+                        id="info-row"
+                        className={
+                          this.props.selectedName === row.name ? "selected" : ""
+                        }
+                        onClick={this.selectedNameChange(row.name)}
+                      >
+                        <TableCell>{row.name}</TableCell>
+                        <TableCell>{row.phone}</TableCell>
+                        <TableCell>{row.state}</TableCell>
+                      </TableRow>
+                    );
+                  })}
+                {emptyRows > 0 && (
+                  <TableRow style={{ height: 48 * emptyRows }}>
+                    <TableCell colSpan={6} />
+                  </TableRow>
+                )}
+              </TableBody>
+              <TableFooter>
+                <TableRow>
+                  <TablePagination
+                    colSpan={3}
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onChangePage={this.handleChangePage}
+                    onChangeRowsPerPage={this.handleChangeRowsPerPage}
+                    ActionsComponent={TablePaginationActionsWrapped}
+                  />
+                </TableRow>
+              </TableFooter>
+            </Table>
+          </div>
+        </Paper>
       </div>
     );
   }

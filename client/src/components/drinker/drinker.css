@@ -45,12 +45,6 @@
   background: lightgray;
 }
 
-@media only screen and (max-width: 600px) {
-  #hidden-when-small {
-    display: none !important;
-  }
-}
-
 #lets-get-started {
   height: 80px;
   width: 100%;
@@ -71,6 +65,64 @@
 }
 
 #drinker-container .selected-drinker {
-  font-size: 20px;
+  font-size: 12;
   margin: 20px;
+}
+
+#selected-drinker-container .clear-button-selected-drinker {
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+#selected-drinker-container .close-button-selected-drinker {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+
+#table-grid .search-box {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 100%;
+  color: black;
+}
+
+#table-grid .clear-button-searched-drinker {
+  height: 10px;
+  width: 10px;
+  margin-top: 40px;
+  margin-left: 40px;
+  text-align: center;
+}
+#table-grid .close-button-searched-drinker {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+
+@media only screen and (max-width: 600px) {
+  #hidden-when-small {
+    display: none !important;
+  }
+
+  #drinker-container .selected-drinker {
+    margin-bottom: -20px;
+  }
+
+  #table-grid .search-box {
+    margin-bottom: 20px;
+    margin-top: -15px;
+  }
+
+  #table-grid .clear-button-searched-drinker {
+    margin-bottom: 20px;
+    margin-top: 0;
+    margin-left: 30px;
+  }
+  #table-grid .close-button-searched-drinker {
+    margin-bottom: 20px;
+    margin-top: -6px;
+  }
 }

@@ -78,12 +78,16 @@ class Drinker extends Component {
           </Grid>
         </Grid>
         {Object.keys(this.props.drinkers.drinkers).length > 0 && (
-          <div>
+          <div id="selected-drinker-container">
             <Typography className="selected-drinker">
-              Selected Drinker: {this.state.selectedName}
+              Selected Drinker:
+              {this.state.selectedName}
               {this.state.selectedName && (
-                <IconButton onClick={this.clearSelected}>
-                  <Close />
+                <IconButton
+                  className="clear-button-selected-drinker"
+                  onClick={this.clearSelected}
+                >
+                  <Close className="close-button-selected-drinker" />
                 </IconButton>
               )}
             </Typography>
