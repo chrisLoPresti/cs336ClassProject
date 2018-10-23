@@ -34,3 +34,11 @@ export const setLoading = () => {
     type: SET_LOADING_QUERY
   };
 };
+
+//set errorsQuery
+export const setQueryErrors = error => dispatch => {
+  dispatch({
+    type: GET_ERRORS,
+    payload: error
+  });
+};

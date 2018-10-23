@@ -11,13 +11,6 @@
   background: lightgray;
 }
 
-#drinker-container .step-title {
-  margin: 20px;
-}
-#drinker-container .step-text {
-  margin: 20px;
-}
-
 #drinker-container .selected-drinker {
   font-size: 12;
   margin: 20px;

@@ -101,3 +101,10 @@
   padding-top: 30px;
   margin-left: 10px;
 }
+
+.step-container .step-grid .step-title {
+  margin: 20px;
+}
+.step-container .step-grid .step-text {
+  margin: 20px;
+}

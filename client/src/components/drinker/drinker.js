@@ -55,7 +55,7 @@ class Drinker extends Component {
             How To Get Started
           </Typography>
         </div>
-        <Grid container>
+        <Grid container className="step-container">
           <Grid item xs={12} sm={6} className="step-grid">
             <Typography variant="h4" className="step-title">
               Step 1
@@ -112,14 +112,16 @@ class Drinker extends Component {
 }
 
 Drinker.propTypes = {
-  drinkers: PropTypes.object.isRequired
+  drinkers: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
 };
 Drinker.defaultProps = {
   drinkers: {}
 };
 
 const mapStateToProps = state => ({
-  drinkers: state.drinkers
+  drinkers: state.drinkers,
+  errors: state.errors
 });
 
 export default connect(

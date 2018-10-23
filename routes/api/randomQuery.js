@@ -24,7 +24,7 @@ router.post("/", (req, res) => {
       let errors = {};
       errors.error =
         "It seems there was an issue with your query. Please Try Again";
-      res.send(errors);
+      res.status(404).send(errors.error);
     }
     res.send(results);
   });

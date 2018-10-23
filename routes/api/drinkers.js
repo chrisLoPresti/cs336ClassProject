@@ -23,7 +23,7 @@ router.get("/", (req, res) => {
     if (err) {
       let errors = {};
       errors.error = "Could not process request";
-      res.send(errors);
+      res.status(404).send(errors.error);
     }
     res.send(results);
   });

@@ -1,3 +1,43 @@
 .query-image {
   background-image: url("../../images/random.jpg");
 }
+
+.query-box .query-box-type {
+  padding: 20px;
+}
+
+.query-box .query-box-submit {
+  text-align: center;
+  padding: 20px;
+  width: 100%;
+}
+
+.query-box .query-box-type .query-input {
+  width: 98%;
+  max-height: 200px;
+  min-width: 98%;
+  max-width: 98%;
+  font-size: 15px;
+}
+
+.query-box .query-box-submit .query-submit-button {
+  background-color: #303030;
+  color: whitesmoke;
+}
+.query-box .query-box-submit .query-clear-button {
+  background-color: slategray;
+  color: whitesmoke;
+}
+
+@media only screen and (min-width: 960px) {
+  .query-box .query-box-submit .query-button {
+    margin: 20px;
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .query-box .query-box-submit .query-button {
+    width: 40%;
+    margin: 5px;
+  }
+}
