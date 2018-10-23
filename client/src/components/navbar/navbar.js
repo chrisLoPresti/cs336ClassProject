@@ -25,10 +25,12 @@ class NavBar extends Component {
 
   componentDidMount() {
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.updateDimensions);
   }
 
   componentWillUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.updateDimensions);
   }
   scrollOrChangeToLanding = props => () => {
     if (document.getElementById("landing-container")) {
@@ -43,6 +45,12 @@ class NavBar extends Component {
     this.setState({
       drawerNavOpen: false
     });
+  };
+
+  updateDimensions = () => {
+    if (window.innerWidth > 600 && this.state.drawerNavOpen) {
+      this.setState({ drawerNavOpen: false });
+    }
   };
 
   scrollOrChangeToAbout = props => () => {
@@ -122,6 +130,12 @@ class NavBar extends Component {
                   onClick={() => this.props.history.push("/drinker")}
                 >
                   Drinker
+                </Typography>
+                <Typography
+                  className="nav-content nav-text"
+                  onClick={() => this.props.history.push("/randomQuery")}
+                >
+                  Query
                 </Typography>
                 <Typography className="nav-content nav-text">Beer</Typography>
                 <Typography className="nav-content nav-text">Bar</Typography>

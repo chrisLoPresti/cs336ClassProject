@@ -10,6 +10,8 @@ app.use(bodyParser.json());
 //set up routes
 const drinkers = require("./routes/api/drinkers");
 app.use("/api/drinkers", drinkers);
+const randomQuery = require("./routes/api/randomQuery");
+app.use("/api/randomQuery", randomQuery);
 
 //serve static asses it in production
 if (process.env.NODE_ENV === "production") {

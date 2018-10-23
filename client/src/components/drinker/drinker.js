@@ -42,13 +42,14 @@ class Drinker extends Component {
   render() {
     return (
       <div id="drinker-container">
-        <div id="drinker-page" />
-        <div className="drinker-layer" />
-        <div id="drinker-title">
-          <Typography className="drinker-title-text" variant="h3">
-            Explore Our Drinkers
-          </Typography>
+        <div id="small-page" className="drinkers-image">
+          <div id="small-title">
+            <Typography className="small-title-text" variant="h3">
+              Explore Our Drinkers
+            </Typography>
+          </div>
         </div>
+        <div className="small-layer" />
         <div id="lets-get-started">
           <Typography variant="h4" className="lets-get-started-text">
             How To Get Started
@@ -80,8 +81,7 @@ class Drinker extends Component {
         {Object.keys(this.props.drinkers.drinkers).length > 0 && (
           <div id="selected-drinker-container">
             <Typography className="selected-drinker">
-              Selected Drinker:
-              {this.state.selectedName}
+              {`Selected Drinker:  ${this.state.selectedName}`}
               {this.state.selectedName && (
                 <IconButton
                   className="clear-button-selected-drinker"
@@ -95,10 +95,11 @@ class Drinker extends Component {
               drinkers={this.props.drinkers}
               selectedName={this.state.selectedName}
               handleSelectDrinker={this.handleSelectDrinker}
+              loading={this.props.drinkers.loadingDrinker}
             />
           </div>
         )}
-        {this.props.drinkers.loading && (
+        {this.props.drinkers.loadingDrinker && (
           <img
             src={require("../../images/spinner.gif")}
             alt="loading..."

@@ -1,39 +1,5 @@
-#drinker-page {
-  position: relative;
+.drinkers-image {
   background-image: url("../../images/drinkers.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 40vh;
-  min-height: 200px;
-}
-
-.drinker-layer {
-  background-color: rgba(7, 7, 7, 0.7);
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 40vh;
-  min-height: 200px;
-}
-
-#drinker-title {
-  position: absolute;
-  z-index: 1;
-  top: 25%;
-  left: 50%;
-  width: 100%;
-  text-align: center;
-  min-height: 100px;
-  transform: translate(-50%, -50%);
-}
-
-#drinker-title .drinker-title-text {
-  color: ghostwhite;
-  font-size: 8vw;
-  font-family: Georgia, serif;
 }
 
 #info-row:hover {
@@ -43,18 +9,6 @@
 
 #table-container .selected {
   background: lightgray;
-}
-
-#lets-get-started {
-  height: 80px;
-  width: 100%;
-  background-color: #303030;
-}
-#lets-get-started .lets-get-started-text {
-  color: whitesmoke;
-  font-size: 20px;
-  padding-top: 30px;
-  margin-left: 10px;
 }
 
 #drinker-container .step-title {

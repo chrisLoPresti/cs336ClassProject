@@ -1,6 +1,6 @@
 #navbar-container {
   z-index: 100;
-  position: fixed;
+  position: absolute;
 }
 
 #appbar {
@@ -56,7 +56,7 @@
 
 #side-nav-container {
   width: 200px;
-  height: 100vh;
+  height: 300vh;
   background-color: #1e2125;
 }
 

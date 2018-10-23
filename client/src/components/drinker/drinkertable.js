@@ -264,14 +264,15 @@ class CustomPaginationActionsTable extends React.Component {
                   .map(row => {
                     return (
                       <TableRow
-                        hover
-                        selected
                         key={row.name}
                         id="info-row"
                         className={
                           this.props.selectedName === row.name ? "selected" : ""
                         }
-                        onClick={this.selectedNameChange(row.name)}
+                        onClick={
+                          !this.props.loading &&
+                          this.selectedNameChange(row.name)
+                        }
                       >
                         <TableCell>{row.name}</TableCell>
                         <TableCell>{row.phone}</TableCell>
@@ -310,7 +311,8 @@ CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   drinkers: PropTypes.object.isRequired,
   selectedName: PropTypes.string.isRequired,
-  handleSelectDrinker: PropTypes.func.isRequired
+  handleSelectDrinker: PropTypes.func.isRequired,
+  loading: PropTypes.bool.isRequired
 };
 
 export default withStyles(styles)(CustomPaginationActionsTable);

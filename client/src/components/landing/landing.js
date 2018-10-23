@@ -11,10 +11,10 @@ const LandingPage = () => {
   window.scrollTo(0, 0);
   return (
     <div id="landing-container">
-      <div id="landing-page" />
-      <div className="layer" />
-      <div id="title">
-        <Typography className="title-text" variant="h1">
+      <div id="large-page" className="landing-image" />
+      <div className="large-layer" />
+      <div id="large-title">
+        <Typography className="large-title-text" variant="h3">
           BarBeerDrinker+
         </Typography>
         <div className="title-buttons">

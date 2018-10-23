@@ -1,8 +1,8 @@
-import { SET_DRINKERS, SET_LOADING } from "../actions/types";
+import { SET_DRINKERS, SET_LOADING_DRINKER } from "../actions/types";
 
 let initialState = {
   drinkers: [],
-  loading: false
+  loadingDrinker: false
 };
 
 export default function(state = initialState, action) {
@@ -11,12 +11,12 @@ export default function(state = initialState, action) {
       return {
         ...state,
         drinkers: action.payload,
-        loading: false
+        loadingDrinker: false
       };
-    case SET_LOADING:
+    case SET_LOADING_DRINKER:
       return {
         ...state,
-        loading: true
+        loadingDrinker: true
       };
     default:
       return state;

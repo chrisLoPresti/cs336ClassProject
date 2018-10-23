@@ -1,14 +1,14 @@
 import axios from "axios";
-import { SET_DRINKERS, SET_LOADING_DRINKER, GET_ERRORS } from "./types";
+import { SET_QUERY, SET_LOADING_QUERY, GET_ERRORS } from "./types";
 
 //get post
-export const getDrinkers = () => dispatch => {
+export const getQueryResults = query => dispatch => {
   dispatch(setLoading());
   axios
-    .get("/api/drinkers")
+    .post("/api/randomQuery", query)
     .then(res => {
       dispatch({
-        type: SET_DRINKERS,
+        type: SET_QUERY,
         payload: res.data
       });
       dispatch({
@@ -18,7 +18,7 @@ export const getDrinkers = () => dispatch => {
     })
     .catch(err => {
       dispatch({
-        type: SET_DRINKERS,
+        type: SET_QUERY,
         payload: {}
       });
       dispatch({
@@ -31,6 +31,6 @@ export const getDrinkers = () => dispatch => {
 //set loading
 export const setLoading = () => {
   return {
-    type: SET_LOADING_DRINKER
+    type: SET_LOADING_QUERY
   };
 };
