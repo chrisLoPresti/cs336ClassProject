@@ -81,11 +81,11 @@ class NavBar extends Component {
       document.documentElement.scrollTop ||
       document.body.parentNode.scrollTop ||
       document.body.scrollTop;
-    if (top < 80) {
+    if (top < 40) {
       this.setState({
         scrolled: false
       });
-    } else if (top >= 80) {
+    } else if (top >= 40) {
       this.setState({
         scrolled: true
       });
