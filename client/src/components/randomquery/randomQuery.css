@@ -14,6 +14,7 @@
 
 .query-box .query-box-type .query-input {
   width: 98%;
+  min-height: 50px;
   max-height: 200px;
   min-width: 98%;
   max-width: 98%;
