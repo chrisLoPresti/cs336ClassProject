@@ -247,12 +247,22 @@ class CustomPaginationActionsTable extends React.Component {
         </Grid>
         <Paper className={classes.root}>
           <div className={classes.tableWrapper}>
-            <Table className={classes.table}>
+            <Table
+              className={classes.table}
+              style={{
+                backgroundColor: "whitesmoke",
+                borderRadius: "10px"
+              }}
+            >
               <TableHead>
                 <TableRow>
-                  <CustomTableCell>Name</CustomTableCell>
-                  <CustomTableCell>Number</CustomTableCell>
-                  <CustomTableCell>State</CustomTableCell>
+                  <CustomTableCell className="head-row left-row">
+                    Name
+                  </CustomTableCell>
+                  <CustomTableCell className="head-row">Number</CustomTableCell>
+                  <CustomTableCell className="head-row right-row">
+                    State
+                  </CustomTableCell>
                 </TableRow>
               </TableHead>
               <TableBody>

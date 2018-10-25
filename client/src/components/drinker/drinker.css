@@ -15,6 +15,9 @@
   font-size: 12;
   margin: 20px;
 }
+#selected-drinker-container {
+  margin: 20px;
+}
 
 #selected-drinker-container .clear-button-selected-drinker {
   height: 10px;
@@ -72,4 +75,14 @@
     margin-bottom: 20px;
     margin-top: -6px;
   }
+}
+
+#selected-drinker-container .head-row {
+  background-color: #303030;
+}
+#selected-drinker-container .left-row {
+  border-top-left-radius: 5px;
+}
+#selected-drinker-container .right-row {
+  border-top-right-radius: 5px;
 }
