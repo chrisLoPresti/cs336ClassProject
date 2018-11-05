@@ -192,6 +192,8 @@ class Drinker extends Component {
                     size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s top 5 ordered beers`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Beer"}
+                    y={"Amount purchased"}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -200,6 +202,8 @@ class Drinker extends Component {
                     size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s daily spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Date (yyyy-mm-dd)"}
+                    y={"Total money spent"}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -208,6 +212,8 @@ class Drinker extends Component {
                     size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s weekly spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Week (0-52)"}
+                    y={"Total money spent"}
                   />
                 </Grid>
                 <Grid item xs={12} sm={6}>
@@ -216,6 +222,8 @@ class Drinker extends Component {
                     size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s monthly spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Month"}
+                    y={"Total money spent"}
                   />
                 </Grid>
               </Grid>

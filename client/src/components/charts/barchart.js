@@ -32,8 +32,8 @@ const BarChartComponent = props => {
   const size = props.size < 900 ? 0 : 12;
   const content = (
     <div>
-      <p>x: beer</p>
-      <p>y: quantity</p>
+      <p>x: {props.x}</p>
+      <p>y: {props.y}</p>
     </div>
   );
   return (
@@ -57,10 +57,12 @@ const BarChartComponent = props => {
 };
 
 BarChartComponent.propTypes = {
-  list: PropTypes.array,
-  size: PropTypes.number,
-  title: PropTypes.string,
-  color: PropTypes.string
+  list: PropTypes.array.isRequired,
+  size: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  color: PropTypes.string.isRequired,
+  x: PropTypes.string.isRequired,
+  y: PropTypes.string.isRequired
 };
 BarChartComponent.defaultProps = {
   list: [],
