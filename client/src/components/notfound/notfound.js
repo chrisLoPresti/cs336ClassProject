@@ -5,6 +5,10 @@ import "./notfound.css";
 
 const frown = require("../../images/frown.png");
 const NotFound = () => {
+  if (!window.location.href.includes("notFound")) {
+    window.location.href = window.location.href + "/notFound";
+    return <div />;
+  }
   return (
     <div id="not-found-container">
       <div id="not-found">

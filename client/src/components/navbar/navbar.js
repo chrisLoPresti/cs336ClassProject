@@ -99,11 +99,15 @@ class NavBar extends Component {
   };
 
   render() {
+    var colorSwitch = window.location.href.includes("notFound");
     return (
       <div id="navbar-container">
         <AppBar
           id="appbar"
-          className={classnames({ scrolled: this.state.scrolled })}
+          className={classnames(
+            { scrolled: this.state.scrolled },
+            { colorSwitch: colorSwitch }
+          )}
         >
           <Toolbar id="toolbar">
             <Grid container id="grid-container">
