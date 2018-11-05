@@ -6,6 +6,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import BarChart from "../charts/barchart";
 import BarChartComponentPeriod from "../charts/barchartperiod";
+import BarChartSpending from "../charts/barchartspending";
 import {
   getDrinkers,
   getDrinker,
@@ -14,7 +15,8 @@ import {
   clearDrinker,
   getDailySpending,
   getWeeklySpending,
-  getMonthlySpending
+  getMonthlySpending,
+  getSpending
 } from "../../actions/drinkersActions";
 import Table from "./drinkertable";
 import Transactions from "../transactions/transactions";
@@ -75,6 +77,7 @@ class Drinker extends Component {
     this.props.getDailySpending(this.state.selectedName);
     this.props.getWeeklySpending(this.state.selectedName);
     this.props.getMonthlySpending(this.state.selectedName);
+    this.props.getSpending(this.state.selectedName);
   };
 
   clearSelected = () => {
@@ -226,6 +229,16 @@ class Drinker extends Component {
                     y={"Total money spent"}
                   />
                 </Grid>
+                <Grid item xs={12}>
+                  <BarChartSpending
+                    list={this.props.drinkers.spending}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s spending per bar`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Bar"}
+                    y={"Amount spent"}
+                  />
+                </Grid>
               </Grid>
             </div>
           )}
@@ -257,6 +270,7 @@ export default connect(
     clearDrinker,
     getDailySpending,
     getWeeklySpending,
-    getMonthlySpending
+    getMonthlySpending,
+    getSpending
   }
 )(withRouter(Drinker));

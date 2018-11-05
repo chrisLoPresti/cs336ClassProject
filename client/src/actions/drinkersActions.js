@@ -10,7 +10,8 @@ import {
   CLEAR_DRINKERS,
   SET_DAILY,
   SET_MONTHLY,
-  SET_WEEKLY
+  SET_WEEKLY,
+  SET_SPENDING
 } from "./types";
 
 //clear drinkers
@@ -78,6 +79,34 @@ export const getDailySpending = drinker => dispatch => {
     .catch(err => {
       dispatch({
         type: SET_DAILY,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const getSpending = drinker => dispatch => {
+  dispatch(setLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/drinker/bar/spent?drinker=${drinker}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_SPENDING,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_SPENDING,
         payload: {}
       });
       dispatch({

@@ -8,7 +8,8 @@ import {
   CLEAR_DRINKER,
   SET_DAILY,
   SET_WEEKLY,
-  SET_MONTHLY
+  SET_MONTHLY,
+  SET_SPENDING
 } from "../actions/types";
 
 let initialState = {
@@ -18,6 +19,7 @@ let initialState = {
   daily: {},
   weekly: {},
   monthly: {},
+  spending: {},
   loadingDrinker: false,
   loadingOneDrinker: false
 };
@@ -56,19 +58,25 @@ export default function(state = initialState, action) {
       return {
         ...state,
         daily: action.payload,
-        loadingOneDrinker: true
+        loadingOneDrinker: false
       };
     case SET_WEEKLY:
       return {
         ...state,
         weekly: action.payload,
-        loadingOneDrinker: true
+        loadingOneDrinker: false
       };
     case SET_MONTHLY:
       return {
         ...state,
         monthly: action.payload,
-        loadingOneDrinker: true
+        loadingOneDrinker: false
+      };
+    case SET_SPENDING:
+      return {
+        ...state,
+        spending: action.payload,
+        loadingOneDrinker: false
       };
     case CLEAR_DRINKER:
       return {
@@ -78,6 +86,7 @@ export default function(state = initialState, action) {
         daily: {},
         weekly: {},
         monthly: {},
+        spending: {},
         loadingOneDrinker: false
       };
     case CLEAR_DRINKERS:
