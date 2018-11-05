@@ -11,7 +11,8 @@ import {
   SET_DAILY,
   SET_MONTHLY,
   SET_WEEKLY,
-  SET_SPENDING
+  SET_SPENDING,
+  CLEAR_COUNT
 } from "./types";
 
 //clear drinkers
@@ -26,6 +27,13 @@ export const clearDrinkers = () => dispatch => {
 export const clearDrinker = () => dispatch => {
   dispatch({
     type: CLEAR_DRINKER,
+    payload: {}
+  });
+};
+
+export const clearCount = () => dispatch => {
+  dispatch({
+    type: CLEAR_COUNT,
     payload: {}
   });
 };

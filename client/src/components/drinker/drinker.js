@@ -16,7 +16,8 @@ import {
   getDailySpending,
   getWeeklySpending,
   getMonthlySpending,
-  getSpending
+  getSpending,
+  clearCount
 } from "../../actions/drinkersActions";
 import Table from "./drinkertable";
 import Transactions from "../transactions/transactions";
@@ -30,8 +31,7 @@ class Drinker extends Component {
     this.state = {
       errors: {},
       selectedName: "",
-      windowWidth: 200,
-      done: false
+      windowWidth: 200
     };
   }
 
@@ -73,22 +73,19 @@ class Drinker extends Component {
   };
 
   populateDrinker = () => {
-    this.props.clearDrinker();
+    this.props.clearCount();
     this.props.getDrinker(this.state.selectedName);
     this.props.getTopBeers(this.state.selectedName);
     this.props.getDailySpending(this.state.selectedName);
     this.props.getWeeklySpending(this.state.selectedName);
     this.props.getMonthlySpending(this.state.selectedName);
     this.props.getSpending(this.state.selectedName);
-
-    this.setState({ done: true });
   };
 
   clearSelected = () => {
     this.setState(
       {
-        selectedName: "",
-        done: false
+        selectedName: ""
       },
       () => this.props.clearDrinker()
     );
@@ -183,7 +180,7 @@ class Drinker extends Component {
           />
         )}
         {this.state.selectedName &&
-          this.state.done && (
+          this.props.drinkers.count === 6 && (
             <div id="graph-section">
               <Grid container>
                 <Grid item xs={12}>
@@ -275,6 +272,7 @@ export default connect(
     getDailySpending,
     getWeeklySpending,
     getMonthlySpending,
-    getSpending
+    getSpending,
+    clearCount
   }
 )(withRouter(Drinker));

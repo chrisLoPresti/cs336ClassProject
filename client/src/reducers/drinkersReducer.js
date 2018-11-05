@@ -9,7 +9,8 @@ import {
   SET_DAILY,
   SET_WEEKLY,
   SET_MONTHLY,
-  SET_SPENDING
+  SET_SPENDING,
+  CLEAR_COUNT
 } from "../actions/types";
 
 let initialState = {
@@ -20,12 +21,19 @@ let initialState = {
   weekly: {},
   monthly: {},
   spending: {},
+  count: 0,
   loadingDrinker: false,
   loadingOneDrinker: false
 };
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_COUNT:
+      return {
+        ...state,
+        count: 0,
+        loadingDrinker: false
+      };
     case SET_DRINKERS:
       return {
         ...state,
@@ -36,12 +44,14 @@ export default function(state = initialState, action) {
       return {
         ...state,
         drinker: action.payload,
+        count: state.count === 6 ? state.count : state.count + 1,
         loadingOneDrinker: false
       };
     case SET_TOP_BEER:
       return {
         ...state,
         topBeers: action.payload,
+        count: state.count === 6 ? state.count : state.count + 1,
         loadingOneDrinker: false
       };
     case SET_LOADING_DRINKER:
@@ -58,23 +68,27 @@ export default function(state = initialState, action) {
       return {
         ...state,
         daily: action.payload,
+        count: state.count === 6 ? state.count : state.count + 1,
         loadingOneDrinker: false
       };
     case SET_WEEKLY:
       return {
         ...state,
+        count: state.count === 6 ? state.count : state.count + 1,
         weekly: action.payload,
         loadingOneDrinker: false
       };
     case SET_MONTHLY:
       return {
         ...state,
+        count: state.count === 6 ? state.count : state.count + 1,
         monthly: action.payload,
         loadingOneDrinker: false
       };
     case SET_SPENDING:
       return {
         ...state,
+        count: state.count === 6 ? state.count : state.count + 1,
         spending: action.payload,
         loadingOneDrinker: false
       };
@@ -87,11 +101,19 @@ export default function(state = initialState, action) {
         weekly: {},
         monthly: {},
         spending: {},
+        count: 0,
         loadingOneDrinker: false
       };
     case CLEAR_DRINKERS:
       return {
         drinkers: {},
+        drinker: {},
+        topBeers: {},
+        daily: {},
+        weekly: {},
+        monthly: {},
+        spending: {},
+        count: 0,
         loadingDrinker: false
       };
     default:
