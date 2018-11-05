@@ -30,7 +30,8 @@ class Drinker extends Component {
     this.state = {
       errors: {},
       selectedName: "",
-      windowWidth: 200
+      windowWidth: 200,
+      done: false
     };
   }
 
@@ -79,12 +80,15 @@ class Drinker extends Component {
     this.props.getWeeklySpending(this.state.selectedName);
     this.props.getMonthlySpending(this.state.selectedName);
     this.props.getSpending(this.state.selectedName);
+
+    this.setState({ done: true });
   };
 
   clearSelected = () => {
     this.setState(
       {
-        selectedName: ""
+        selectedName: "",
+        done: false
       },
       () => this.props.clearDrinker()
     );
@@ -179,12 +183,7 @@ class Drinker extends Component {
           />
         )}
         {this.state.selectedName &&
-          Object.keys(this.props.drinkers.topBeers).length > 0 &&
-          Object.keys(this.props.drinkers.drinker).length > 0 &&
-          Object.keys(this.props.drinkers.daily).length > 0 &&
-          Object.keys(this.props.drinkers.weekly).length > 0 &&
-          Object.keys(this.props.drinkers.monthly).length > 0 &&
-          Object.keys(this.props.drinkers.spending).length > 0 && (
+          this.state.done(
             <div id="graph-section">
               <Grid container>
                 <Grid item xs={12}>
