@@ -19,6 +19,8 @@ import {
 import Table from "./drinkertable";
 import "./drinker.css";
 
+let scrollToElement = require("scroll-to-element");
+
 class Drinker extends Component {
   constructor(props) {
     super(props);
@@ -93,6 +95,16 @@ class Drinker extends Component {
       "#FF851B",
       "#FFDC00"
     ];
+    if (
+      !this.props.drinkers.loadingOneDrinker &&
+      document.getElementById("graph-section")
+    ) {
+      scrollToElement("#graph-section", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+    }
     return (
       <div id="drinker-container">
         <div id="small-page" className="drinkers-image">
@@ -162,44 +174,48 @@ class Drinker extends Component {
           />
         )}
         {Object.keys(this.props.drinkers.topBeers).length > 0 && (
-          <Grid container>
-            <Grid item xs={12}>
-              <BarChart
-                list={this.props.drinkers.topBeers}
-                size={this.state.windowWidth}
-                title={`${this.state.selectedName}
+          <div id="graph-section">
+            (
+            <Grid container>
+              <Grid item xs={12}>
+                <BarChart
+                  list={this.props.drinkers.topBeers}
+                  size={this.state.windowWidth}
+                  title={`${this.state.selectedName}
                 's top 5 ordered beers`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <BarChartComponentPeriod
-                list={this.props.drinkers.daily}
-                size={this.state.windowWidth}
-                title={`${this.state.selectedName}
+                  color={colors[Math.floor(Math.random() * colors.length)]}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <BarChartComponentPeriod
+                  list={this.props.drinkers.daily}
+                  size={this.state.windowWidth}
+                  title={`${this.state.selectedName}
                 's daily spending`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <BarChartComponentPeriod
-                list={this.props.drinkers.weekly}
-                size={this.state.windowWidth}
-                title={`${this.state.selectedName}
+                  color={colors[Math.floor(Math.random() * colors.length)]}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <BarChartComponentPeriod
+                  list={this.props.drinkers.weekly}
+                  size={this.state.windowWidth}
+                  title={`${this.state.selectedName}
                 's weekly spending`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <BarChartComponentPeriod
-                list={this.props.drinkers.monthly}
-                size={this.state.windowWidth}
-                title={`${this.state.selectedName}
+                  color={colors[Math.floor(Math.random() * colors.length)]}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <BarChartComponentPeriod
+                  list={this.props.drinkers.monthly}
+                  size={this.state.windowWidth}
+                  title={`${this.state.selectedName}
                 's monthly spending`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
-              />
+                  color={colors[Math.floor(Math.random() * colors.length)]}
+                />
+              </Grid>
             </Grid>
-          </Grid>
+            )
+          </div>
         )}
       </div>
     );

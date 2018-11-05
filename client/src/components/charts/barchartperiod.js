@@ -31,6 +31,12 @@ const BarChartComponentPeriod = props => {
   let data = [];
   buildData(props.list, data);
   const size = props.size < 900 ? 0 : 12;
+  const content = (
+    <div>
+      <p>x: time frame</p>
+      <p>y: quantity</p>
+    </div>
+  );
   return (
     <div id="graph-container">
       <Typography className="graph-title">{props.title}</Typography>
@@ -43,7 +49,7 @@ const BarChartComponentPeriod = props => {
           <XAxis dataKey="period" tick={{ fontSize: size }} />
           <YAxis dataKey="amt" />
           <Tooltip />
-          <Legend />
+          <Legend content={content} />
           <Bar dataKey="quantity" fill={props.color} />
         </BarChart>
       </ResponsiveContainer>
