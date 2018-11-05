@@ -17,6 +17,7 @@
 }
 #selected-drinker-container {
   margin: 20px;
+  transition: 0.3s;
 }
 
 #selected-drinker-container .clear-button-selected-drinker {
@@ -88,6 +89,13 @@
 @media only screen and (max-width: 900px) {
   #graph-section .grouped-by-bar-text {
     font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #selected-drinker-container {
+    margin: 0;
+    transition: 0.3s;
   }
 }
 

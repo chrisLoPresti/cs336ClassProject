@@ -182,7 +182,7 @@ class Drinker extends Component {
                 <Grid item xs={12}>
                   <Typography className="grouped-by-bar-text">
                     {this.state.selectedName}
-                    's Transactions by bar
+                    's transactions by bar
                   </Typography>
                   <Transactions transactions={this.props.drinkers.drinker} />
                 </Grid>
