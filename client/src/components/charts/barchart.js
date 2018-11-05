@@ -20,11 +20,9 @@ const buildData = (list, data) => {
     newObj.name = list[x].beer;
     newObj.quantity = list[x].quantity;
     newObj.amt = list[x].quantity;
-    console.log(list[x]);
 
     data.push(newObj);
   }
-  console.log(data);
 };
 
 const BarChartComponent = props => {

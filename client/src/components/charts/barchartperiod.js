@@ -20,11 +20,9 @@ const buildData = (list, data) => {
     newObj.period = list[x].period;
     newObj.quantity = list[x].total_price;
     newObj.amt = list[x].total_price;
-    console.log(list[x]);
 
     data.push(newObj);
   }
-  console.log(data);
 };
 
 const BarChartComponentPeriod = props => {

@@ -1,0 +1,41 @@
+#expainsion-text-container .expansion-text {
+  width: 100%;
+  margin: 10px;
+}
+
+#expainsion-text-container .expansion-text-title {
+  width: 100%;
+  margin: 10px;
+}
+
+#expainsion-text-container {
+  width: 100%;
+}
+
+#expansion-container .expansion-pannel .expansion-detail {
+  text-align: center;
+  overflow-x: scroll;
+}
+
+@media only screen and (max-width: 900px) {
+  #expainsion-text-container .expansion-text {
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 12px;
+  }
+
+  #expainsion-text-container .expansion-text-title {
+    margin-left: 40px;
+    margin-right: 40px;
+    font-size: 12px;
+  }
+}
+
+#expansion-container {
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+#expansion-container .expansion-pannel .expansion-detail .expansion-text-title {
+  font-size: 10px;
+}

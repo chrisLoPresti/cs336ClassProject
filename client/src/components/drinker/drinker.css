@@ -51,6 +51,11 @@
   margin-top: -7px;
   margin-left: 1px;
 }
+#graph-section .grouped-by-bar-text {
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+}
 
 @media only screen and (max-width: 600px) {
   #hidden-when-small {
@@ -74,6 +79,15 @@
   #table-grid .close-button-searched-drinker {
     margin-bottom: 20px;
     margin-top: -6px;
+  }
+  #graph-section .grouped-by-bar-text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #graph-section .grouped-by-bar-text {
+    font-size: 30px;
   }
 }
 
