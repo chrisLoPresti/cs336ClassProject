@@ -26,6 +26,7 @@ const buildData = (list, data) => {
 };
 
 const BarChartComponentPeriod = props => {
+  const { title, color } = props;
   let data = [];
   buildData(props.list, data);
   const size = props.size < 900 ? 0 : 12;
@@ -37,7 +38,7 @@ const BarChartComponentPeriod = props => {
   );
   return (
     <div id="graph-container">
-      <Typography className="graph-title">{props.title}</Typography>
+      <Typography className="graph-title">{title}</Typography>
       <ResponsiveContainer width="100%" height={300}>
         <BarChart
           data={data}
@@ -48,7 +49,7 @@ const BarChartComponentPeriod = props => {
           <YAxis dataKey="amt" />
           <Tooltip />
           <Legend content={content} />
-          <Bar dataKey="quantity" fill={props.color} />
+          <Bar dataKey="quantity" fill={color} />
         </BarChart>
       </ResponsiveContainer>
     </div>
@@ -56,13 +57,15 @@ const BarChartComponentPeriod = props => {
 };
 
 BarChartComponentPeriod.propTypes = {
-  list: PropTypes.object.isRequired,
-  size: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequried,
-  color: PropTypes.string.isRequried
+  list: PropTypes.array,
+  size: PropTypes.number,
+  title: PropTypes.string,
+  color: PropTypes.string
 };
 BarChartComponentPeriod.defaultProps = {
-  list: {}
+  list: [],
+  title: "",
+  color: ""
 };
 
 export default BarChartComponentPeriod;

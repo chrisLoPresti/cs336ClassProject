@@ -47,6 +47,7 @@ class ControlledExpansionPanels extends React.Component {
       <div id="expansion-container">
         {data.map(list => (
           <ExpansionPanel
+            key={list[0].bar}
             className="expansion-pannel"
             expanded={expanded === `${list[0].bar}${list[0].time}`}
             onChange={this.handleChange(`${list[0].bar}${list[0].time}`)}
@@ -81,8 +82,8 @@ class ControlledExpansionPanels extends React.Component {
                     Price:
                   </Typography>
                 </Grid>
-                {list.map(item => (
-                  <Fragment>
+                {list.map((item, index) => (
+                  <Fragment key={index}>
                     <Grid item xs={3}>
                       <Typography className="expansion-text">
                         {item.date}
@@ -120,7 +121,7 @@ class ControlledExpansionPanels extends React.Component {
 }
 
 ControlledExpansionPanels.propTypes = {
-  transactions: PropTypes.object.isRequired
+  transactions: PropTypes.array.isRequired
 };
 
 ControlledExpansionPanels.defaultProps = {

@@ -48,7 +48,7 @@ class Drinker extends Component {
   }
 
   componentWillUnmount = () => {
-    window.removeListener("resize", this.updateWindowDimensions);
+    window.removeEventListener("resize", this.updateWindowDimensions);
   };
 
   updateWindowDimensions = event => {
