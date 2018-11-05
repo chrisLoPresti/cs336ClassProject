@@ -3,6 +3,16 @@
   margin: 10px;
 }
 
+#expansion-container .expansion-pannel {
+  background-color: whitesmoke;
+}
+
+#expansion-container .sum-text {
+  color: black;
+  padding: 5px;
+  font-size: 15px;
+}
+
 #expainsion-text-container .expansion-text-title {
   width: 100%;
   margin: 10px;

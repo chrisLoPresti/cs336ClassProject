@@ -52,8 +52,11 @@ class ControlledExpansionPanels extends React.Component {
             expanded={expanded === `${list[0].bar}${list[0].time}`}
             onChange={this.handleChange(`${list[0].bar}${list[0].time}`)}
           >
-            <ExpansionPanelSummary expandIcon={<ExpandMoreIcon />}>
-              <Typography>{list[0].bar}</Typography>
+            <ExpansionPanelSummary
+              className="expansion-summary"
+              expandIcon={<ExpandMoreIcon />}
+            >
+              <Typography className="sum-text">{list[0].bar}</Typography>
             </ExpansionPanelSummary>
             <ExpansionPanelDetails className="expansion-detail">
               <Grid id="expainsion-text-container" container>
