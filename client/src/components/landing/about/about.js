@@ -16,7 +16,7 @@ const About = () => {
       </Typography>
       <Grid container>
         <Grid className="image-container-grid " item xs={6} sm={4}>
-          <img className="profile-image left" src={jenny} alt="Jenny" />
+          <img className="profile-image bottom" src={jenny} alt="Jenny" />
           <Typography className="profile-text profile-text-left">
             Jenny Skripko
             <br />
@@ -24,7 +24,7 @@ const About = () => {
           </Typography>
         </Grid>
         <Grid className="image-container-grid " item xs={6} sm={4}>
-          <img className="profile-image right" src={aryeh} alt="Aryeh" />
+          <img className="profile-image bottom" src={aryeh} alt="Aryeh" />
           <Typography className="profile-text profile-text-right">
             Aryeh Pechet
             <br />
