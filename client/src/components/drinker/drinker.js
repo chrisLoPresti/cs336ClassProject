@@ -96,10 +96,12 @@ class Drinker extends Component {
       "#001f3f",
       "#0074D9",
       "#FF4136",
-      "#111111",
-      "#01FF70",
+      "#B10DC9",
       "#FF851B",
-      "#FFDC00"
+      "#FFD700",
+      "#7FDBFF",
+      "#85144b",
+      "#2ECC40"
     ];
     if (
       !this.props.drinkers.loadingOneDrinker &&
@@ -172,15 +174,14 @@ class Drinker extends Component {
             )}
           </div>
         )}
-        {this.props.drinkers.loadingDrinker ||
-          (this.state.selectedName &&
-            this.props.drinkers.count != 6 && (
-              <img
-                src={require("../../images/spinner.gif")}
-                alt="loading..."
-                style={{ width: "100px", margin: "auto", display: "block" }}
-              />
-            ))}
+        {(this.props.drinkers.loadingDrinker ||
+          (this.state.selectedName && this.props.drinkers.count !== 6)) && (
+          <img
+            src={require("../../images/spinner.gif")}
+            alt="loading..."
+            style={{ width: "100px", margin: "auto", display: "block" }}
+          />
+        )}
         {this.state.selectedName &&
           this.props.drinkers.count === 6 && (
             <div id="graph-section">
