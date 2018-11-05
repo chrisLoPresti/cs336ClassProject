@@ -39,7 +39,7 @@ const About = () => {
         </Grid>
       </Grid>
       <Grid container>
-        <Grid item xs={12} sm={6} className="about-us-text-grid">
+        <Grid item sm={12} md={6} className="about-us-text-grid">
           <Typography variant="h4" id="what-we-used">
             What we used...
           </Typography>
@@ -54,7 +54,7 @@ const About = () => {
             needing to get a whole new page from the server.
           </Typography>
         </Grid>
-        <Grid item xs={12} sm={6} className="about-us-text-grid">
+        <Grid item sm={12} md={6} className="about-us-text-grid">
           <img className="tech" src={tec} alt="Technologies" />
         </Grid>
       </Grid>
