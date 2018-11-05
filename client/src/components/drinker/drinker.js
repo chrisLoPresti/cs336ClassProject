@@ -174,7 +174,8 @@ class Drinker extends Component {
             style={{ width: "100px", margin: "auto", display: "block" }}
           />
         )}
-        {Object.keys(this.props.drinkers.topBeers).length > 0 &&
+        {this.state.selectedName &&
+          Object.keys(this.props.drinkers.topBeers).length > 0 &&
           Object.keys(this.props.drinkers.drinker).length > 0 && (
             <div id="graph-section">
               <Grid container>
