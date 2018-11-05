@@ -72,6 +72,7 @@ class Drinker extends Component {
   };
 
   populateDrinker = () => {
+    this.props.clearDrinker();
     this.props.getDrinker(this.state.selectedName);
     this.props.getTopBeers(this.state.selectedName);
     this.props.getDailySpending(this.state.selectedName);
@@ -179,7 +180,11 @@ class Drinker extends Component {
         )}
         {this.state.selectedName &&
           Object.keys(this.props.drinkers.topBeers).length > 0 &&
-          Object.keys(this.props.drinkers.drinker).length > 0 && (
+          Object.keys(this.props.drinkers.drinker).length > 0 &&
+          Object.keys(this.props.drinkers.daily).length > 0 &&
+          Object.keys(this.props.drinkers.weekly).length > 0 &&
+          Object.keys(this.props.drinkers.monthly).length > 0 &&
+          Object.keys(this.props.drinkers.spending).length > 0 && (
             <div id="graph-section">
               <Grid container>
                 <Grid item xs={12}>
