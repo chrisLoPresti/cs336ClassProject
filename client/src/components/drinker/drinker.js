@@ -183,7 +183,7 @@ class Drinker extends Component {
           />
         )}
         {this.state.selectedName &&
-          this.state.done(
+          this.state.done && (
             <div id="graph-section">
               <Grid container>
                 <Grid item xs={12}>
