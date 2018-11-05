@@ -189,6 +189,16 @@ class Drinker extends Component {
                   </Typography>
                   <Transactions transactions={this.props.drinkers.drinker} />
                 </Grid>
+                <Grid item xs={12}>
+                  <BarChartSpending
+                    list={this.props.drinkers.spending}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s spending per bar`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Bar"}
+                    y={"Amount spent"}
+                  />
+                </Grid>
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.drinkers.topBeers}
@@ -227,16 +237,6 @@ class Drinker extends Component {
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Month"}
                     y={"Total money spent"}
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <BarChartSpending
-                    list={this.props.drinkers.spending}
-                    size={this.state.windowWidth}
-                    title={`${this.state.selectedName}'s spending per bar`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
-                    x={"Bar"}
-                    y={"Amount spent"}
                   />
                 </Grid>
               </Grid>
