@@ -172,13 +172,15 @@ class Drinker extends Component {
             )}
           </div>
         )}
-        {this.props.drinkers.loadingDrinker && (
-          <img
-            src={require("../../images/spinner.gif")}
-            alt="loading..."
-            style={{ width: "100px", margin: "auto", display: "block" }}
-          />
-        )}
+        {this.props.drinkers.loadingDrinker ||
+          (this.state.selectedName &&
+            this.props.drinkers.count != 6 && (
+              <img
+                src={require("../../images/spinner.gif")}
+                alt="loading..."
+                style={{ width: "100px", margin: "auto", display: "block" }}
+              />
+            ))}
         {this.state.selectedName &&
           this.props.drinkers.count === 6 && (
             <div id="graph-section">
