@@ -19,14 +19,10 @@
 
 @media only screen and (max-width: 900px) {
   #expainsion-text-container .expansion-text {
-    margin-left: 40px;
-    margin-right: 40px;
     font-size: 12px;
   }
 
   #expainsion-text-container .expansion-text-title {
-    margin-left: 40px;
-    margin-right: 40px;
     font-size: 12px;
   }
 }
