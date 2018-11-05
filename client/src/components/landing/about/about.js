@@ -4,7 +4,7 @@ import "./about.css";
 
 const chris = require("../../../images/profile.jpg");
 const jenny = require("../../../images/jenny.png");
-const tech = require("../../../images/reactflask.jpeg");
+const tec = require("../../../images/tec.png");
 
 const About = () => {
   return (
@@ -55,7 +55,7 @@ const About = () => {
           </Typography>
         </Grid>
         <Grid item xs={12} sm={6} className="about-us-text-grid">
-          <img className="tech" src={tech} alt="Technologies" />
+          <img className="tech" src={tec} alt="Technologies" />
         </Grid>
       </Grid>
     </div>
