@@ -3,6 +3,7 @@ import { Typography, Grid } from "@material-ui/core";
 import "./about.css";
 
 const chris = require("../../../images/profile.jpg");
+const jenny = require("../../../images/jenny.png");
 const tech = require("../../../images/reactflask.jpeg");
 
 const About = () => {
@@ -13,9 +14,9 @@ const About = () => {
       </Typography>
       <Grid container>
         <Grid className="image-container-grid " item xs={6} sm={4}>
-          <img className="profile-image left" src={chris} alt="Chris" />
+          <img className="profile-image left" src={jenny} alt="Jenny" />
           <Typography className="profile-text profile-text-left">
-            Christopher LoPresti
+            Jenny Skripko
             <br />
             Senior
           </Typography>
