@@ -279,6 +279,7 @@ class CustomPaginationActionsTable extends React.Component {
                         className={
                           this.props.selectedName === row.name ? "selected" : ""
                         }
+                        disabled={this.props.drinkers.loadingDrinker}
                         onClick={
                           !this.props.loading &&
                           this.selectedNameChange(row.name)

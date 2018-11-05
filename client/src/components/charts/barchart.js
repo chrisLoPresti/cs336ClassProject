@@ -1,0 +1,64 @@
+import React from "react";
+import PropTypes from "prop-types";
+import { Typography } from "@material-ui/core";
+import {
+  BarChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Tooltip,
+  Legend,
+  Bar,
+  ResponsiveContainer
+} from "recharts";
+
+import "./chart.css";
+
+const buildData = (list, data) => {
+  for (var x = 0; x < list.length; x++) {
+    let newObj = {};
+    newObj.name = list[x].beer;
+    newObj.quantity = list[x].quantity;
+    newObj.amt = list[x].quantity;
+    console.log(list[x]);
+
+    data.push(newObj);
+  }
+  console.log(data);
+};
+
+const BarChartComponent = props => {
+  let data = [];
+  buildData(props.list, data);
+  const size = props.size < 900 ? 0 : 12;
+  return (
+    <div id="graph-container">
+      <Typography className="graph-title">{props.title}</Typography>
+      <ResponsiveContainer width="100%" height={300}>
+        <BarChart
+          data={data}
+          margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
+        >
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="name" tick={{ fontSize: size }} />
+          <YAxis dataKey="amt" />
+          <Tooltip />
+          <Legend />
+          <Bar dataKey="quantity" fill={props.color} />
+        </BarChart>
+      </ResponsiveContainer>
+    </div>
+  );
+};
+
+BarChartComponent.propTypes = {
+  list: PropTypes.object.isRequired,
+  size: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequried,
+  color: PropTypes.string.isRequried
+};
+BarChartComponent.defaultProps = {
+  list: {}
+};
+
+export default BarChartComponent;

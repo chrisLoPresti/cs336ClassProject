@@ -4,7 +4,18 @@ import { Typography, Grid, IconButton } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getDrinkers } from "../../actions/drinkersActions";
+import BarChart from "../charts/barchart";
+import BarChartComponentPeriod from "../charts/barchartperiod";
+import {
+  getDrinkers,
+  getDrinker,
+  getTopBeers,
+  clearDrinkers,
+  clearDrinker,
+  getDailySpending,
+  getWeeklySpending,
+  getMonthlySpending
+} from "../../actions/drinkersActions";
 import Table from "./drinkertable";
 import "./drinker.css";
 
@@ -13,9 +24,15 @@ class Drinker extends Component {
     super(props);
     this.state = {
       errors: {},
-      selectedName: ""
+      selectedName: "",
+      windowWidth: 200
     };
   }
+
+  componentDidMount() {
+    window.addEventListener("resize", this.updateWindowDimensions);
+  }
+
   componentWillMount() {
     window.scrollTo(0, 0);
     this.props.getDrinkers();
@@ -27,19 +44,55 @@ class Drinker extends Component {
     }
   }
 
+  componentWillUnmount = () => {
+    window.removeListener("resize", this.updateWindowDimensions);
+  };
+
+  updateWindowDimensions = event => {
+    if (
+      this.state.windowWidth === "" ||
+      (this.state.windowWidth < 900 && window.innerWidth >= 900) ||
+      (this.state.windowWidth >= 900 && window.innerWidth < 900)
+    )
+      this.setState({ windowWidth: window.innerWidth });
+  };
+
   handleSelectDrinker = name => () => {
-    this.setState({
-      selectedName: name
-    });
+    this.setState(
+      {
+        selectedName: name
+      },
+      () => this.populateDrinker()
+    );
+  };
+
+  populateDrinker = () => {
+    this.props.getDrinker(this.state.selectedName);
+    this.props.getTopBeers(this.state.selectedName);
+    this.props.getDailySpending(this.state.selectedName);
+    this.props.getWeeklySpending(this.state.selectedName);
+    this.props.getMonthlySpending(this.state.selectedName);
   };
 
   clearSelected = () => {
-    this.setState({
-      selectedName: ""
-    });
+    this.setState(
+      {
+        selectedName: ""
+      },
+      () => this.props.clearDrinker()
+    );
   };
 
   render() {
+    const colors = [
+      "#001f3f",
+      "#0074D9",
+      "#FF4136",
+      "#111111",
+      "#01FF70",
+      "#FF851B",
+      "#FFDC00"
+    ];
     return (
       <div id="drinker-container">
         <div id="small-page" className="drinkers-image">
@@ -91,12 +144,14 @@ class Drinker extends Component {
                 </IconButton>
               )}
             </Typography>
-            <Table
-              drinkers={this.props.drinkers}
-              selectedName={this.state.selectedName}
-              handleSelectDrinker={this.handleSelectDrinker}
-              loading={this.props.drinkers.loadingDrinker}
-            />
+            {!this.props.drinkers.loadingDrinker && (
+              <Table
+                drinkers={this.props.drinkers}
+                selectedName={this.state.selectedName}
+                handleSelectDrinker={this.handleSelectDrinker}
+                loading={this.props.drinkers.loadingDrinker}
+              />
+            )}
           </div>
         )}
         {this.props.drinkers.loadingDrinker && (
@@ -105,6 +160,46 @@ class Drinker extends Component {
             alt="loading..."
             style={{ width: "100px", margin: "auto", display: "block" }}
           />
+        )}
+        {Object.keys(this.props.drinkers.topBeers).length > 0 && (
+          <Grid container>
+            <Grid item xs={12}>
+              <BarChart
+                list={this.props.drinkers.topBeers}
+                size={this.state.windowWidth}
+                title={`${this.state.selectedName}
+                's top 5 ordered beers`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <BarChartComponentPeriod
+                list={this.props.drinkers.daily}
+                size={this.state.windowWidth}
+                title={`${this.state.selectedName}
+                's daily spending`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <BarChartComponentPeriod
+                list={this.props.drinkers.weekly}
+                size={this.state.windowWidth}
+                title={`${this.state.selectedName}
+                's weekly spending`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <BarChartComponentPeriod
+                list={this.props.drinkers.monthly}
+                size={this.state.windowWidth}
+                title={`${this.state.selectedName}
+                's monthly spending`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+              />
+            </Grid>
+          </Grid>
         )}
       </div>
     );
@@ -126,5 +221,14 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getDrinkers }
+  {
+    getDrinkers,
+    getDrinker,
+    getTopBeers,
+    clearDrinkers,
+    clearDrinker,
+    getDailySpending,
+    getWeeklySpending,
+    getMonthlySpending
+  }
 )(withRouter(Drinker));
