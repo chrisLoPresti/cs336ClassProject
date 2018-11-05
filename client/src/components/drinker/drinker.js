@@ -207,7 +207,7 @@ class Drinker extends Component {
                   <BarChart
                     list={this.props.drinkers.topBeers}
                     size={this.state.windowWidth}
-                    title={`${this.state.selectedName}'s top 5 ordered beers`}
+                    title={`${this.state.selectedName}'s top 5 beers`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Beer"}
                     y={"Amount purchased"}

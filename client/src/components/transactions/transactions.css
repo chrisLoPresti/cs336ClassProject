@@ -22,6 +22,10 @@
   width: 100%;
 }
 
+#expansion-container #expainsion-text-container .expansion-text-title {
+  font-size: 10px;
+}
+
 #expansion-container .expansion-pannel .expansion-detail {
   text-align: center;
   overflow-x: scroll;
@@ -29,10 +33,6 @@
 
 @media only screen and (max-width: 900px) {
   #expainsion-text-container .expansion-text {
-    font-size: 12px;
-  }
-
-  #expainsion-text-container .expansion-text-title {
     font-size: 12px;
   }
 }
