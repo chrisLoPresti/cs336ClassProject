@@ -270,7 +270,7 @@ class Drinker extends Component {
                       size={this.state.windowWidth}
                       title={`${this.state.selectedName}'s weekly spending`}
                       color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Week (0-52)"}
+                      x={"Week (1-52)"}
                       y={"Total money spent"}
                     />
                   </Grid>
