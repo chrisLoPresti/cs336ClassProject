@@ -17,9 +17,9 @@ import "./chart.css";
 const buildData = (list, data) => {
   for (var x = 0; x < list.length; x++) {
     let newObj = {};
-    newObj.name = list[x].beer;
-    newObj.quantity = list[x].quantity;
-    newObj.amt = list[x].quantity;
+    newObj.name = list[x].name;
+    newObj.quantity = list[x].total;
+    newObj.amt = list[x].total;
 
     data.push(newObj);
   }

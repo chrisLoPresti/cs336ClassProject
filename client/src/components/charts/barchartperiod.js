@@ -18,8 +18,8 @@ const buildData = (list, data) => {
   for (var x = 0; x < list.length; x++) {
     let newObj = {};
     newObj.period = list[x].period;
-    newObj.quantity = list[x].total_price;
-    newObj.amt = list[x].total_price;
+    newObj.quantity = list[x].total;
+    newObj.amt = list[x].total;
 
     data.push(newObj);
   }

@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import BarChart from "../charts/barchart";
 import BarChartComponentPeriod from "../charts/barchartperiod";
-import BarChartSpending from "../charts/barchartspending";
 import {
   getDrinkers,
   getDrinker,
@@ -194,7 +193,7 @@ class Drinker extends Component {
                   <Transactions transactions={this.props.drinkers.drinker} />
                 </Grid>
                 <Grid item xs={12}>
-                  <BarChartSpending
+                  <BarChart
                     list={this.props.drinkers.spending}
                     size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s spending per bar`}
