@@ -12,7 +12,6 @@ import {
   SET_SPENDING,
   CLEAR_COUNT
 } from "../actions/types";
-import { LOCATION_CHANGE } from "react-router-redux";
 
 let initialState = {
   drinkers: [],
@@ -29,19 +28,6 @@ let initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
-    case LOCATION_CHANGE:
-      return {
-        drinkers: [],
-        drinker: {},
-        topBeers: {},
-        daily: {},
-        weekly: {},
-        monthly: {},
-        spending: {},
-        count: 0,
-        loadingDrinker: false,
-        loadingOneDrinker: false
-      };
     case CLEAR_COUNT:
       return {
         ...state,

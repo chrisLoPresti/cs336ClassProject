@@ -11,7 +11,13 @@ class Sidenav extends Component {
     return (
       <Drawer anchor="right" open={props.open} onClose={props.toggleDrawer}>
         <div id="side-nav-container">
-          <Typography className="side-nav-text">
+          <Typography
+            className="side-nav-text"
+            onClick={() => {
+              props.toggleDrawer();
+              props.history.push("/bars");
+            }}
+          >
             <i className="fa fa-building icon" />
             Bar
           </Typography>
@@ -36,14 +42,14 @@ class Sidenav extends Component {
               props.history.push("/randomQuery");
             }}
           >
-            <i class="fa fa-laptop icon" />
+            <i className="fa fa-laptop icon" />
             Query
           </Typography>
           <Typography
             className="side-nav-text"
             onClick={props.scrollOrChangeToAbout(props)}
           >
-            <i class="fa fa-question-circle icon" />
+            <i className="fa fa-question-circle icon" />
             About
           </Typography>
         </div>

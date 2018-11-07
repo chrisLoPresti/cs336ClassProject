@@ -30,7 +30,7 @@ class Drinker extends Component {
     this.state = {
       errors: {},
       selectedName: "",
-      windowWidth: 200
+      windowWidth: ""
     };
   }
 
@@ -162,6 +162,14 @@ class Drinker extends Component {
             </Typography>
           </Grid>
         </Grid>
+        {(this.props.drinkers.loadingDrinker ||
+          (this.state.selectedName && this.props.drinkers.count !== 6)) && (
+          <img
+            src={require("../../images/spinner.gif")}
+            alt="loading..."
+            style={{ width: "100px", margin: "auto", display: "block" }}
+          />
+        )}
         {Object.keys(this.props.drinkers.drinkers).length > 0 && (
           <div id="selected-drinker-container">
             <Typography className="selected-drinker">
@@ -206,14 +214,6 @@ class Drinker extends Component {
               </Grid>
             </Grid>
           )}
-        {(this.props.drinkers.loadingDrinker ||
-          (this.state.selectedName && this.props.drinkers.count !== 6)) && (
-          <img
-            src={require("../../images/spinner.gif")}
-            alt="loading..."
-            style={{ width: "100px", margin: "auto", display: "block" }}
-          />
-        )}
         {this.state.selectedName &&
           this.props.drinkers.count === 6 && (
             <div id="graph-section">
