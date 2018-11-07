@@ -14,7 +14,7 @@ import {
 } from "../actions/types";
 
 let initialState = {
-  drinkers: [],
+  drinkers: {},
   drinker: {},
   topBeers: {},
   daily: {},
