@@ -238,10 +238,10 @@ class CustomPaginationActionsTable extends React.Component {
           </Grid>
           <Grid item xs={2} sm={2}>
             <IconButton
-              className="clear-button-searched-drinker"
+              className="clear-button-searched-bar"
               onClick={this.clearSearch}
             >
-              <Close className="close-button-searched-drinker" />
+              <Close className="close-button-searched-bar" />
             </IconButton>
           </Grid>
         </Grid>
@@ -278,7 +278,7 @@ class CustomPaginationActionsTable extends React.Component {
                         className={
                           this.props.selectedBar === row.name ? "selected" : ""
                         }
-                        disabled={this.props.bars.loadingDrinker}
+                        disabled={this.props.bars.loadingbar}
                         onClick={
                           !this.props.loading &&
                           this.selectedBarChange(row.name)
