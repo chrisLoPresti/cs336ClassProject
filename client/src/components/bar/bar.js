@@ -213,7 +213,7 @@ class Bar extends Component {
                       list={this.props.bars.topManf}
                       title={`${
                         this.state.selectedBar
-                      }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
+                      }'s top 10 Popular Brands on ${this.state.selectedDay}s`}
                       color={colors[Math.floor(Math.random() * colors.length)]}
                       x={"Brand"}
                       y={"Sales"}
