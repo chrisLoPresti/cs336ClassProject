@@ -49,7 +49,7 @@ class BarChartComponent extends React.Component {
     const { title, color, x, y } = this.props;
     let data = [];
     this.buildData(this.props.list, data);
-    const size = this.props.size < 900 ? 0 : 12;
+    const size = this.props.size < 600 ? 0 : 12;
     const content = (
       <div>
         <p>x: {x}</p>

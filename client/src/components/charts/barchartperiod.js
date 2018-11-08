@@ -29,7 +29,7 @@ const BarChartComponentPeriod = props => {
   const { title, color } = props;
   let data = [];
   buildData(props.list, data);
-  const size = props.size < 900 ? 0 : 12;
+  const size = props.size < 600 ? 0 : 12;
   const content = (
     <div>
       <p>x: {props.x}</p>
