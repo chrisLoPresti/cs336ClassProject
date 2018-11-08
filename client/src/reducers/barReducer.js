@@ -8,7 +8,8 @@ import {
   SET_SPENDERS,
   SET_SALES_DAY,
   SET_SALES_TIME,
-  DECREMENT_COUNT
+  DECREMENT_COUNT,
+  SET_FRACTION
 } from "../actions/types";
 
 let initialState = {
@@ -17,6 +18,7 @@ let initialState = {
   spenders: {},
   sales: {},
   time: {},
+  fraction: {},
   count: 0,
   loadingBars: false,
   loadingBarsOne: false
@@ -30,6 +32,13 @@ export default function(state = initialState, action) {
         bars: action.payload,
         loadingBars: false
       };
+    case SET_FRACTION:
+      return {
+        ...state,
+        fraction: action.payload,
+        count: state.count + 1,
+        loadingBarsOne: false
+      };
     case DECREMENT_COUNT:
       return {
         ...state,
@@ -39,29 +48,29 @@ export default function(state = initialState, action) {
       return {
         ...state,
         sales: action.payload,
-        loadingBarsOne: false,
-        count: state.count + 1
+        count: state.count + 1,
+        loadingBarsOne: false
       };
     case SET_SALES_TIME:
       return {
         ...state,
         time: action.payload,
-        loadingBarsOne: false,
-        count: state.count + 1
+        count: state.count + 1,
+        loadingBarsOne: false
       };
     case SET_TOP_MANF:
       return {
         ...state,
         topManf: action.payload,
-        loadingBarsOne: false,
-        count: state.count + 1
+        count: state.count + 1,
+        loadingBarsOne: false
       };
     case SET_SPENDERS:
       return {
         ...state,
         spenders: action.payload,
-        loadingBarsOne: false,
-        count: state.count + 1
+        count: state.count + 1,
+        loadingBarsOne: false
       };
     case CLEAR_BARS:
       return {
@@ -71,6 +80,7 @@ export default function(state = initialState, action) {
         spenders: {},
         sales: {},
         time: {},
+        fraction: {},
         count: 0,
         loadingBars: false
       };
@@ -81,6 +91,7 @@ export default function(state = initialState, action) {
         spenders: {},
         sales: {},
         time: {},
+        fraction: {},
         count: 0,
         loadingBarsOne: false
       };

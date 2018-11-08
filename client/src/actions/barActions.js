@@ -10,7 +10,8 @@ import {
   SET_SPENDERS,
   SET_SALES_DAY,
   SET_SALES_TIME,
-  DECREMENT_COUNT
+  DECREMENT_COUNT,
+  SET_FRACTION
 } from "./types";
 
 export const decrementCount = () => dispatch => {
@@ -177,6 +178,34 @@ export const getSalesTime = bar => dispatch => {
     .catch(err => {
       dispatch({
         type: SET_SALES_TIME,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const getFraction = bar => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/inventory/fraction?bar=${bar}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_FRACTION,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_FRACTION,
         payload: {}
       });
       dispatch({

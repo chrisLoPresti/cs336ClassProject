@@ -25,6 +25,7 @@ export const SET_SPENDERS = "SET_SPENDERS";
 export const SET_SALES_DAY = "SET_SALES_DAY";
 export const SET_SALES_TIME = "SET_SALES_TIME";
 export const DECREMENT_COUNT = "DECREMENT_COUNT";
+export const SET_FRACTION = "SET_FRACTION";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

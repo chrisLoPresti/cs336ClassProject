@@ -12,7 +12,8 @@ import {
   getSpenders,
   getSales,
   getSalesTime,
-  decrementCount
+  decrementCount,
+  getFraction
 } from "../../actions/barActions";
 import Table from "./bartable";
 import ChartPicker from "../charts/chartPicker";
@@ -72,6 +73,7 @@ class Bar extends Component {
     this.props.getSpenders(this.state.selectedBar);
     this.props.getSales(this.state.selectedBar);
     this.props.getSalesTime(this.state.selectedBar);
+    this.props.getFraction(this.state.selectedBar);
   };
 
   getTopManfOnDay = () => {
@@ -101,7 +103,7 @@ class Bar extends Component {
 
     if (
       !this.props.bars.loadingBarsOne &&
-      this.props.bars.count === 4 &&
+      this.props.bars.count === 5 &&
       document.getElementById("graph-section")
     ) {
       scrollToElement("#graph-section", {
@@ -114,7 +116,20 @@ class Bar extends Component {
       Object.keys(this.props.bars.topManf).length <= 0 &&
       Object.keys(this.props.bars.spenders).length <= 0 &&
       Object.keys(this.props.bars.sales).length <= 0 &&
-      Object.keys(this.props.bars.time).length <= 0;
+      Object.keys(this.props.bars.time).length <= 0 &&
+      Object.keys(this.props.bars.fraction).length <= 0;
+    var newFraction = [];
+    if (
+      this.props.bars.count === 5 &&
+      Object.keys(this.props.bars.fraction).length > 0
+    ) {
+      for (var x = 0; x < Object.keys(this.props.bars.fraction).length; ++x) {
+        newFraction.push(this.props.bars.fraction[x]);
+        newFraction[x].total = (parseFloat(newFraction[x].total) * 10).toFixed(
+          2
+        );
+      }
+    }
     return (
       <div id="bar-container">
         <div id="small-page" className="bar-image">
@@ -204,7 +219,7 @@ class Bar extends Component {
             </Grid>
           </Grid>
         )}
-        {this.state.selectedBar && this.props.bars.count === 4 && (
+        {this.state.selectedBar && this.props.bars.count === 5 && (
           <div id="graph-section">
             <Grid container>
               {!this.props.bars.loadingBarsOne &&
@@ -258,7 +273,7 @@ class Bar extends Component {
                 </Grid>
               )}
               {Object.keys(this.props.bars.time).length && (
-                <Grid item xs={12}>
+                <Grid item xs={12} sm={6}>
                   <BarChartTime
                     list={this.props.bars.time}
                     title={`${
@@ -267,6 +282,19 @@ class Bar extends Component {
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Time of day"}
                     y={"Average Sales"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.bars.fraction).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChart
+                    list={newFraction}
+                    title={`${
+                      this.state.selectedBar
+                    }'s Avgerage % Of Inventory Sold Per Day`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Day"}
+                    y={"Average % sold"}
                   />
                 </Grid>
               )}
@@ -302,6 +330,7 @@ export default connect(
     getSpenders,
     getSales,
     getSalesTime,
-    decrementCount
+    decrementCount,
+    getFraction
   }
 )(withRouter(Bar));
