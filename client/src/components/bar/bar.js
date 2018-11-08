@@ -8,10 +8,16 @@ import {
   getBars,
   clearBars,
   getTopBrands,
-  clearBar
+  clearBar,
+  getSpenders,
+  getSales,
+  getSalesTime
 } from "../../actions/barActions";
 import Table from "./bartable";
 import ChartPicker from "../charts/chartPicker";
+import BarChart from "../charts/barchart";
+import BarChartPeriod from "../charts/barchartperiod";
+import BarChartTime from "../charts/chartstime";
 import "./bar.css";
 
 let scrollToElement = require("scroll-to-element");
@@ -21,7 +27,7 @@ class Bar extends Component {
     super(props);
     this.state = {
       errors: {},
-      windowWidth: "",
+      windowWidth: 0,
       selectedBar: "",
       selectedDay: "Monday",
       changingDay: false
@@ -49,7 +55,7 @@ class Bar extends Component {
 
   updateWindowDimensions = event => {
     if (
-      this.state.windowWidth === "" ||
+      this.state.windowWidth === 0 ||
       (this.state.windowWidth < 900 && window.innerWidth >= 900) ||
       (this.state.windowWidth >= 900 && window.innerWidth < 900)
     )
@@ -77,6 +83,9 @@ class Bar extends Component {
 
   populateBar = () => {
     this.getTopManfOnDay();
+    this.props.getSpenders(this.state.selectedBar);
+    this.props.getSales(this.state.selectedBar);
+    this.props.getSalesTime(this.state.selectedBar);
   };
 
   getTopManfOnDay = () => {
@@ -196,8 +205,8 @@ class Bar extends Component {
                         this.state.selectedBar
                       }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
                       color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Bar"}
-                      y={"Amount spent"}
+                      x={"Brand"}
+                      y={"Sales"}
                       changeDay={this.changeDay}
                     />
                   </Grid>
@@ -208,6 +217,48 @@ class Bar extends Component {
                     src={require("../../images/spinner.gif")}
                     alt="loading..."
                     style={{ width: "100px", margin: "auto", display: "block" }}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.bars.spenders).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChart
+                    list={this.props.bars.spenders}
+                    size={this.state.windowWidth}
+                    title={`${
+                      this.state.selectedBar
+                    }'s top 10 Largest Spenders`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Drinker"}
+                    y={"Total money spent"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.bars.sales).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChartPeriod
+                    list={this.props.bars.sales}
+                    size={this.state.windowWidth}
+                    title={`${
+                      this.state.selectedBar
+                    }'s Sales Distribution By Day`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Period"}
+                    y={"Average Sales"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.bars.time).length && (
+                <Grid item xs={12}>
+                  <BarChartTime
+                    list={this.props.bars.time}
+                    size={this.state.windowWidth}
+                    title={`${
+                      this.state.selectedBar
+                    }'s Sales Distribution By Time Of Day`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Time of day"}
+                    y={"Average Sales"}
                   />
                 </Grid>
               )}
@@ -224,7 +275,8 @@ Bar.propTypes = {
   errors: PropTypes.object.isRequired
 };
 Bar.defaultProps = {
-  bars: {}
+  bars: {},
+  spenders: {}
 };
 
 const mapStateToProps = state => ({
@@ -238,6 +290,9 @@ export default connect(
     getBars,
     clearBars,
     getTopBrands,
-    clearBar
+    clearBar,
+    getSpenders,
+    getSales,
+    getSalesTime
   }
 )(withRouter(Bar));

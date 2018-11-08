@@ -21,6 +21,9 @@ export const SET_BARS_LOADING = "SET_BARS_LOADING";
 export const SET_TOP_MANF = "SET_TOP_MANF";
 export const CLEAR_BAR = "CLEAR_BAR";
 export const SET_BARS_LOADING_ONE = "SET_BARS_LOADING_ONE";
+export const SET_SPENDERS = "SET_SPENDERS";
+export const SET_SALES_DAY = "SET_SALES_DAY";
+export const SET_SALES_TIME = "SET_SALES_TIME";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

@@ -30,7 +30,7 @@ class Drinker extends Component {
     this.state = {
       errors: {},
       selectedName: "",
-      windowWidth: ""
+      windowWidth: 0
     };
   }
 
@@ -57,7 +57,7 @@ class Drinker extends Component {
 
   updateWindowDimensions = event => {
     if (
-      this.state.windowWidth === "" ||
+      this.state.windowWidth === 0 ||
       (this.state.windowWidth < 900 && window.innerWidth >= 900) ||
       (this.state.windowWidth >= 900 && window.innerWidth < 900)
     )

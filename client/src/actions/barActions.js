@@ -6,7 +6,10 @@ import {
   SET_BARS,
   GET_ERRORS,
   SET_TOP_MANF,
-  CLEAR_BAR
+  CLEAR_BAR,
+  SET_SPENDERS,
+  SET_SALES_DAY,
+  SET_SALES_TIME
 } from "./types";
 
 export const clearBars = () => dispatch => {
@@ -82,6 +85,90 @@ export const getTopBrands = params => dispatch => {
     .catch(err => {
       dispatch({
         type: SET_TOP_MANF,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const getSpenders = bar => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/top/spenders?bar=${bar}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_SPENDERS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_SPENDERS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const getSales = bar => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/sale/distribution/days?bar=${bar}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_SALES_DAY,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_SALES_DAY,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      });
+    });
+};
+
+export const getSalesTime = bar => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/sale/time/distribution?bar=${bar}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_SALES_TIME,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_SALES_TIME,
         payload: {}
       });
       dispatch({
