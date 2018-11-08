@@ -9,8 +9,16 @@ import {
   CLEAR_BAR,
   SET_SPENDERS,
   SET_SALES_DAY,
-  SET_SALES_TIME
+  SET_SALES_TIME,
+  DECREMENT_COUNT
 } from "./types";
+
+export const decrementCount = () => dispatch => {
+  dispatch({
+    type: DECREMENT_COUNT,
+    payload: {}
+  });
+};
 
 export const clearBars = () => dispatch => {
   dispatch({

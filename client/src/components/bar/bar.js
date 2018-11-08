@@ -11,7 +11,8 @@ import {
   clearBar,
   getSpenders,
   getSales,
-  getSalesTime
+  getSalesTime,
+  decrementCount
 } from "../../actions/barActions";
 import Table from "./bartable";
 import ChartPicker from "../charts/chartPicker";
@@ -81,6 +82,7 @@ class Bar extends Component {
   };
 
   changeDay = day => {
+    this.props.decrementCount();
     this.setState({ selectedDay: day }, () => this.getTopManfOnDay());
   };
 
@@ -298,6 +300,7 @@ export default connect(
     clearBar,
     getSpenders,
     getSales,
-    getSalesTime
+    getSalesTime,
+    decrementCount
   }
 )(withRouter(Bar));

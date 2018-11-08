@@ -7,7 +7,8 @@ import {
   SET_BARS_LOADING_ONE,
   SET_SPENDERS,
   SET_SALES_DAY,
-  SET_SALES_TIME
+  SET_SALES_TIME,
+  DECREMENT_COUNT
 } from "../actions/types";
 
 let initialState = {
@@ -28,6 +29,11 @@ export default function(state = initialState, action) {
         ...state,
         bars: action.payload,
         loadingBars: false
+      };
+    case DECREMENT_COUNT:
+      return {
+        ...state,
+        count: state.count - 1
       };
     case SET_SALES_DAY:
       return {

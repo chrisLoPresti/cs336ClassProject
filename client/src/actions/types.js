@@ -24,6 +24,7 @@ export const SET_BARS_LOADING_ONE = "SET_BARS_LOADING_ONE";
 export const SET_SPENDERS = "SET_SPENDERS";
 export const SET_SALES_DAY = "SET_SALES_DAY";
 export const SET_SALES_TIME = "SET_SALES_TIME";
+export const DECREMENT_COUNT = "DECREMENT_COUNT";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";
