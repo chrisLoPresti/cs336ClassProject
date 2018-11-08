@@ -29,13 +29,8 @@ class Drinker extends Component {
     super(props);
     this.state = {
       errors: {},
-      selectedName: "",
-      windowWidth: 0
+      selectedName: ""
     };
-  }
-
-  componentDidMount() {
-    window.addEventListener("resize", this.updateWindowDimensions);
   }
 
   componentWillMount() {
@@ -50,18 +45,8 @@ class Drinker extends Component {
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.updateWindowDimensions);
     this.props.clearDrinker();
     this.props.clearDrinkers();
-  };
-
-  updateWindowDimensions = event => {
-    if (
-      this.state.windowWidth === 0 ||
-      (this.state.windowWidth < 900 && window.innerWidth >= 900) ||
-      (this.state.windowWidth >= 900 && window.innerWidth < 900)
-    )
-      this.setState({ windowWidth: window.innerWidth });
   };
 
   handleSelectDrinker = name => () => {
@@ -230,7 +215,6 @@ class Drinker extends Component {
                 <Grid item xs={12}>
                   <BarChart
                     list={this.props.drinkers.spending}
-                    size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s spending per bar`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Bar"}
@@ -242,7 +226,6 @@ class Drinker extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.drinkers.topBeers}
-                    size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s top 5 beers`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Beer"}
@@ -254,7 +237,6 @@ class Drinker extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.daily}
-                    size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s daily spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Date (yyyy-mm-dd)"}
@@ -266,7 +248,6 @@ class Drinker extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.weekly}
-                    size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s weekly spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Week (1-52)"}
@@ -278,7 +259,6 @@ class Drinker extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.monthly}
-                    size={this.state.windowWidth}
                     title={`${this.state.selectedName}'s monthly spending`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
                     x={"Month"}

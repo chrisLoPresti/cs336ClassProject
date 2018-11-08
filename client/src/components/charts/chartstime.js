@@ -35,7 +35,6 @@ const BarChartTime = props => {
   const { title, color } = props;
   let data = [];
   buildData(props.list, data);
-  const size = props.size < 600 ? 0 : 12;
   const content = (
     <div>
       <p>x: {props.x}</p>
@@ -51,7 +50,7 @@ const BarChartTime = props => {
           margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
         >
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="name" tick={{ fontSize: size }} />
+          <XAxis dataKey="name" tick={{ fontSize: "!2px" }} />
           <YAxis dataKey="amt" />
           <Tooltip />
           <Legend content={content} />
@@ -64,7 +63,6 @@ const BarChartTime = props => {
 
 BarChartTime.propTypes = {
   list: PropTypes.array.isRequired,
-  size: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   x: PropTypes.string.isRequired,

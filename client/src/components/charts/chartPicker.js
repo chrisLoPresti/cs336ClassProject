@@ -49,7 +49,6 @@ class BarChartComponent extends React.Component {
     const { title, color, x, y } = this.props;
     let data = [];
     this.buildData(this.props.list, data);
-    const size = this.props.size < 600 ? 0 : 12;
     const content = (
       <div>
         <p>x: {x}</p>
@@ -110,7 +109,7 @@ class BarChartComponent extends React.Component {
             margin={{ top: 5, right: 30, left: 20, bottom: 5 }}
           >
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="name" tick={{ fontSize: size }} />
+            <XAxis dataKey="name" tick={{ fontSize: "12px" }} />
             <YAxis dataKey="amt" />
             <Tooltip />
             <Legend content={content} />
@@ -124,7 +123,6 @@ class BarChartComponent extends React.Component {
 
 BarChartComponent.propTypes = {
   list: PropTypes.array.isRequired,
-  size: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   color: PropTypes.string.isRequired,
   x: PropTypes.string.isRequired,

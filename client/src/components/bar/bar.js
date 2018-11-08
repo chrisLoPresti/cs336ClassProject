@@ -27,16 +27,11 @@ class Bar extends Component {
     super(props);
     this.state = {
       errors: {},
-      windowWidth: 0,
       selectedBar: "",
       selectedDay: "Monday",
       changingDay: false
     };
   }
-  componentDidMount() {
-    window.addEventListener("resize", this.updateWindowDimensions);
-  }
-
   componentWillMount() {
     window.scrollTo(0, 0);
     this.props.getBars();
@@ -49,19 +44,8 @@ class Bar extends Component {
   }
 
   componentWillUnmount = () => {
-    window.removeEventListener("resize", this.updateWindowDimensions);
     this.props.clearBars();
   };
-
-  updateWindowDimensions = event => {
-    if (
-      this.state.windowWidth === 0 ||
-      (this.state.windowWidth < 900 && window.innerWidth >= 900) ||
-      (this.state.windowWidth >= 900 && window.innerWidth < 900)
-    )
-      this.setState({ windowWidth: window.innerWidth });
-  };
-
   clearSelected = () => {
     this.setState(
       {
@@ -200,7 +184,6 @@ class Bar extends Component {
                   <Grid item xs={12}>
                     <ChartPicker
                       list={this.props.bars.topManf}
-                      size={this.state.windowWidth}
                       title={`${
                         this.state.selectedBar
                       }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
@@ -224,7 +207,6 @@ class Bar extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.bars.spenders}
-                    size={this.state.windowWidth}
                     title={`${
                       this.state.selectedBar
                     }'s top 10 Largest Spenders`}
@@ -238,7 +220,6 @@ class Bar extends Component {
                 <Grid item xs={12} sm={6}>
                   <BarChartPeriod
                     list={this.props.bars.sales}
-                    size={this.state.windowWidth}
                     title={`${
                       this.state.selectedBar
                     }'s Sales Distribution By Day`}
@@ -252,7 +233,6 @@ class Bar extends Component {
                 <Grid item xs={12}>
                   <BarChartTime
                     list={this.props.bars.time}
-                    size={this.state.windowWidth}
                     title={`${
                       this.state.selectedBar
                     }'s Sales Distribution By Time Of Day`}
