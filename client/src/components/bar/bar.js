@@ -24,6 +24,8 @@ import "./bar.css";
 
 let scrollToElement = require("scroll-to-element");
 
+var newFraction = [];
+
 class Bar extends Component {
   constructor(props) {
     super(props);
@@ -49,6 +51,7 @@ class Bar extends Component {
     this.props.clearBars();
   };
   clearSelected = () => {
+    newFraction = [];
     this.setState(
       {
         selectedBar: "",
@@ -59,6 +62,7 @@ class Bar extends Component {
   };
 
   handleSelectedBar = name => () => {
+    newFraction = [];
     this.setState(
       {
         selectedBar: name
@@ -118,14 +122,16 @@ class Bar extends Component {
       Object.keys(this.props.bars.sales).length <= 0 &&
       Object.keys(this.props.bars.time).length <= 0 &&
       Object.keys(this.props.bars.fraction).length <= 0;
-    var newFraction = [];
+
     if (
       this.props.bars.count === 5 &&
-      Object.keys(this.props.bars.fraction).length > 0
+      Object.keys(this.props.bars.fraction).length > 0 &&
+      !this.props.bars.loadingBarsOne &&
+      !newFraction.length
     ) {
       for (var x = 0; x < Object.keys(this.props.bars.fraction).length; ++x) {
         newFraction.push(this.props.bars.fraction[x]);
-        newFraction[x].total = (parseFloat(newFraction[x].total) * 10).toFixed(
+        newFraction[x].total = (parseFloat(newFraction[x].total) * 100).toFixed(
           2
         );
       }
@@ -199,7 +205,7 @@ class Bar extends Component {
               />
             )}
           </div>
-        )}{" "}
+        )}
         {Object.keys(this.props.bars.bars).length <= 0 &&
           !this.props.bars.loadingBars && (
             <Grid container>
