@@ -4,9 +4,17 @@ import { Typography, Grid, IconButton } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Close } from "@material-ui/icons";
 import { connect } from "react-redux";
-import { getBars, clearBars } from "../../actions/barActions";
+import {
+  getBars,
+  clearBars,
+  getTopBrands,
+  clearBar
+} from "../../actions/barActions";
 import Table from "./bartable";
+import ChartPicker from "../charts/chartPicker";
 import "./bar.css";
+
+let scrollToElement = require("scroll-to-element");
 
 class Bar extends Component {
   constructor(props) {
@@ -14,7 +22,9 @@ class Bar extends Component {
     this.state = {
       errors: {},
       windowWidth: "",
-      selectedBar: ""
+      selectedBar: "",
+      selectedDay: "Monday",
+      changingDay: false
     };
   }
   componentDidMount() {
@@ -47,18 +57,62 @@ class Bar extends Component {
   };
 
   clearSelected = () => {
-    this.setState({
-      selectedBar: ""
-    });
+    this.setState(
+      {
+        selectedBar: "",
+        selectedDay: "Monday"
+      },
+      () => this.props.clearBar()
+    );
   };
 
   handleSelectedBar = name => () => {
-    this.setState({
-      selectedBar: name
-    });
+    this.setState(
+      {
+        selectedBar: name
+      },
+      () => this.populateBar()
+    );
+  };
+
+  populateBar = () => {
+    this.getTopManfOnDay();
+  };
+
+  getTopManfOnDay = () => {
+    let params = {};
+    params.bar = this.state.selectedBar;
+    params.day = this.state.selectedDay;
+    this.props.getTopBrands(params);
+  };
+
+  changeDay = day => {
+    this.setState({ selectedDay: day }, () => this.getTopManfOnDay());
   };
 
   render() {
+    const colors = [
+      "#001f3f",
+      "#0074D9",
+      "#FF4136",
+      "#B10DC9",
+      "#FF851B",
+      "#FFD700",
+      "#7FDBFF",
+      "#85144b",
+      "#2ECC40"
+    ];
+
+    if (
+      !this.props.bars.loadingBarsOne &&
+      document.getElementById("graph-section")
+    ) {
+      scrollToElement("#graph-section", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+    }
     return (
       <div id="bar-container">
         <div id="small-page" className="bar-image">
@@ -129,6 +183,35 @@ class Bar extends Component {
             )}
           </div>
         )}
+        <div id="graph-section">
+          <Grid container>
+            {!this.props.bars.loadingBarsOne &&
+              Object.keys(this.props.bars.topManf).length && (
+                <Grid item xs={12}>
+                  <ChartPicker
+                    list={this.props.bars.topManf}
+                    size={this.state.windowWidth}
+                    title={`${
+                      this.state.selectedBar
+                    }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Bar"}
+                    y={"Amount spent"}
+                    changeDay={this.changeDay}
+                  />
+                </Grid>
+              )}
+            {this.props.bars.loadingBarsOne && (
+              <Grid item xs={12}>
+                <img
+                  src={require("../../images/spinner.gif")}
+                  alt="loading..."
+                  style={{ width: "100px", margin: "auto", display: "block" }}
+                />
+              </Grid>
+            )}
+          </Grid>
+        </div>
       </div>
     );
   }
@@ -151,6 +234,8 @@ export default connect(
   mapStateToProps,
   {
     getBars,
-    clearBars
+    clearBars,
+    getTopBrands,
+    clearBar
   }
 )(withRouter(Bar));

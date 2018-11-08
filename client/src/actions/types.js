@@ -18,6 +18,9 @@ export const CLEAR_COUNT = "CLEAR_COUNT";
 export const SET_BARS = "GET_BARS";
 export const CLEAR_BARS = "CLEAR_BARS";
 export const SET_BARS_LOADING = "SET_BARS_LOADING";
+export const SET_TOP_MANF = "SET_TOP_MANF";
+export const CLEAR_BAR = "CLEAR_BAR";
+export const SET_BARS_LOADING_ONE = "SET_BARS_LOADING_ONE";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

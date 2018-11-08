@@ -1,9 +1,16 @@
 #graph-container .graph-title {
   text-align: center;
   font-size: 20px;
-  margin: 40px;
+  margin: 40px 40px 20px 40px;
 }
 
 #graph-container .graph-axis-font {
   font-size: 200px;
+}
+#graph-container {
+  text-align: center;
+}
+#chart-button {
+  margin: 10px 10px 10px 10px;
+  background-color: lightgray;
 }

@@ -62,6 +62,18 @@
   transition: 0.3s;
 }
 
+#graph-section .grouped-by-bar-text {
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+}
+
+@media only screen and (max-width: 900px) {
+  #graph-section .grouped-by-bar-text {
+    font-size: 30px;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   #small-title .small-title-text {
     font-size: 40px;
@@ -87,6 +99,10 @@
   #large-title .large-title-text {
     font-size: 40px;
     transition: 0.3s;
+  }
+
+  #graph-section .grouped-by-bar-text {
+    font-size: 20px;
   }
 }
 

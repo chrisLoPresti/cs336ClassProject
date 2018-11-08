@@ -214,82 +214,81 @@ class Drinker extends Component {
               </Grid>
             </Grid>
           )}
-        {this.state.selectedName &&
-          this.props.drinkers.count === 6 && (
-            <div id="graph-section">
-              <Grid container>
-                <Grid item xs={12}>
-                  <Typography className="grouped-by-bar-text">
-                    {this.state.selectedName}
-                    's transactions by bar
-                  </Typography>
-                  {this.props.drinkers.drinker && (
-                    <Transactions transactions={this.props.drinkers.drinker} />
-                  )}
-                </Grid>
-                {this.props.drinkers.spending && (
-                  <Grid item xs={12}>
-                    <BarChart
-                      list={this.props.drinkers.spending}
-                      size={this.state.windowWidth}
-                      title={`${this.state.selectedName}'s spending per bar`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Bar"}
-                      y={"Amount spent"}
-                    />
-                  </Grid>
-                )}
-                {this.props.drinkers.topBeers && (
-                  <Grid item xs={12} sm={6}>
-                    <BarChart
-                      list={this.props.drinkers.topBeers}
-                      size={this.state.windowWidth}
-                      title={`${this.state.selectedName}'s top 5 beers`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Beer"}
-                      y={"Amount purchased"}
-                    />
-                  </Grid>
-                )}
-                {this.props.drinkers.daily && (
-                  <Grid item xs={12} sm={6}>
-                    <BarChartComponentPeriod
-                      list={this.props.drinkers.daily}
-                      size={this.state.windowWidth}
-                      title={`${this.state.selectedName}'s daily spending`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Date (yyyy-mm-dd)"}
-                      y={"Total money spent"}
-                    />
-                  </Grid>
-                )}
-                {this.props.drinkers.weekly && (
-                  <Grid item xs={12} sm={6}>
-                    <BarChartComponentPeriod
-                      list={this.props.drinkers.weekly}
-                      size={this.state.windowWidth}
-                      title={`${this.state.selectedName}'s weekly spending`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Week (1-52)"}
-                      y={"Total money spent"}
-                    />
-                  </Grid>
-                )}
-                {this.props.drinkers.monthly && (
-                  <Grid item xs={12} sm={6}>
-                    <BarChartComponentPeriod
-                      list={this.props.drinkers.monthly}
-                      size={this.state.windowWidth}
-                      title={`${this.state.selectedName}'s monthly spending`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
-                      x={"Month"}
-                      y={"Total money spent"}
-                    />
-                  </Grid>
+        {this.state.selectedName && this.props.drinkers.count === 6 && (
+          <div id="graph-section">
+            <Grid container>
+              <Grid item xs={12}>
+                <Typography className="grouped-by-bar-text">
+                  {this.state.selectedName}
+                  's transactions by bar
+                </Typography>
+                {this.props.drinkers.drinker && (
+                  <Transactions transactions={this.props.drinkers.drinker} />
                 )}
               </Grid>
-            </div>
-          )}
+              {Object.keys(this.props.drinkers.spending).length && (
+                <Grid item xs={12}>
+                  <BarChart
+                    list={this.props.drinkers.spending}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s spending per bar`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Bar"}
+                    y={"Amount spent"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.drinkers.topBeers).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChart
+                    list={this.props.drinkers.topBeers}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s top 5 beers`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Beer"}
+                    y={"Amount purchased"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.drinkers.daily).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChartComponentPeriod
+                    list={this.props.drinkers.daily}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s daily spending`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Date (yyyy-mm-dd)"}
+                    y={"Total money spent"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.drinkers.weekly).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChartComponentPeriod
+                    list={this.props.drinkers.weekly}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s weekly spending`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Week (1-52)"}
+                    y={"Total money spent"}
+                  />
+                </Grid>
+              )}
+              {Object.keys(this.props.drinkers.monthly).length && (
+                <Grid item xs={12} sm={6}>
+                  <BarChartComponentPeriod
+                    list={this.props.drinkers.monthly}
+                    size={this.state.windowWidth}
+                    title={`${this.state.selectedName}'s monthly spending`}
+                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    x={"Month"}
+                    y={"Total money spent"}
+                  />
+                </Grid>
+              )}
+            </Grid>
+          </div>
+        )}
       </div>
     );
   }
