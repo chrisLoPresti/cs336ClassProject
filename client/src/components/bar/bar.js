@@ -183,35 +183,37 @@ class Bar extends Component {
             )}
           </div>
         )}
-        <div id="graph-section">
-          <Grid container>
-            {!this.props.bars.loadingBarsOne &&
-              Object.keys(this.props.bars.topManf).length && (
+        {this.state.selectedBar && (
+          <div id="graph-section">
+            <Grid container>
+              {!this.props.bars.loadingBarsOne &&
+                Object.keys(this.props.bars.topManf).length && (
+                  <Grid item xs={12}>
+                    <ChartPicker
+                      list={this.props.bars.topManf}
+                      size={this.state.windowWidth}
+                      title={`${
+                        this.state.selectedBar
+                      }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
+                      color={colors[Math.floor(Math.random() * colors.length)]}
+                      x={"Bar"}
+                      y={"Amount spent"}
+                      changeDay={this.changeDay}
+                    />
+                  </Grid>
+                )}
+              {this.props.bars.loadingBarsOne && (
                 <Grid item xs={12}>
-                  <ChartPicker
-                    list={this.props.bars.topManf}
-                    size={this.state.windowWidth}
-                    title={`${
-                      this.state.selectedBar
-                    }'s top 10 Popular Brands on ${this.state.selectedDay}'s`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
-                    x={"Bar"}
-                    y={"Amount spent"}
-                    changeDay={this.changeDay}
+                  <img
+                    src={require("../../images/spinner.gif")}
+                    alt="loading..."
+                    style={{ width: "100px", margin: "auto", display: "block" }}
                   />
                 </Grid>
               )}
-            {this.props.bars.loadingBarsOne && (
-              <Grid item xs={12}>
-                <img
-                  src={require("../../images/spinner.gif")}
-                  alt="loading..."
-                  style={{ width: "100px", margin: "auto", display: "block" }}
-                />
-              </Grid>
-            )}
-          </Grid>
-        </div>
+            </Grid>
+          </div>
+        )}
       </div>
     );
   }
