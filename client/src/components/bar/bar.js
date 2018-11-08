@@ -206,18 +206,6 @@ class Bar extends Component {
             )}
           </div>
         )}
-        {this.state.selectedBar && !noInfo && !this.props.bars.loadingBarsOne && (
-          <Grid container>
-            <Grid item xs={12} style={{ textAlign: "center" }}>
-              <Button
-                style={{ backgroundColor: "#303030", color: "white" }}
-                onClick={this.clearSelected}
-              >
-                Clear Selected Bar
-              </Button>
-            </Grid>
-          </Grid>
-        )}
         {Object.keys(this.props.bars.bars).length <= 0 &&
           !this.props.bars.loadingBars && (
             <Grid container>
@@ -240,6 +228,36 @@ class Bar extends Component {
         {this.state.selectedBar && this.props.bars.count === 5 && (
           <div id="graph-section">
             <Grid container>
+              {this.state.selectedBar &&
+                !noInfo &&
+                !this.props.bars.loadingBarsOne && (
+                  <Grid item xs={12}>
+                    <div id="lets-get-started">
+                      <Typography
+                        variant="h4"
+                        className="lets-get-started-text"
+                      >
+                        Results for {this.state.selectedBar}
+                      </Typography>
+                    </div>
+                  </Grid>
+                )}
+              {this.state.selectedBar &&
+                !noInfo &&
+                !this.props.bars.loadingBarsOne && (
+                  <Grid item xs={12} style={{ textAlign: "center" }}>
+                    <Button
+                      style={{
+                        backgroundColor: "#303030",
+                        color: "white",
+                        marginTop: "30px"
+                      }}
+                      onClick={this.clearSelected}
+                    >
+                      Clear Selected Bar
+                    </Button>
+                  </Grid>
+                )}
               {!this.props.bars.loadingBarsOne &&
                 Object.keys(this.props.bars.topManf).length && (
                   <Grid item xs={12}>

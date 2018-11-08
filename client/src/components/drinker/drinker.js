@@ -178,21 +178,7 @@ class Drinker extends Component {
               />
             )}
           </div>
-        )}{" "}
-        {this.state.selectedName &&
-          !noInfo &&
-          !this.props.drinkers.loadingOneDrinker && (
-            <Grid container>
-              <Grid item xs={12} style={{ textAlign: "center" }}>
-                <Button
-                  style={{ backgroundColor: "#303030", color: "white" }}
-                  onClick={this.clearSelected}
-                >
-                  Clear Selected Drinker
-                </Button>
-              </Grid>
-            </Grid>
-          )}
+        )}
         {Object.keys(this.props.drinkers.drinkers).length <= 0 &&
           !this.props.drinkers.loadingDrinker && (
             <Grid container>
@@ -217,6 +203,36 @@ class Drinker extends Component {
         {this.state.selectedName && this.props.drinkers.count === 6 && (
           <div id="graph-section">
             <Grid container>
+              {this.state.selectedName &&
+                !noInfo &&
+                !this.props.drinkers.loadingOneDrinker && (
+                  <Grid item xs={12}>
+                    <div id="lets-get-started">
+                      <Typography
+                        variant="h4"
+                        className="lets-get-started-text"
+                      >
+                        Results for {this.state.selectedName}
+                      </Typography>
+                    </div>
+                  </Grid>
+                )}
+              {this.state.selectedName &&
+                !noInfo &&
+                !this.props.drinkers.loadingOneDrinker && (
+                  <Grid item xs={12} style={{ textAlign: "center" }}>
+                    <Button
+                      style={{
+                        backgroundColor: "#303030",
+                        color: "white",
+                        marginTop: "30px"
+                      }}
+                      onClick={this.clearSelected}
+                    >
+                      Clear Selected Drinker
+                    </Button>
+                  </Grid>
+                )}
               <Grid item xs={12}>
                 <Typography className="grouped-by-bar-text">
                   {this.state.selectedName}
