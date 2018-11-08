@@ -91,7 +91,7 @@ class Drinker extends Component {
     ];
     if (
       !this.props.drinkers.loadingOneDrinker &&
-      !this.props.drinkers.loadingDrinker &&
+      this.props.drinkers.count === 6 &&
       document.getElementById("graph-section")
     ) {
       scrollToElement("#graph-section", {

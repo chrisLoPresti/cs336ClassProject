@@ -101,7 +101,7 @@ class Bar extends Component {
 
     if (
       !this.props.bars.loadingBarsOne &&
-      !this.props.bars.loadingBars &&
+      this.props.bars.count === 4 &&
       document.getElementById("graph-section")
     ) {
       scrollToElement("#graph-section", {
