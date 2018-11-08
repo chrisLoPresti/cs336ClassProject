@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Typography, Grid, IconButton } from "@material-ui/core";
+import { Typography, Grid, IconButton, Button } from "@material-ui/core";
 import { Close } from "@material-ui/icons";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -178,7 +178,21 @@ class Drinker extends Component {
               />
             )}
           </div>
-        )}
+        )}{" "}
+        {this.state.selectedName &&
+          !noInfo &&
+          !this.props.drinkers.loadingOneDrinker && (
+            <Grid container>
+              <Grid item xs={12} style={{ textAlign: "center" }}>
+                <Button
+                  style={{ backgroundColor: "#303030", color: "white" }}
+                  onClick={this.clearSelected}
+                >
+                  Clear Selected Drinker
+                </Button>
+              </Grid>
+            </Grid>
+          )}
         {Object.keys(this.props.drinkers.drinkers).length <= 0 &&
           !this.props.drinkers.loadingDrinker && (
             <Grid container>

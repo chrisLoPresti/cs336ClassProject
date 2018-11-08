@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Typography, Grid, IconButton } from "@material-ui/core";
+import { Typography, Grid, IconButton, Button } from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Close } from "@material-ui/icons";
 import { connect } from "react-redux";
@@ -206,6 +206,18 @@ class Bar extends Component {
             )}
           </div>
         )}
+        {this.state.selectedBar && !noInfo && !this.props.bars.loadingBarsOne && (
+          <Grid container>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Button
+                style={{ backgroundColor: "#303030", color: "white" }}
+                onClick={this.clearSelected}
+              >
+                Clear Selected Bar
+              </Button>
+            </Grid>
+          </Grid>
+        )}
         {Object.keys(this.props.bars.bars).length <= 0 &&
           !this.props.bars.loadingBars && (
             <Grid container>
@@ -273,7 +285,7 @@ class Bar extends Component {
                       this.state.selectedBar
                     }'s Sales Distribution By Day`}
                     color={colors[Math.floor(Math.random() * colors.length)]}
-                    x={"Period"}
+                    x={"Day of the week"}
                     y={"Average Sales"}
                   />
                 </Grid>
