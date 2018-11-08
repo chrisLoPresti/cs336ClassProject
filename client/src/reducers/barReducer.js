@@ -16,6 +16,7 @@ let initialState = {
   spenders: {},
   sales: {},
   time: {},
+  count: 0,
   loadingBars: false,
   loadingBarsOne: false
 };
@@ -32,25 +33,29 @@ export default function(state = initialState, action) {
       return {
         ...state,
         sales: action.payload,
-        loadingBarsOne: false
+        loadingBarsOne: false,
+        count: state.count + 1
       };
     case SET_SALES_TIME:
       return {
         ...state,
         time: action.payload,
-        loadingBarsOne: false
+        loadingBarsOne: false,
+        count: state.count + 1
       };
     case SET_TOP_MANF:
       return {
         ...state,
         topManf: action.payload,
-        loadingBarsOne: false
+        loadingBarsOne: false,
+        count: state.count + 1
       };
     case SET_SPENDERS:
       return {
         ...state,
         spenders: action.payload,
-        loadingBarsOne: false
+        loadingBarsOne: false,
+        count: state.count + 1
       };
     case CLEAR_BARS:
       return {
@@ -60,6 +65,7 @@ export default function(state = initialState, action) {
         spenders: {},
         sales: {},
         time: {},
+        count: 0,
         loadingBars: false
       };
     case CLEAR_BAR:
@@ -69,6 +75,7 @@ export default function(state = initialState, action) {
         spenders: {},
         sales: {},
         time: {},
+        count: 0,
         loadingBarsOne: false
       };
     case SET_BARS_LOADING:

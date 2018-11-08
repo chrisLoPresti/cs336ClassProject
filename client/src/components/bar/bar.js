@@ -66,6 +66,7 @@ class Bar extends Component {
   };
 
   populateBar = () => {
+    this.props.clearBar();
     this.getTopManfOnDay();
     this.props.getSpenders(this.state.selectedBar);
     this.props.getSales(this.state.selectedBar);
@@ -106,6 +107,11 @@ class Bar extends Component {
         duration: 1000
       });
     }
+    const noInfo =
+      Object.keys(this.props.bars.topManf).length <= 0 &&
+      Object.keys(this.props.bars.spenders).length <= 0 &&
+      Object.keys(this.props.bars.sales).length <= 0 &&
+      Object.keys(this.props.bars.time).length <= 0;
     return (
       <div id="bar-container">
         <div id="small-page" className="bar-image">
@@ -175,8 +181,27 @@ class Bar extends Component {
               />
             )}
           </div>
+        )}{" "}
+        {Object.keys(this.props.bars.bars).length <= 0 &&
+          !this.props.bars.loadingBars && (
+            <Grid container>
+              <Grid item xs={12} style={{ textAlign: "center" }}>
+                <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
+                  There are currently no bars in our table
+                </Typography>
+              </Grid>
+            </Grid>
+          )}
+        {noInfo && this.state.selectedBar && !this.props.bars.loadingBarsOne && (
+          <Grid container>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
+                No information on {this.state.selectedBar}
+              </Typography>
+            </Grid>
+          </Grid>
         )}
-        {this.state.selectedBar && (
+        {this.state.selectedBar && this.props.bars.count === 4 && (
           <div id="graph-section">
             <Grid container>
               {!this.props.bars.loadingBarsOne &&
