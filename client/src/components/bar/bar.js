@@ -50,7 +50,8 @@ class Bar extends Component {
       changingDay: false,
       top10Manf: "",
       top10Day: "",
-      good: false
+      good: false,
+      target: ""
     };
   }
   componentDidMount() {
@@ -74,7 +75,8 @@ class Bar extends Component {
     this.setState(
       {
         selectedBar: "",
-        selectedDay: "Monday"
+        selectedDay: "Monday",
+        target: ""
       },
       () => this.props.clearBar()
     );
@@ -84,22 +86,29 @@ class Bar extends Component {
     newFraction = [];
     this.setState(
       {
-        selectedBar: name
+        selectedBar: name,
+        target: "graph"
       },
       () => this.populateBar()
     );
   };
 
   handleTop10Manf = manf => {
-    this.setState({ top10Manf: manf }, () => this.props.getBarTop10(manf));
+    if (manf === "") {
+      this.setState({ top10Manf: manf, target: "" });
+      return;
+    }
+    this.setState({ top10Manf: manf, target: "manf" }, () =>
+      this.props.getBarTop10(manf)
+    );
   };
   handleTop10Day = day => {
     if (day === "clear") {
       this.props.clearTop10Day("clear");
-      this.setState({ top10Day: "", good: false });
+      this.setState({ top10Day: "", target: "" });
       return;
     }
-    this.setState({ top10Day: day, good: true }, () =>
+    this.setState({ top10Day: day, target: "day" }, () =>
       this.props.getTop10ByDay(this.state.top10Day)
     );
   };
@@ -123,7 +132,9 @@ class Bar extends Component {
 
   changeDay = day => {
     this.props.decrementCount();
-    this.setState({ selectedDay: day }, () => this.getTopManfOnDay());
+    this.setState({ selectedDay: day, target: "graph" }, () =>
+      this.getTopManfOnDay()
+    );
   };
 
   render() {
@@ -140,6 +151,7 @@ class Bar extends Component {
     ];
 
     if (
+      this.state.target === "graph" &&
       !this.props.bars.loadingBarsOne &&
       this.props.bars.count === 6 &&
       document.getElementById("graph-section")
@@ -152,10 +164,22 @@ class Bar extends Component {
     }
 
     if (
+      this.state.target === "manf" &&
       this.props.beer.top10bar.length > 0 &&
       document.getElementById("analytics-section-manf")
     ) {
       scrollToElement("#analytics-section-manf", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+    }
+
+    if (
+      this.state.target === "day" &&
+      document.getElementById("analytics-section-day")
+    ) {
+      scrollToElement("#analytics-section-day", {
         offset: -52,
         ease: "inOutCube",
         duration: 1000
@@ -499,10 +523,7 @@ class Bar extends Component {
               by picking a new one from the list, or you can clear the given
               graph.
             </Typography>
-            <MenuPicker
-              good={this.state.good}
-              changeDay={this.handleTop10Day}
-            />
+            <MenuPicker changeDay={this.handleTop10Day} />
             {this.state.top10Day &&
               Object.keys(this.props.bars.top10day).length <= 0 && (
                 <img
@@ -522,6 +543,7 @@ class Bar extends Component {
             )}
           </Grid>
         </Grid>
+        <div style={{ height: "50px " }} />
       </div>
     );
   }
