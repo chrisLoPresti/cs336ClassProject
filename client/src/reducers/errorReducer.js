@@ -1,11 +1,13 @@
 import { GET_ERRORS } from "../actions/types";
 
-let initialState = {};
+let initialState = {
+  error: {}
+};
 
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ERRORS:
-      return action.payload;
+      return { ...state, error: action.payload };
     default:
       return state;
   }

@@ -145,3 +145,11 @@
 #selected-bar-container .right-row {
   border-top-right-radius: 5px;
 }
+#chart-button {
+  margin: 10px 10px 10px 10px;
+  background-color: lightgray;
+}
+#chart-button-clear {
+  margin: 10px 10px 10px 10px;
+  background-color: lightgray;
+}

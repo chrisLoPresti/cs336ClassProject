@@ -62,7 +62,7 @@ export const getDrinkers = () => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };

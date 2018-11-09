@@ -11,12 +11,22 @@ import {
   SET_SALES_DAY,
   SET_SALES_TIME,
   DECREMENT_COUNT,
-  SET_FRACTION
+  SET_FRACTION,
+  SET_HOURS,
+  SET_TOP10_BY_DAY,
+  CLEAR_TOP_10_DAY
 } from "./types";
 
 export const decrementCount = () => dispatch => {
   dispatch({
     type: DECREMENT_COUNT,
+    payload: {}
+  });
+};
+
+export const clearTop10Day = () => dispatch => {
+  dispatch({
+    type: CLEAR_TOP_10_DAY,
     payload: {}
   });
 };
@@ -68,7 +78,7 @@ export const getBars = () => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -98,7 +108,7 @@ export const getTopBrands = params => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -126,7 +136,7 @@ export const getSpenders = bar => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -154,7 +164,7 @@ export const getSales = bar => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -182,7 +192,7 @@ export const getSalesTime = bar => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
       });
     });
 };
@@ -210,7 +220,63 @@ export const getFraction = bar => dispatch => {
       });
       dispatch({
         type: GET_ERRORS,
-        payload: err.response.data
+        payload: err.response
+      });
+    });
+};
+
+export const getHours = bar => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/operates?bar=${bar}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_HOURS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_HOURS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getTop10ByDay = day => dispatch => {
+  dispatch(setBarsLoadingOne());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar/rank/sales/day?day=${day}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_TOP10_BY_DAY,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_TOP10_BY_DAY,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
       });
     });
 };

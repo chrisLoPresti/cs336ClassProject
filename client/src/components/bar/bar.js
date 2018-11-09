@@ -1,6 +1,14 @@
 import React, { Component } from "react";
 import { withRouter } from "react-router-dom";
-import { Typography, Grid, IconButton, Button } from "@material-ui/core";
+import {
+  Typography,
+  Grid,
+  IconButton,
+  Button,
+  List,
+  ListItem,
+  ListItemText
+} from "@material-ui/core";
 import PropTypes from "prop-types";
 import { Close } from "@material-ui/icons";
 import { connect } from "react-redux";
@@ -13,13 +21,19 @@ import {
   getSales,
   getSalesTime,
   decrementCount,
-  getFraction
+  getFraction,
+  getHours,
+  getTop10ByDay,
+  clearTop10Day
 } from "../../actions/barActions";
+import { getBarTop10, clearManfs } from "../../actions/beerActions";
 import Table from "./bartable";
 import ChartPicker from "../charts/chartPicker";
 import BarChart from "../charts/barchart";
 import BarChartPeriod from "../charts/barchartperiod";
 import BarChartTime from "../charts/chartstime";
+import MenuPicker from "./droplist";
+import MenuPickerManf from "./droplistmanf";
 import "./bar.css";
 
 let scrollToElement = require("scroll-to-element");
@@ -33,10 +47,13 @@ class Bar extends Component {
       errors: {},
       selectedBar: "",
       selectedDay: "Monday",
-      changingDay: false
+      changingDay: false,
+      top10Manf: "",
+      top10Day: "",
+      good: false
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     window.scrollTo(0, 0);
     this.props.getBars();
   }
@@ -49,7 +66,9 @@ class Bar extends Component {
 
   componentWillUnmount = () => {
     this.props.clearBars();
+    this.props.clearManfs();
   };
+
   clearSelected = () => {
     newFraction = [];
     this.setState(
@@ -71,6 +90,20 @@ class Bar extends Component {
     );
   };
 
+  handleTop10Manf = manf => {
+    this.setState({ top10Manf: manf }, () => this.props.getBarTop10(manf));
+  };
+  handleTop10Day = day => {
+    if (day === "clear") {
+      this.props.clearTop10Day("clear");
+      this.setState({ top10Day: "", good: false });
+      return;
+    }
+    this.setState({ top10Day: day, good: true }, () =>
+      this.props.getTop10ByDay(this.state.top10Day)
+    );
+  };
+
   populateBar = () => {
     this.props.clearBar();
     this.getTopManfOnDay();
@@ -78,6 +111,7 @@ class Bar extends Component {
     this.props.getSales(this.state.selectedBar);
     this.props.getSalesTime(this.state.selectedBar);
     this.props.getFraction(this.state.selectedBar);
+    this.props.getHours(this.state.selectedBar);
   };
 
   getTopManfOnDay = () => {
@@ -107,10 +141,21 @@ class Bar extends Component {
 
     if (
       !this.props.bars.loadingBarsOne &&
-      this.props.bars.count === 5 &&
+      this.props.bars.count === 6 &&
       document.getElementById("graph-section")
     ) {
       scrollToElement("#graph-section", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+    }
+
+    if (
+      this.props.beer.top10bar.length > 0 &&
+      document.getElementById("analytics-section-manf")
+    ) {
+      scrollToElement("#analytics-section-manf", {
         offset: -52,
         ease: "inOutCube",
         duration: 1000
@@ -124,7 +169,7 @@ class Bar extends Component {
       Object.keys(this.props.bars.fraction).length <= 0;
 
     if (
-      this.props.bars.count === 5 &&
+      this.props.bars.count === 6 &&
       Object.keys(this.props.bars.fraction).length > 0 &&
       !this.props.bars.loadingBarsOne &&
       !newFraction.length
@@ -148,7 +193,7 @@ class Bar extends Component {
         <div className="small-layer" />
         <div id="lets-get-started">
           <Typography variant="h4" className="lets-get-started-text">
-            How To Get Started
+            Indivudal Bar Statistics
           </Typography>
         </div>
         <Grid container className="step-container">
@@ -225,7 +270,7 @@ class Bar extends Component {
             </Grid>
           </Grid>
         )}
-        {this.state.selectedBar && this.props.bars.count === 5 && (
+        {this.state.selectedBar && this.props.bars.count === 6 && (
           <div id="graph-section">
             <Grid container>
               {this.state.selectedBar &&
@@ -256,6 +301,41 @@ class Bar extends Component {
                     >
                       Clear Selected Bar
                     </Button>
+                  </Grid>
+                )}{" "}
+              {!this.props.bars.loadingBarsOne &&
+                Object.keys(this.props.bars.hours).length && (
+                  <Grid item xs={12}>
+                    <Typography
+                      variant="h4"
+                      style={{ textAlign: "center", marginTop: "20px" }}
+                    >
+                      Hours Of Opperations
+                    </Typography>
+                  </Grid>
+                )}
+              {!this.props.bars.loadingBarsOne &&
+                Object.keys(this.props.bars.hours).length && (
+                  <Grid item xs={12}>
+                    <List
+                      style={{
+                        marginTop: "20px",
+                        display: "flex",
+                        flexDirection: "row",
+                        padding: 0,
+                        overflow: "auto"
+                      }}
+                    >
+                      {this.props.bars.hours.map(day => (
+                        <ListItem>
+                          <ListItemText
+                            key={day.day}
+                            primary={day.day}
+                            secondary={`${day.start} - ${day.end}`}
+                          />
+                        </ListItem>
+                      ))}
+                    </List>
                   </Grid>
                 )}
               {!this.props.bars.loadingBarsOne &&
@@ -337,6 +417,77 @@ class Bar extends Component {
             </Grid>
           </div>
         )}
+        <div id="lets-get-started">
+          <Typography variant="h4" className="lets-get-started-text">
+            Bar Analytics
+          </Typography>
+        </div>
+        <Grid container className="step-container">
+          <Grid item xs={12} className="step-grid">
+            <Typography variant="h4" className="step-title">
+              Top 10 by sales
+            </Typography>
+            <Typography className="step-text">
+              From the drop down menue below select a manufacturer. Once you
+              select a manufactuerer, we will display the top 10 bars that sell
+              their products. You can change manufactuerers at any time by
+              picking a new one from the list, or you can clear the given graph.
+            </Typography>
+            <MenuPickerManf ChangeManf={this.handleTop10Manf} />
+            {this.state.top10Manf &&
+              Object.keys(this.props.beer.top10bar).length <= 0 && (
+                <img
+                  src={require("../../images/spinner.gif")}
+                  alt="loading..."
+                  style={{ width: "100px", margin: "auto", display: "block" }}
+                />
+              )}
+            {Object.keys(this.props.beer.top10bar).length > 0 && (
+              <BarChart
+                list={this.props.beer.top10bar}
+                title={`Top 10 Bars by Sales Of ${
+                  this.state.top10Manf
+                } Product`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+                x={"Bar"}
+                y={"Total sales"}
+              />
+            )}
+          </Grid>
+          <Grid item xs={12} className="step-grid">
+            <Typography variant="h4" className="step-title">
+              Top 10 by day
+            </Typography>
+            <Typography className="step-text">
+              From the drop down menue below select a day of the week. Once you
+              select a day of the week, we will display the top 10 beers that
+              sell on the given day of the week. You can change days at any time
+              by picking a new one from the list, or you can clear the given
+              graph.
+            </Typography>
+            <MenuPicker
+              good={this.state.good}
+              changeDay={this.handleTop10Day}
+            />
+            {this.state.top10Day &&
+              Object.keys(this.props.bars.top10day).length <= 0 && (
+                <img
+                  src={require("../../images/spinner.gif")}
+                  alt="loading..."
+                  style={{ width: "100px", margin: "auto", display: "block" }}
+                />
+              )}
+            {Object.keys(this.props.bars.top10day).length > 0 && (
+              <BarChart
+                list={this.props.bars.top10day}
+                title={`Top 10 Bars By Total Sales On ${this.state.top10Day}s`}
+                color={colors[Math.floor(Math.random() * colors.length)]}
+                x={"Day"}
+                y={"Total sold"}
+              />
+            )}
+          </Grid>
+        </Grid>
       </div>
     );
   }
@@ -344,15 +495,18 @@ class Bar extends Component {
 
 Bar.propTypes = {
   bars: PropTypes.object.isRequired,
+  beer: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired
 };
 Bar.defaultProps = {
   bars: {},
+  beer: {},
   spenders: {}
 };
 
 const mapStateToProps = state => ({
   bars: state.bars,
+  beer: state.beer,
   errors: state.errors
 });
 
@@ -367,6 +521,11 @@ export default connect(
     getSales,
     getSalesTime,
     decrementCount,
-    getFraction
+    getFraction,
+    getHours,
+    getTop10ByDay,
+    clearTop10Day,
+    getBarTop10,
+    clearManfs
   }
 )(withRouter(Bar));

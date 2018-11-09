@@ -26,6 +26,17 @@ export const SET_SALES_DAY = "SET_SALES_DAY";
 export const SET_SALES_TIME = "SET_SALES_TIME";
 export const DECREMENT_COUNT = "DECREMENT_COUNT";
 export const SET_FRACTION = "SET_FRACTION";
+export const SET_HOURS = "SET_HOURS";
+export const SET_TOP10_BY_DAY = "SET_TOP10_BY_DAY";
+export const CLEAR_TOP_10_DAY = "CLEAR_TOP_10_DAY";
+
+//beer actions
+export const SET_MANUFACTURERS = "SET_MANUFACTURERS";
+export const CLEAR_MANFS = "CLEAR_MANFS";
+export const CLEAR_MANF = "CLEAR_MANF";
+export const SET_LOADING_MANF = "SET_LOADING_MANF";
+export const SET_LOADING_MANF_ONE = "SET_LOADING_MANF_ONE";
+export const SET_BAR_TOP_10 = "SET_BAR_TOP_10";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

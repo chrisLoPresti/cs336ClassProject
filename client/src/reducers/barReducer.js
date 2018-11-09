@@ -9,7 +9,10 @@ import {
   SET_SALES_DAY,
   SET_SALES_TIME,
   DECREMENT_COUNT,
-  SET_FRACTION
+  SET_FRACTION,
+  SET_HOURS,
+  SET_TOP10_BY_DAY,
+  CLEAR_TOP_10_DAY
 } from "../actions/types";
 
 let initialState = {
@@ -19,6 +22,8 @@ let initialState = {
   sales: {},
   time: {},
   fraction: {},
+  hours: {},
+  top10day: {},
   count: 0,
   loadingBars: false,
   loadingBarsOne: false
@@ -26,6 +31,11 @@ let initialState = {
 
 export default function(state = initialState, action) {
   switch (action.type) {
+    case CLEAR_TOP_10_DAY:
+      return {
+        ...state,
+        top10day: {}
+      };
     case SET_BARS:
       return {
         ...state,
@@ -51,6 +61,12 @@ export default function(state = initialState, action) {
         count: state.count + 1,
         loadingBarsOne: false
       };
+    case SET_TOP10_BY_DAY:
+      return {
+        ...state,
+        top10day: action.payload,
+        loadingBarsOne: false
+      };
     case SET_SALES_TIME:
       return {
         ...state,
@@ -72,6 +88,13 @@ export default function(state = initialState, action) {
         count: state.count + 1,
         loadingBarsOne: false
       };
+    case SET_HOURS:
+      return {
+        ...state,
+        hours: action.payload,
+        count: state.count + 1,
+        loadingBarsOne: false
+      };
     case CLEAR_BARS:
       return {
         ...state,
@@ -81,6 +104,7 @@ export default function(state = initialState, action) {
         sales: {},
         time: {},
         fraction: {},
+        top10day: {},
         count: 0,
         loadingBars: false
       };
@@ -92,6 +116,7 @@ export default function(state = initialState, action) {
         sales: {},
         time: {},
         fraction: {},
+        top10day: {},
         count: 0,
         loadingBarsOne: false
       };
