@@ -184,15 +184,45 @@ class Bar extends Component {
     return (
       <div id="bar-container">
         <div id="small-page" className="bar-image">
-          <div id="small-title">
+          <div id="small-title" className="push-down">
             <Typography className="small-title-text" variant="h3">
               Explore Our Bars
             </Typography>
           </div>
+          <div id="small-title-button" className="push-down">
+            <Button
+              id="small-tittle-button-button"
+              onClick={() =>
+                scrollToElement("#statistics", {
+                  offset: -52,
+                  ease: "inOutCube",
+                  duration: 1000
+                })
+              }
+            >
+              Statistics
+            </Button>
+            <Button
+              id="small-tittle-button-button"
+              onClick={() =>
+                scrollToElement("#analytics", {
+                  offset: -52,
+                  ease: "inOutCube",
+                  duration: 1000
+                })
+              }
+            >
+              Analytics
+            </Button>
+          </div>
         </div>
         <div className="small-layer" />
         <div id="lets-get-started">
-          <Typography variant="h4" className="lets-get-started-text">
+          <Typography
+            id="statistics"
+            variant="h4"
+            className="lets-get-started-text"
+          >
             Indivudal Bar Statistics
           </Typography>
         </div>
@@ -418,7 +448,11 @@ class Bar extends Component {
           </div>
         )}
         <div id="lets-get-started">
-          <Typography variant="h4" className="lets-get-started-text">
+          <Typography
+            id="analytics"
+            variant="h4"
+            className="lets-get-started-text"
+          >
             Bar Analytics
           </Typography>
         </div>
