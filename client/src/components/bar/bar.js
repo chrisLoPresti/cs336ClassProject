@@ -273,7 +273,8 @@ class Bar extends Component {
             </Typography>
           </Grid>
         </Grid>
-        {this.props.bars.loadingBars && (
+        {(this.props.bars.loadingBars ||
+          (this.state.selectedBar && this.props.bars.count !== 6)) && (
           <img
             src={require("../../images/spinner.gif")}
             alt="loading..."
@@ -322,7 +323,7 @@ class Bar extends Component {
             </Grid>
           </Grid>
         )}
-        {this.state.selectedBar && this.props.bars.count === 6 && (
+        {this.state.selectedBar && (
           <div id="graph-section">
             <Grid container>
               {this.state.selectedBar &&
@@ -360,36 +361,38 @@ class Bar extends Component {
                   <Grid item xs={12}>
                     <Typography
                       variant="h4"
-                      style={{ textAlign: "center", marginTop: "20px" }}
+                      style={{ textAlign: "center", margin: "40px" }}
                     >
                       Hours Of Opperations
                     </Typography>
                   </Grid>
                 )}
               {!this.props.bars.loadingBarsOne &&
-                Object.keys(this.props.bars.hours).length && (
-                  <Grid item xs={12}>
-                    <List
-                      style={{
-                        marginTop: "20px",
-                        display: "flex",
-                        flexDirection: "row",
-                        padding: 0,
-                        overflow: "auto"
-                      }}
-                    >
-                      {this.props.bars.hours.map(day => (
-                        <ListItem>
-                          <ListItemText
-                            key={day.day}
-                            primary={day.day}
-                            secondary={`${day.start} - ${day.end}`}
-                          />
-                        </ListItem>
-                      ))}
-                    </List>
+                this.props.bars.hours.length > 0 &&
+                this.props.bars.hours.slice(0, 6).map(day => (
+                  <Grid key={day.day} item xs={4}>
+                    <ListItem style={{ textAlign: "center" }}>
+                      <ListItemText
+                        style={{ textAlign: "center" }}
+                        primary={day.day}
+                        secondary={`${day.start} - ${day.end}`}
+                      />
+                    </ListItem>
                   </Grid>
-                )}
+                ))}
+              {!this.props.bars.loadingBarsOne &&
+                this.props.bars.hours.length > 0 &&
+                this.props.bars.hours.slice(6, 7).map(day => (
+                  <Grid key={day.day} item xs={12}>
+                    <ListItem style={{ textAlign: "center" }}>
+                      <ListItemText
+                        style={{ textAlign: "center" }}
+                        primary={day.day}
+                        secondary={`${day.start} - ${day.end}`}
+                      />
+                    </ListItem>
+                  </Grid>
+                ))}
               {!this.props.bars.loadingBarsOne &&
                 Object.keys(this.props.bars.topManf).length && (
                   <Grid item xs={12}>
@@ -405,15 +408,6 @@ class Bar extends Component {
                     />
                   </Grid>
                 )}
-              {this.props.bars.loadingBarsOne && (
-                <Grid item xs={12}>
-                  <img
-                    src={require("../../images/spinner.gif")}
-                    alt="loading..."
-                    style={{ width: "100px", margin: "auto", display: "block" }}
-                  />
-                </Grid>
-              )}
               {Object.keys(this.props.bars.spenders).length && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
