@@ -42,3 +42,9 @@
     margin: 5px;
   }
 }
+
+#results-button {
+  background-color: #303030;
+  color: whitesmoke;
+  margin: 20px;
+}

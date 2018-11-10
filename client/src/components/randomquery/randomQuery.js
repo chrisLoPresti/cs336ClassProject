@@ -3,16 +3,21 @@ import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { Typography, Grid, Button } from "@material-ui/core";
+import JSONPretty from "react-json-pretty";
 import {
   getQueryResults,
-  setQueryErrors
+  setQueryErrors,
+  clearResults
 } from "../../actions/randomQueryActions";
+import { clearErrors } from "../../actions/errorsActions";
 import "./randomQuery.css";
+
+let scrollToElement = require("scroll-to-element");
 
 class RandomQuery extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: "" };
+    this.state = { query: "", errors: {}, sroll: false };
   }
   componentWillMount() {
     window.scrollTo(0, 0);
@@ -31,11 +36,12 @@ class RandomQuery extends Component {
   };
 
   clearQuery = () => {
-    this.setState({ query: "" });
+    this.setState({ query: "", scroll: false });
+    this.props.clearErrors();
   };
 
   submitQuery = () => {
-    const badWords = ["drop", "delete"];
+    const badWords = ["drop", "delete", "update", "delete"];
     var i = 0;
     for (i = 0; i < 4; ++i) {
       if (this.state.query.toLocaleLowerCase().includes(badWords[i])) {
@@ -44,6 +50,7 @@ class RandomQuery extends Component {
         );
         return;
       }
+      this.setState({ scroll: true });
     }
     const updateOrInsert = ["update", "insert"];
     var date = new Date();
@@ -71,6 +78,14 @@ class RandomQuery extends Component {
   };
 
   render() {
+    if (this.state.scroll && document.getElementById("results")) {
+      scrollToElement("#results", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+      this.setState({ scroll: false });
+    }
     return (
       <div id="random-query-container">
         <div id="small-page" className="query-image">
@@ -114,6 +129,13 @@ class RandomQuery extends Component {
         </Grid>
         <Grid container className="query-box">
           <Grid item xs={12} md={6} className="query-box-type">
+            <div>
+              {Object.keys(this.props.errors.error).length > 0 && (
+                <Typography style={{ color: "red" }}>
+                  *{this.props.errors.error}
+                </Typography>
+              )}
+            </div>
             <textarea
               rows="4"
               cols="50"
@@ -137,7 +159,47 @@ class RandomQuery extends Component {
               Clear Query
             </Button>
           </Grid>
+          {this.props.query.query.length > 0 && (
+            <Grid item xs={12} id="results">
+              <div id="lets-get-started">
+                <Typography
+                  id="statistics"
+                  variant="h4"
+                  className="lets-get-started-text"
+                >
+                  Query Results
+                </Typography>
+              </div>
+            </Grid>
+          )}
+          {this.props.query.query.length > 0 && (
+            <Grid item xs={12} style={{ textAlign: "center" }}>
+              <Button
+                id="results-button"
+                onClick={() => this.props.clearResults()}
+              >
+                Clear Results
+              </Button>
+            </Grid>
+          )}
+          {this.props.query.query.length > 0 && (
+            <Grid item xs={12}>
+              <div style={{ margin: "auto", width: "50%" }}>
+                <JSONPretty
+                  id="json-pretty"
+                  json={JSON.stringify(this.props.query.query)}
+                />
+              </div>
+            </Grid>
+          )}
         </Grid>
+        {this.props.query.loadingQuery && (
+          <img
+            src={require("../../images/spinner.gif")}
+            alt="loading..."
+            style={{ width: "100px", margin: "auto", display: "block" }}
+          />
+        )}
       </div>
     );
   }
@@ -159,5 +221,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps,
-  { getQueryResults, setQueryErrors }
+  { getQueryResults, setQueryErrors, clearErrors, clearResults }
 )(withRouter(RandomQuery));

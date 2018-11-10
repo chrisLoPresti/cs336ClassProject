@@ -4,8 +4,6 @@ export const SET_DRINKER = "SET_DRINKER";
 export const CLEAR_DRINKER = "CLEAR_DRINKER";
 export const CLEAR_DRINKERS = "CLEAR_DRINKERS";
 export const SET_TOP_BEER = "SET_TOP_BEER";
-export const SET_QUERY = "SET_QUERY";
-export const SET_LOADING_QUERY = "SET_LOADING_QUERY";
 export const SET_LOADING_DRINKER = "SET_LOADING_DRINKER";
 export const SET_LOADING_ONE_DRINKER = "SET_LOADING_ONE_DRINKER";
 export const SET_DAILY = "SET_DAILY";
@@ -43,6 +41,11 @@ export const CLEAR_SELECTED_BEER = "CLEAR_SELECTED_BEER";
 export const SET_SOLD_MOST = "SET_SOLD_MOST";
 export const SET_BIGGEST_CONSUMERS = "SET_BIGEST_CONSUMERS";
 export const SET_TIME_DISTRIBUTION = "SET_TIME_DISTRIBUTION";
+
+//random query actions
+export const SET_QUERY = "SET_QUERY";
+export const CLEAR_QUERY_RESULTS = "CLEAR_QUERY_RESULTS";
+export const SET_LOADING_QUERY = "SET_LOADING_QUERY";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

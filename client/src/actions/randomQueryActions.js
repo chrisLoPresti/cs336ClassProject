@@ -1,5 +1,10 @@
 import axios from "axios";
-import { SET_QUERY, SET_LOADING_QUERY, GET_ERRORS } from "./types";
+import {
+  SET_QUERY,
+  SET_LOADING_QUERY,
+  GET_ERRORS,
+  CLEAR_QUERY_RESULTS
+} from "./types";
 
 //get post
 export const getQueryResults = query => dispatch => {
@@ -40,5 +45,12 @@ export const setQueryErrors = error => dispatch => {
   dispatch({
     type: GET_ERRORS,
     payload: error
+  });
+};
+
+export const clearResults = () => dispatch => {
+  dispatch({
+    type: CLEAR_QUERY_RESULTS,
+    payload: {}
   });
 };

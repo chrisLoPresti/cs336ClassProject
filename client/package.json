@@ -20,6 +20,7 @@
     "react-bar-chart": "^0.1.2",
     "react-d3-components": "^0.9.1",
     "react-dom": "^16.5.0",
+    "react-json-pretty": "^1.7.9",
     "react-moment": "^0.7.9",
     "react-notifications": "^1.4.3",
     "react-redux": "^5.0.7",

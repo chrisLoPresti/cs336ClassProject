@@ -1,4 +1,8 @@
-import { SET_QUERY, SET_LOADING_QUERY } from "../actions/types";
+import {
+  SET_QUERY,
+  SET_LOADING_QUERY,
+  CLEAR_QUERY_RESULTS
+} from "../actions/types";
 
 let initialState = {
   query: [],
@@ -17,6 +21,11 @@ export default function(state = initialState, action) {
       return {
         ...state,
         loadingQuery: true
+      };
+    case CLEAR_QUERY_RESULTS:
+      return {
+        query: [],
+        loadingQuery: false
       };
     default:
       return state;
