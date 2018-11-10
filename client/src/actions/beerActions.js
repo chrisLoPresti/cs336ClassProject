@@ -6,7 +6,11 @@ import {
   SET_LOADING_MANF,
   SET_LOADING_MANF_ONE,
   GET_ERRORS,
-  SET_BAR_TOP_10
+  SET_BAR_TOP_10,
+  SET_BEERS,
+  CLEAR_BEERS,
+  SET_SELECTED_BEER,
+  CLEAR_SELECTED_BEER
 } from "./types";
 
 export const setManfsLoading = () => {
@@ -24,6 +28,13 @@ export const setManfOneLoading = () => {
 export const clearManfOne = () => dispatch => {
   dispatch({
     type: CLEAR_MANF,
+    payload: {}
+  });
+};
+
+export const clearBeers = () => dispatch => {
+  dispatch({
+    type: CLEAR_BEERS,
     payload: {}
   });
 };
@@ -82,6 +93,32 @@ export const getBarTop10 = manf => dispatch => {
     .catch(err => {
       dispatch({
         type: SET_BAR_TOP_10,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBeers = () => dispatch => {
+  dispatch(setManfsLoading());
+  axios
+    .get("https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/beer")
+    .then(res => {
+      dispatch({
+        type: SET_BEERS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_BEERS,
         payload: {}
       });
       dispatch({

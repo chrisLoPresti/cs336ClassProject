@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Menu, MenuItem, Button } from "@material-ui/core";
-
-let scrollToElement = require("scroll-to-element");
+import { Menu, MenuItem, Button, Divider } from "@material-ui/core";
 
 class MenuPicker extends Component {
   constructor(props) {
@@ -26,13 +24,6 @@ class MenuPicker extends Component {
   };
 
   render() {
-    if (this.props.good && document.getElementById("analytics-section-day")) {
-      scrollToElement("#analytics-section-day", {
-        offset: -52,
-        ease: "inOutCube",
-        duration: 1000
-      });
-    }
     return (
       <div id="analytics-section-day" style={{ textAlign: "center" }}>
         <Button
@@ -55,6 +46,8 @@ class MenuPicker extends Component {
           open={Boolean(this.state.anchor)}
           onClose={this.handleClose}
         >
+          <MenuItem disabled={true}>Days of the week</MenuItem>
+          <Divider />
           <MenuItem value="Monday" onClick={this.handleChangeDay("Monday")()}>
             Monday
           </MenuItem>
@@ -93,8 +86,7 @@ class MenuPicker extends Component {
 
 MenuPicker.propTypes = {
   list: PropTypes.object.isRequired,
-  changeDay: PropTypes.func.isRequired,
-  good: PropTypes.bool.isRequired
+  changeDay: PropTypes.func.isRequired
 };
 MenuPicker.defaultProps = {
   list: {}

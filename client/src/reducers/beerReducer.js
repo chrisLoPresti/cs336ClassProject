@@ -4,12 +4,18 @@ import {
   CLEAR_MANF,
   SET_LOADING_MANF,
   SET_LOADING_MANF_ONE,
-  SET_BAR_TOP_10
+  SET_BAR_TOP_10,
+  SET_BEERS,
+  CLEAR_BEERS,
+  SET_SELECTED_BEER,
+  CLEAR_SELECTED_BEER
 } from "../actions/types";
 
 let initialState = {
   manfs: {},
   top10bar: {},
+  beers: {},
+  selectedBeer: {},
   loadingManf: false,
   loadingManfOne: false
 };
@@ -21,6 +27,18 @@ export default function(state = initialState, action) {
         ...state,
         manfs: action.payload,
         loadingManf: false
+      };
+    case SET_BEERS:
+      return {
+        ...state,
+        beers: action.payload,
+        loadingManf: false
+      };
+    case SET_SELECTED_BEER:
+      return {
+        ...state,
+        selectedBeer: action.payload,
+        loadingManfOne: false
       };
     case SET_LOADING_MANF:
       return {
@@ -37,6 +55,21 @@ export default function(state = initialState, action) {
         ...state,
         top10bar: {},
         loadingManfOne: false
+      };
+    case CLEAR_BEERS:
+      return {
+        ...state,
+        manfs: {},
+        top10bar: {},
+        beers: {},
+        selectedBeer: {},
+        loadingManf: false,
+        loadingManfOne: false
+      };
+    case CLEAR_SELECTED_BEER:
+      return {
+        ...state,
+        selectedBeer: {}
       };
     case CLEAR_MANFS:
       return {

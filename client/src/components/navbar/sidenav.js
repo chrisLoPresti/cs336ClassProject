@@ -21,7 +21,13 @@ class Sidenav extends Component {
             <i className="fa fa-building icon" />
             Bar
           </Typography>
-          <Typography className="side-nav-text">
+          <Typography
+            className="side-nav-text"
+            onClick={() => {
+              props.toggleDrawer();
+              props.history.push("/beers");
+            }}
+          >
             <i className="fa fa-beer icon" />
             Beer
           </Typography>

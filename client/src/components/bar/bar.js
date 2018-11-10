@@ -556,8 +556,7 @@ Bar.propTypes = {
 };
 Bar.defaultProps = {
   bars: {},
-  beer: {},
-  spenders: {}
+  beer: { spenders: {} }
 };
 
 const mapStateToProps = state => ({

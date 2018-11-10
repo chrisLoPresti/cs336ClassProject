@@ -5,6 +5,7 @@ import Drinker from "./drinker/drinker";
 import RandomQuery from "./randomquery/randomQuery";
 import NotFound from "./notfound/notfound";
 import Bar from "./bar/bar";
+import Beer from "./beer/beer";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 import store from "../store/store";
@@ -22,6 +23,7 @@ class App extends Component {
               <Route exact path="/drinker" component={Drinker} />
               <Route exact path="/randomQuery" component={RandomQuery} />
               <Route exact path="/bars" component={Bar} />
+              <Route exact path="/beers" component={Beer} />
               <Route path="*" component={NotFound} />
             </Switch>
           </div>

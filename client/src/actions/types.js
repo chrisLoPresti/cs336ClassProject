@@ -37,6 +37,10 @@ export const CLEAR_MANF = "CLEAR_MANF";
 export const SET_LOADING_MANF = "SET_LOADING_MANF";
 export const SET_LOADING_MANF_ONE = "SET_LOADING_MANF_ONE";
 export const SET_BAR_TOP_10 = "SET_BAR_TOP_10";
+export const SET_BEERS = "SET_BEERS";
+export const SET_SELECTED_BEER = "SET_SELECTED_BEER";
+export const CLEAR_BEERS = "CLEAR_BEERS";
+export const CLEAR_SELECTED_BEER = "CLEAR_SELECTED_BEER";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

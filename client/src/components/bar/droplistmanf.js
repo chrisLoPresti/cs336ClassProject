@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import { Menu, MenuItem, Button } from "@material-ui/core";
+import { Menu, MenuItem, Button, Divider } from "@material-ui/core";
 import { connect } from "react-redux";
 import { getManfs, clearManfOne } from "../../actions/beerActions";
 
@@ -68,6 +68,9 @@ class MenuPickerManf extends Component {
             open={Boolean(this.state.anchor)}
             onClose={this.handleClose}
           >
+            {" "}
+            <MenuItem disabled={true}>Select A Manufacturer</MenuItem>
+            <Divider />
             {this.props.beer.manfs.map(manf => (
               <MenuItem
                 value={manf.name}
