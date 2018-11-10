@@ -102,19 +102,7 @@ class RandomQuery extends Component {
           </Typography>
         </div>
         <Grid container className="step-container">
-          <Grid item xs={12} sm={6} className="step-grid">
-            <Typography variant="h4" className="step-title">
-              Type a query
-            </Typography>
-            <Typography className="step-text">
-              In the box below you can type a query and have it evaluated
-              against our schema. If the query is valid and returns results we
-              will present them below the box so you can see the results of your
-              query. If there is an error with your query, we will let you know.
-              In which casse you wont get any results, just an error message.
-            </Typography>
-          </Grid>
-          <Grid item xs={12} sm={6} className="step-grid">
+          <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
               Restrictions
             </Typography>
@@ -126,9 +114,21 @@ class RandomQuery extends Component {
               sold, it would throw off our data.
             </Typography>
           </Grid>
+          <Grid item xs={12} className="step-grid">
+            <Typography variant="h4" className="step-title">
+              Type a query
+            </Typography>
+            <Typography className="step-text">
+              In the box below you can type a query and have it evaluated
+              against our schema. If the query is valid and returns results we
+              will present them below the box so you can see the results of your
+              query. If there is an error with your query, we will let you know.
+              In which casse you wont get any results, just an error message.
+            </Typography>
+          </Grid>
         </Grid>
         <Grid container className="query-box">
-          <Grid item xs={12} md={6} className="query-box-type">
+          <Grid item xs={12} className="query-box-type">
             <div>
               {Object.keys(this.props.errors.error).length > 0 && (
                 <Typography style={{ color: "red" }}>
@@ -145,7 +145,7 @@ class RandomQuery extends Component {
               onChange={this.onChange}
             />
           </Grid>
-          <Grid item xs={12} md={6} className="query-box-submit">
+          <Grid item xs={12} className="query-box-submit">
             <Button
               className="query-submit-button query-button"
               onClick={this.submitQuery}
@@ -184,12 +184,10 @@ class RandomQuery extends Component {
           )}
           {this.props.query.query.length > 0 && (
             <Grid item xs={12}>
-              <div style={{ margin: "auto", width: "50%" }}>
-                <JSONPretty
-                  id="json-pretty"
-                  json={JSON.stringify(this.props.query.query)}
-                />
-              </div>
+              <JSONPretty
+                id="json-pretty"
+                json={JSON.stringify(this.props.query.query)}
+              />
             </Grid>
           )}
         </Grid>
