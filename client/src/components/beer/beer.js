@@ -270,7 +270,7 @@ Beer.propTypes = {
   errors: PropTypes.object.isRequired
 };
 Beer.defaultProps = {
-  beer: { beers: [] }
+  beer: { beers: [], soldMost: {}, biggestConsumers: {}, timeDistribution: {} }
 };
 
 const mapStateToProps = state => ({

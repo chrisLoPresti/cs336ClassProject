@@ -101,7 +101,13 @@ export default function(state = initialState, action) {
       return {
         manfs: {},
         top10bar: {},
-        loadingManf: false
+        beers: {},
+        soldMost: {},
+        biggestConsumers: {},
+        timeDistribution: {},
+        count: 0,
+        loadingManf: false,
+        loadingManfOne: false
       };
     case SET_BAR_TOP_10:
       return {
