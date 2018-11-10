@@ -139,15 +139,13 @@ class Bar extends Component {
 
   render() {
     const colors = [
-      "#001f3f",
       "#0074D9",
       "#FF4136",
       "#B10DC9",
       "#FF851B",
       "#FFD700",
       "#7FDBFF",
-      "#85144b",
-      "#2ECC40"
+      "#85144b"
     ];
 
     if (
@@ -356,7 +354,7 @@ class Bar extends Component {
                       Clear Selected Bar
                     </Button>
                   </Grid>
-                )}{" "}
+                )}
               {!this.props.bars.loadingBarsOne &&
                 Object.keys(this.props.bars.hours).length && (
                   <Grid item xs={12}>
@@ -400,7 +398,7 @@ class Bar extends Component {
                       title={`${
                         this.state.selectedBar
                       }'s top 10 Popular Brands on ${this.state.selectedDay}s`}
-                      color={colors[Math.floor(Math.random() * colors.length)]}
+                      color={colors[0]}
                       x={"Brand"}
                       y={"Sales"}
                       changeDay={this.changeDay}
@@ -423,7 +421,7 @@ class Bar extends Component {
                     title={`${
                       this.state.selectedBar
                     }'s top 10 Largest Spenders`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[1]}
                     x={"Drinker"}
                     y={"Total money spent"}
                   />
@@ -436,7 +434,7 @@ class Bar extends Component {
                     title={`${
                       this.state.selectedBar
                     }'s Sales Distribution By Day`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[2]}
                     x={"Day of the week"}
                     y={"Average Sales"}
                   />
@@ -449,7 +447,7 @@ class Bar extends Component {
                     title={`${
                       this.state.selectedBar
                     }'s Sales Distribution By Time Of Day`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[3]}
                     x={"Time of day"}
                     y={"Average Sales"}
                   />
@@ -462,7 +460,7 @@ class Bar extends Component {
                     title={`${
                       this.state.selectedBar
                     }'s Avgerage % Of Inventory Sold Per Day`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[4]}
                     x={"Day"}
                     y={"Average % sold"}
                   />
@@ -506,7 +504,7 @@ class Bar extends Component {
                 title={`Top 10 Bars by Sales Of ${
                   this.state.top10Manf
                 } Product`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
+                color={colors[5]}
                 x={"Bar"}
                 y={"Total sales"}
               />
@@ -536,7 +534,7 @@ class Bar extends Component {
               <BarChart
                 list={this.props.bars.top10day}
                 title={`Top 10 Bars By Total Sales On ${this.state.top10Day}s`}
-                color={colors[Math.floor(Math.random() * colors.length)]}
+                color={colors[6]}
                 x={"Day"}
                 y={"Total sold"}
               />

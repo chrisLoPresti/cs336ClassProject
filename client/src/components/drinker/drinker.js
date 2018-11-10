@@ -79,15 +79,13 @@ class Drinker extends Component {
 
   render() {
     const colors = [
-      "#001f3f",
       "#0074D9",
       "#FF4136",
       "#B10DC9",
       "#FF851B",
       "#FFD700",
       "#7FDBFF",
-      "#85144b",
-      "#2ECC40"
+      "#85144b"
     ];
     if (
       !this.props.drinkers.loadingOneDrinker &&
@@ -247,7 +245,7 @@ class Drinker extends Component {
                   <BarChart
                     list={this.props.drinkers.spending}
                     title={`${this.state.selectedName}'s spending per bar`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[0]}
                     x={"Bar"}
                     y={"Amount spent"}
                   />
@@ -258,7 +256,7 @@ class Drinker extends Component {
                   <BarChart
                     list={this.props.drinkers.topBeers}
                     title={`${this.state.selectedName}'s top 5 beers`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[1]}
                     x={"Beer"}
                     y={"Amount purchased"}
                   />
@@ -269,7 +267,7 @@ class Drinker extends Component {
                   <BarChartComponentPeriod
                     list={this.props.drinkers.daily}
                     title={`${this.state.selectedName}'s daily spending`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[2]}
                     x={"Date (yyyy-mm-dd)"}
                     y={"Total money spent"}
                   />
@@ -280,7 +278,7 @@ class Drinker extends Component {
                   <BarChartComponentPeriod
                     list={this.props.drinkers.weekly}
                     title={`${this.state.selectedName}'s weekly spending`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[3]}
                     x={"Week (1-52)"}
                     y={"Total money spent"}
                   />
@@ -291,7 +289,7 @@ class Drinker extends Component {
                   <BarChartComponentPeriod
                     list={this.props.drinkers.monthly}
                     title={`${this.state.selectedName}'s monthly spending`}
-                    color={colors[Math.floor(Math.random() * colors.length)]}
+                    color={colors[4]}
                     x={"Month"}
                     y={"Total money spent"}
                   />

@@ -7,15 +7,20 @@ import {
   SET_BAR_TOP_10,
   SET_BEERS,
   CLEAR_BEERS,
-  SET_SELECTED_BEER,
-  CLEAR_SELECTED_BEER
+  CLEAR_SELECTED_BEER,
+  SET_SOLD_MOST,
+  SET_BIGGEST_CONSUMERS,
+  SET_TIME_DISTRIBUTION
 } from "../actions/types";
 
 let initialState = {
   manfs: {},
   top10bar: {},
   beers: {},
-  selectedBeer: {},
+  soldMost: {},
+  biggestConsumers: {},
+  timeDistribution: {},
+  count: 0,
   loadingManf: false,
   loadingManfOne: false
 };
@@ -34,10 +39,25 @@ export default function(state = initialState, action) {
         beers: action.payload,
         loadingManf: false
       };
-    case SET_SELECTED_BEER:
+    case SET_TIME_DISTRIBUTION:
       return {
         ...state,
-        selectedBeer: action.payload,
+        timeDistribution: action.payload,
+        count: state.count + 1,
+        loadingManfOne: false
+      };
+    case SET_SOLD_MOST:
+      return {
+        ...state,
+        soldMost: action.payload,
+        count: state.count + 1,
+        loadingManfOne: false
+      };
+    case SET_BIGGEST_CONSUMERS:
+      return {
+        ...state,
+        biggestConsumers: action.payload,
+        count: state.count + 1,
         loadingManfOne: false
       };
     case SET_LOADING_MANF:
@@ -62,14 +82,20 @@ export default function(state = initialState, action) {
         manfs: {},
         top10bar: {},
         beers: {},
-        selectedBeer: {},
+        soldMost: {},
+        biggestConsumers: {},
+        timeDistribution: {},
+        count: 0,
         loadingManf: false,
         loadingManfOne: false
       };
     case CLEAR_SELECTED_BEER:
       return {
         ...state,
-        selectedBeer: {}
+        soldMost: {},
+        biggestConsumers: {},
+        timeDistribution: {},
+        count: 0
       };
     case CLEAR_MANFS:
       return {
