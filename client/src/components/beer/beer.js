@@ -45,7 +45,7 @@ class Beer extends Component {
             variant="h4"
             className="lets-get-started-text"
           >
-            How to get started
+            How To Get Started
           </Typography>
         </div>
         <Grid container className="step-container">
