@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid, Button, TextField } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 import {
   getQueryResults,
@@ -136,13 +136,19 @@ class RandomQuery extends Component {
                 </Typography>
               )}
             </div>
-            <textarea
-              rows="4"
-              cols="50"
-              className="query-input"
-              placeholder="Write your SQL queries here"
+            <TextField
+              id="query-input"
+              label="Write your SQL queries here"
+              multiline
+              rowsMax="4"
               value={this.state.query}
               onChange={this.onChange}
+              style={{
+                width: "98%",
+                minWidth: "98%",
+                maxWidth: "98%",
+                fontSize: "15px"
+              }}
             />
           </Grid>
           <Grid item xs={12} className="query-box-submit">
