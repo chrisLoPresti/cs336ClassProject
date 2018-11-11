@@ -72,7 +72,7 @@ class RandomQuery extends Component {
       }
     }
     const req = {
-      query: this.state.query.replace(/[\u201C\u201D]/g, "&#34")
+      query: this.state.query.replace(/[“”]/g, '"').replace(/[‘’]/g, "'")
     };
     this.props.getQueryResults(req);
   };
