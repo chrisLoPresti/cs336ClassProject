@@ -41,6 +41,7 @@ class Brand extends Component {
   };
 
   handleSelectedManf = name => () => {
+    this.props.clearSelectedManf();
     this.setState(
       {
         selectedManf: name
