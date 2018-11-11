@@ -175,7 +175,7 @@ class RandomQuery extends Component {
             </Grid>
           )}
           {this.props.query.query.length > 0 && (
-            <Grid item xs={12} style={{ textAlign: "center" }}>
+            <Grid item xs={12}>
               <Button
                 id="results-button"
                 onClick={() => this.props.clearResults()}
@@ -187,6 +187,7 @@ class RandomQuery extends Component {
           {this.props.query.query.length > 0 && (
             <Grid item xs={12}>
               <JSONPretty
+                style={{ margin: "20px", marginBottom: "50px" }}
                 id="json-pretty"
                 json={JSON.stringify(this.props.query.query)}
               />
@@ -199,6 +200,9 @@ class RandomQuery extends Component {
             alt="loading..."
             style={{ width: "100px", margin: "auto", display: "block" }}
           />
+        )}
+        {!document.getElementById("results") && (
+          <div style={{ marginBottom: "50px" }} />
         )}
       </div>
     );
