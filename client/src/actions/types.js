@@ -41,6 +41,9 @@ export const CLEAR_SELECTED_BEER = "CLEAR_SELECTED_BEER";
 export const SET_SOLD_MOST = "SET_SOLD_MOST";
 export const SET_BIGGEST_CONSUMERS = "SET_BIGEST_CONSUMERS";
 export const SET_TIME_DISTRIBUTION = "SET_TIME_DISTRIBUTION";
+export const SET_STATE = "SET_STATE";
+export const CLEAR_SELECTED_MANF = "CLEAR_SELECTED_MANF";
+export const SET_LIKES = "SET_LIKES";
 
 //random query actions
 export const SET_QUERY = "SET_QUERY";

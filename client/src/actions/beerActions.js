@@ -12,7 +12,10 @@ import {
   CLEAR_SELECTED_BEER,
   SET_SOLD_MOST,
   SET_BIGGEST_CONSUMERS,
-  SET_TIME_DISTRIBUTION
+  SET_TIME_DISTRIBUTION,
+  SET_STATE,
+  CLEAR_SELECTED_MANF,
+  SET_LIKES
 } from "./types";
 
 export const setManfsLoading = () => {
@@ -37,6 +40,13 @@ export const clearManfOne = () => dispatch => {
 export const clearBeers = () => dispatch => {
   dispatch({
     type: CLEAR_BEERS,
+    payload: {}
+  });
+};
+
+export const clearSelectedManf = () => dispatch => {
+  dispatch({
+    type: CLEAR_SELECTED_MANF,
     payload: {}
   });
 };
@@ -212,6 +222,62 @@ export const timeDistribution = beer => dispatch => {
     .catch(err => {
       dispatch({
         type: SET_TIME_DISTRIBUTION,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getStates = manf => dispatch => {
+  dispatch(setManfOneLoading());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/manufacturer/sales/lastweek/top/states?manf=${manf}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_STATE,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_STATE,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getLikes = manf => dispatch => {
+  dispatch(setManfOneLoading());
+  axios
+    .get(
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/manufacturer/liked/top/states?manf=${manf}`
+    )
+    .then(res => {
+      dispatch({
+        type: SET_LIKES,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_LIKES,
         payload: {}
       });
       dispatch({

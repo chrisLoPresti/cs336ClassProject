@@ -1,0 +1,155 @@
+.brand-image {
+  background-image: url("../../images/brand.jpg");
+}
+
+@media only screen and (max-width: 400px) {
+  #selected-brand-container {
+    margin: 0;
+    transition: 0.3s;
+  }
+}
+
+#selected-brand-container .head-row {
+  background-color: #303030;
+}
+#selected-brand-container .left-row {
+  border-top-left-radius: 5px;
+}
+#selected-brand-container .right-row {
+  border-top-right-radius: 5px;
+}
+
+#selected-brand-container .clear-button-selected-brand {
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+#selected-brand-container .close-button-selected-brand {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+
+#brand-container .selected-brand {
+  font-size: 12;
+  margin: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+  #brand-container .selected-brand {
+    margin-bottom: -20px;
+  }
+}
+
+#info-row:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#table-container .selected {
+  background: lightgray;
+}
+
+#selected-brand-container {
+  margin: 20px;
+  transition: 0.3s;
+}
+
+#selected-brand-container .clear-button-selected-brand {
+  height: 10px;
+  width: 10px;
+  margin-left: 10px;
+  text-align: center;
+}
+
+#selected-brand-container .close-button-selected-brand {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+
+#table-grid .search-box {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 100%;
+  color: black;
+}
+
+#table-grid .clear-button-searched-brand {
+  height: 10px;
+  width: 10px;
+  margin-top: 40px;
+  margin-left: 40px;
+  text-align: center;
+}
+#table-grid .close-button-searched-brand {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+#graph-section .grouped-by-brand-text {
+  text-align: center;
+  margin: 40px;
+  font-size: 40px;
+}
+
+@media only screen and (max-width: 600px) {
+  #hidden-when-small {
+    display: none !important;
+  }
+
+  #brand-container .selected-brand {
+    margin-bottom: -20px;
+  }
+
+  #table-grid .search-box {
+    margin-bottom: 20px;
+    margin-top: -15px;
+  }
+
+  #table-grid .clear-button-searched-brand {
+    margin-bottom: 20px;
+    margin-top: 0;
+    margin-left: 30px;
+  }
+  #table-grid .close-button-searched-brand {
+    margin-bottom: 20px;
+    margin-top: -6px;
+  }
+  #graph-section .grouped-by-brand-text {
+    font-size: 20px;
+  }
+}
+
+@media only screen and (max-width: 900px) {
+  #graph-section .grouped-by-brand-text {
+    font-size: 30px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #selected-brand-container {
+    margin: 0 0 20px 0;
+    transition: 0.3s;
+  }
+}
+
+#selected-brand-container .head-row {
+  background-color: #303030;
+}
+#selected-brand-container .left-row {
+  border-top-left-radius: 5px;
+}
+#selected-brand-container .right-row {
+  border-top-right-radius: 5px;
+}
+#chart-button {
+  margin: 10px 10px 10px 10px;
+  background-color: lightgray;
+}
+#chart-button-clear {
+  margin: 10px 10px 10px 10px;
+  background-color: lightgray;
+}

@@ -139,7 +139,7 @@ class RandomQuery extends Component {
               )}
             </div>
             <textarea
-              rows="100"
+              rows="4"
               cols="50"
               className="query-input"
               placeholder="Write your SQL queries here"
@@ -175,10 +175,11 @@ class RandomQuery extends Component {
             </Grid>
           )}
           {this.props.query.query.length > 0 && (
-            <Grid item xs={12}>
+            <Grid item xs={12} style={{ textAlign: "center" }}>
               <Button
                 id="results-button"
                 onClick={() => this.props.clearResults()}
+                style={{ width: "200px" }}
               >
                 Clear Results
               </Button>
