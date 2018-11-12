@@ -21,8 +21,7 @@
 }
 
 #about-us-title {
-  text-align: center;
-  font-size: 50px;
+  font-size: 30px;
   padding: 20px;
   background-color: #303030;
   color: #ffffff;
@@ -66,8 +65,5 @@
   .image-container-grid .profile-text-left {
     float: right;
     margin-top: 20px;
-  }
-  #about-us-title {
-    text-align: center;
   }
 }
