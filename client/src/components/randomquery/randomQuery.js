@@ -127,7 +127,7 @@ class RandomQuery extends Component {
           </Grid>
           <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
-              Type a query
+              Write A Query
             </Typography>
             <Typography className="step-text">
               In the box below you can type a query and have it evaluated
