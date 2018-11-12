@@ -474,7 +474,7 @@ class Bar extends Component {
         <Grid container className="step-container">
           <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
-              Top 10 by sales
+              Top 10 By Sales
             </Typography>
             <Typography className="step-text">
               From the drop down menue below select a manufacturer. Once you
@@ -505,7 +505,7 @@ class Bar extends Component {
           </Grid>
           <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
-              Top 10 by day
+              Top 10 By Day
             </Typography>
             <Typography className="step-text">
               From the drop down menue below select a day of the week. Once you
