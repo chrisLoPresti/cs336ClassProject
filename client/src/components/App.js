@@ -23,11 +23,11 @@ class App extends Component {
             <Switch>
               <Route exact path="/" component={Landing} />
               <Route exact path="/bars" component={Bar} />
-              <Route exact path="/bartender" component={Bartender} />
-              <Route exact path="/brand" component={Brand} />
+              <Route exact path="/bartenders" component={Bartender} />
+              <Route exact path="/brands" component={Brand} />
               <Route exact path="/beers" component={Beer} />
-              <Route exact path="/drinker" component={Drinker} />
-              <Route exact path="/randomQuery" component={RandomQuery} />
+              <Route exact path="/drinkers" component={Drinker} />
+              <Route exact path="/randomQuerys" component={RandomQuery} />
               <Route path="*" component={NotFound} />
             </Switch>
           </div>

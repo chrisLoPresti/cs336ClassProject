@@ -7,7 +7,7 @@ import "./landingpage.css";
 
 let scrollToElement = require("scroll-to-element");
 
-const LandingPage = () => {
+const LandingPage = props => {
   window.scrollTo(0, 0);
   return (
     <div id="landing-container">
@@ -30,11 +30,22 @@ const LandingPage = () => {
           >
             About Us
           </Button>
-          <Button className="title-button">Get Started</Button>
+          <Button
+            className="title-button"
+            onClick={() =>
+              scrollToElement("#project-container", {
+                offset: -52,
+                ease: "inOutCube",
+                duration: 1000
+              })
+            }
+          >
+            Explore
+          </Button>
         </div>
       </div>
       <About />
-      <Project />
+      <Project {...props} />
     </div>
   );
 };

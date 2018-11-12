@@ -4,7 +4,6 @@ import {
   Typography,
   Grid,
   IconButton,
-  Button,
   Stepper,
   Step,
   StepLabel
@@ -172,39 +171,45 @@ class Bartender extends Component {
         </Grid>
         {Object.keys(this.props.bartenders.bartenders).length > 0 && (
           <div id="selected-bartender-container">
-            <div>
-              <Stepper activeStep={activeStep} alternativeLabel>
-                {steps.map(label => {
-                  return (
-                    <Step key={label}>
-                      <StepLabel>{label}</StepLabel>
-                    </Step>
-                  );
-                })}
-              </Stepper>
-            </div>
-            <Typography className="selected-bartender">
-              {`Selected Bartender:  ${this.state.selectedBartender}`}
-              {this.state.selectedBartender && (
-                <IconButton
-                  className="clear-button-selected-bartender"
-                  onClick={this.clearSelectedBartender}
-                >
-                  <Close className="close-button-selected-bartender" />
-                </IconButton>
-              )}
-            </Typography>
-            <Typography className="selected-bartender bar">
-              {`Selected Bar:  ${this.state.selectedBar}`}
-              {this.state.selectedBar && (
-                <IconButton
-                  className="clear-button-selected-bartender "
-                  onClick={this.clearSelectedBar}
-                >
-                  <Close className="close-button-selected-bartender" />
-                </IconButton>
-              )}
-            </Typography>
+            <Grid container>
+              <Grid item xs={12} sm={6}>
+                <div>
+                  <Stepper activeStep={activeStep} alternativeLabel>
+                    {steps.map(label => {
+                      return (
+                        <Step key={label}>
+                          <StepLabel>{label}</StepLabel>
+                        </Step>
+                      );
+                    })}
+                  </Stepper>
+                </div>
+              </Grid>
+              <Grid item xs={12} sm={6}>
+                <Typography className="selected-bartender">
+                  {`Selected Bartender:  ${this.state.selectedBartender}`}
+                  {this.state.selectedBartender && (
+                    <IconButton
+                      className="clear-button-selected-bartender"
+                      onClick={this.clearSelectedBartender}
+                    >
+                      <Close className="close-button-selected-bartender" />
+                    </IconButton>
+                  )}
+                </Typography>
+                <Typography className="selected-bartender bar">
+                  {`Selected Bar:  ${this.state.selectedBar}`}
+                  {this.state.selectedBar && (
+                    <IconButton
+                      className="clear-button-selected-bartender "
+                      onClick={this.clearSelectedBar}
+                    >
+                      <Close className="close-button-selected-bartender" />
+                    </IconButton>
+                  )}
+                </Typography>
+              </Grid>
+            </Grid>
             {!this.props.bartenders.bartendersLoading &&
               this.props.bartenders.bartenders.length > 0 &&
               this.state.activeStep === 0 && (
