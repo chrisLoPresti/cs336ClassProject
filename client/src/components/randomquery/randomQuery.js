@@ -202,9 +202,6 @@ class RandomQuery extends Component {
             style={{ width: "100px", margin: "auto", display: "block" }}
           />
         )}
-        {!document.getElementById("results") && (
-          <div style={{ marginBottom: "50px" }} />
-        )}
       </div>
     );
   }
