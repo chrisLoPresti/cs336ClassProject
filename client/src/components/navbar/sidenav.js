@@ -25,6 +25,16 @@ class Sidenav extends Component {
             className="side-nav-text"
             onClick={() => {
               props.toggleDrawer();
+              props.history.push("/bartender");
+            }}
+          >
+            <i className="fa fa-user icon" />
+            Bartender
+          </Typography>
+          <Typography
+            className="side-nav-text"
+            onClick={() => {
+              props.toggleDrawer();
               props.history.push("/brand");
             }}
           >
@@ -48,7 +58,7 @@ class Sidenav extends Component {
               props.history.push("/drinker");
             }}
           >
-            <i className="fa fa-user icon" />
+            <i className="fa fa-users icon" />
             Drinker
           </Typography>
           <Typography

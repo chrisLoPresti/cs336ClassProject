@@ -161,7 +161,7 @@ class RandomQuery extends Component {
               Clear Query
             </Button>
           </Grid>
-          {this.props.query.query.length > 0 && (
+          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
             <Grid item xs={12} id="results">
               <div id="lets-get-started">
                 <Typography
@@ -174,7 +174,7 @@ class RandomQuery extends Component {
               </div>
             </Grid>
           )}
-          {this.props.query.query.length > 0 && (
+          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <Button
                 id="results-button"
@@ -185,7 +185,7 @@ class RandomQuery extends Component {
               </Button>
             </Grid>
           )}
-          {this.props.query.query.length > 0 && (
+          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
             <Grid item xs={12}>
               <JSONPretty
                 style={{ margin: "20px", marginBottom: "50px" }}

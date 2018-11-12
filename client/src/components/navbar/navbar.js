@@ -48,7 +48,7 @@ class NavBar extends Component {
   };
 
   updateDimensions = () => {
-    if (window.innerWidth > 600 && this.state.drawerNavOpen) {
+    if (window.innerWidth > 960 && this.state.drawerNavOpen) {
       this.setState({ drawerNavOpen: false });
     }
   };
@@ -111,7 +111,7 @@ class NavBar extends Component {
         >
           <Toolbar id="toolbar">
             <Grid container id="grid-container">
-              <Grid className="grid-item" item xs={12} sm={4}>
+              <Grid className="grid-item" item xs={12} md={4}>
                 <Typography
                   id="nav-title"
                   onClick={this.scrollOrChangeToLanding(this.props)}
@@ -122,7 +122,7 @@ class NavBar extends Component {
                   <Menu />
                 </IconButton>
               </Grid>
-              <Grid id="buttons" className="grid-item" item xs={1} sm={8}>
+              <Grid id="buttons" className="grid-item" item xs={1} md={8}>
                 <Typography
                   className="nav-content nav-text"
                   onClick={this.scrollOrChangeToAbout(this.props)}
@@ -152,6 +152,12 @@ class NavBar extends Component {
                   onClick={() => this.props.history.push("/beers")}
                 >
                   Beer
+                </Typography>
+                <Typography
+                  className="nav-content nav-text"
+                  onClick={() => this.props.history.push("/bartender")}
+                >
+                  Bartender
                 </Typography>
                 <Typography
                   className="nav-content nav-text"

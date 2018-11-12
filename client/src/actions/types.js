@@ -45,6 +45,11 @@ export const SET_STATE = "SET_STATE";
 export const CLEAR_SELECTED_MANF = "CLEAR_SELECTED_MANF";
 export const SET_LIKES = "SET_LIKES";
 
+//bartender actions
+export const SET_BARTENDERS = "SET_BARTENDERS";
+export const SET_BARTENDERS_LOADING = "SET_BARTENDERS_LOADING";
+export const CLEAR_BARTENDERS = "CLEAR_BARTENDERS";
+
 //random query actions
 export const SET_QUERY = "SET_QUERY";
 export const CLEAR_QUERY_RESULTS = "CLEAR_QUERY_RESULTS";
