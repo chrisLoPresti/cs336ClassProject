@@ -145,11 +145,24 @@
 #selected-bar-container .right-row {
   border-top-right-radius: 5px;
 }
-#chart-button {
+#analytics-section-day #chart-button {
   margin: 10px 10px 10px 10px;
-  background-color: lightgray;
+  background-color: #303030;
+  color: whitesmoke;
 }
-#chart-button-clear {
+#analytics-section-day #chart-button-clear {
   margin: 10px 10px 10px 10px;
-  background-color: lightgray;
+  background-color: slategray;
+  color: whitesmoke;
+}
+
+#analytics-section-manf #chart-button {
+  margin: 10px 10px 10px 10px;
+  background-color: #303030;
+  color: whitesmoke;
+}
+#analytics-section-manf #chart-button-clear {
+  margin: 10px 10px 10px 10px;
+  background-color: slategray;
+  color: whitesmoke;
 }

@@ -78,7 +78,7 @@ const Project = props => {
                   title={item.title}
                   style={{ height: "140px" }}
                 />
-                <CardContent style={{ height: "160px" }}>
+                <CardContent style={{ height: "180px" }}>
                   <Typography gutterBottom variant="h5" component="h2">
                     {item.header}
                   </Typography>
@@ -92,7 +92,7 @@ const Project = props => {
                   onClick={() => props.history.push(`/${item.url}`)}
                   style={{
                     color: "white",
-                    backgroundColor: "gray",
+                    backgroundColor: "slategray",
                     width: "200px"
                   }}
                 >
