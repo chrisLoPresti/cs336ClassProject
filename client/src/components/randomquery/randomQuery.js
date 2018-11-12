@@ -23,6 +23,10 @@ class RandomQuery extends Component {
     window.scrollTo(0, 0);
   }
 
+  componentWillUnmount() {
+    this.props.clearResults();
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
