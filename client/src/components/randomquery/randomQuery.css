@@ -49,3 +49,68 @@
   color: whitesmoke;
   margin: 20px;
 }
+
+#query-modal-content {
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 400px;
+  background-color: white;
+  transition: 0.3s;
+}
+@media only screen and (min-width: 600px) {
+  #query-modal-content {
+    width: 400px;
+    transition: 0.3s;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #query-modal-content {
+    width: 80%;
+    transition: 0.3s;
+  }
+}
+
+#modal-title {
+  padding: 20px;
+  background-color: #303030;
+  color: whitesmoke;
+}
+
+#simple-modal-description {
+  padding: 20px;
+}
+
+#simple-modal-header {
+  padding: 20px;
+  text-align: center;
+}
+
+#simple-modal-error {
+  width: 100%;
+  text-align: center;
+  color: red;
+}
+
+#modal-button-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: lightgrey;
+}
+
+#modification-page-button {
+  margin: 10px;
+  background-color: #303030;
+  color: whitesmoke;
+}
+
+#close-button {
+  margin: 10px;
+  background-color: slategray;
+  color: whitesmoke;
+}

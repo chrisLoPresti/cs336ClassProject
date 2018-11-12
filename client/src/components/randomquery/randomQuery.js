@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { Typography, Grid, Button } from "@material-ui/core";
+import { Typography, Grid, Button, Modal, Paper } from "@material-ui/core";
 import JSONPretty from "react-json-pretty";
 import {
   getQueryResults,
@@ -17,7 +17,13 @@ let scrollToElement = require("scroll-to-element");
 class RandomQuery extends Component {
   constructor(props) {
     super(props);
-    this.state = { query: "", errors: {}, sroll: false };
+    this.state = {
+      query: "",
+      errors: {},
+      sroll: false,
+      openModal: false,
+      badQuery: ""
+    };
   }
   componentWillMount() {
     window.scrollTo(0, 0);
@@ -29,9 +35,19 @@ class RandomQuery extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
-      this.setState({ errors: nextProps.errors });
+      this.setState({ errors: nextProps.errors }, () => this.openModal());
     }
   }
+
+  openModal = () => {
+    if (Object.keys(this.props.errors.error).length > 0) {
+      this.setState({ openModal: true });
+    }
+  };
+
+  handleCloseModal = () => {
+    this.setState({ openModal: false, badQuery: "" });
+  };
 
   onChange = event => {
     this.setState({
@@ -45,36 +61,22 @@ class RandomQuery extends Component {
   };
 
   submitQuery = () => {
-    const badWords = ["drop", "delete", "update", "delete"];
+    const badWords = ["drop", "delete", "update", "insert"];
     var i = 0;
     for (i = 0; i < 4; ++i) {
       if (this.state.query.toLocaleLowerCase().includes(badWords[i])) {
-        this.props.setQueryErrors(
-          `You can not use ${badWords[i]} in your query`
-        );
-        return;
+        this.setState({
+          badQuery: badWords[i]
+        });
       }
       this.setState({ scroll: true });
     }
-    const updateOrInsert = ["update", "insert"];
-    var date = new Date();
-    for (i = 0; i < 2; ++i) {
-      if (this.state.query.toLocaleLowerCase().includes(updateOrInsert[i])) {
-        if (
-          this.state.query.toLocaleLowerCase().includes("date") &&
-          !this.state.query
-            .toLocaleLowerCase()
-            .includes(`${date.getFullYear()}-${date.getMonth() + 1}`)
-        ) {
-          this.props.setQueryErrors(
-            `You can not use ${
-              updateOrInsert[i]
-            } in your query to access an older date. Please make sure you stick with the format currentYear-currentMonth-currentDay`
-          );
-          return;
-        }
-      }
+
+    if (this.state.badQuery) {
+      this.props.setQueryErrors(`You can not use ${badWords[i]} in your query`);
+      return;
     }
+
     const req = {
       query: this.state.query
         .replace(/[“”\u201c\u201d]/g, '"')
@@ -114,10 +116,13 @@ class RandomQuery extends Component {
             </Typography>
             <Typography className="step-text">
               To prevent damage to our database we have set some restrictions on
-              what types of querys you can commit. We dont allow updates,
-              deletes or insertions with a date prior to today. If we messed
-              with transactions that already happened, or inventory that already
-              sold, it would throw off our data.
+              what types of querys you can commit. We dont allow drops, updates,
+              deletes or insertions from the query box. If you would like to
+              perform any of these modifications, with the exception of drops,
+              head on over to the modification pafe. From there you will be able
+              to update, insert, or delete using our database. The query box's
+              main purpose is to be used to verify that your modifcations
+              actually took place.
             </Typography>
           </Grid>
           <Grid item xs={12} className="step-grid">
@@ -129,7 +134,11 @@ class RandomQuery extends Component {
               against our schema. If the query is valid and returns results we
               will present them below the box so you can see the results of your
               query. If there is an error with your query, we will let you know.
-              In which casse you wont get any results, just an error message.
+              In which casse you wont get any results, just an error message. If
+              we find the words "drop", "insert", "delete" or "update" present
+              in your query, we will warn you that this is not allowed and offer
+              you the option to remain on the page and change your query, or
+              give you a link to the modifcation page.
             </Typography>
           </Grid>
         </Grid>
@@ -205,6 +214,39 @@ class RandomQuery extends Component {
             alt="loading..."
             style={{ width: "100px", margin: "auto", display: "block" }}
           />
+        )}
+        {this.state.badQuery && (
+          <Modal
+            id="query-modal"
+            aria-labelledby="simple-modal-title"
+            aria-describedby="simple-modal-description"
+            open={this.state.openModal}
+            onClose={this.handleCloseModal}
+          >
+            <Paper id="query-modal-content">
+              <Typography id="modal-title">
+                We have found an issue with your query...
+              </Typography>
+              <Typography id="simple-modal-header">
+                We found the usage of an illegal word!
+              </Typography>
+              {<p id="simple-modal-error">{this.state.badQuery}</p>}
+              <Typography id="simple-modal-description">
+                You can not use this word in your query. If you want to update,
+                insert, or delete, go to the modification page. Otherwise remain
+                here! Also, as the restrictions state, we can not drop tables.
+              </Typography>
+              <div id="modal-button-container">
+                <Button id="modification-page-button">Modifcation</Button>
+                <Button
+                  id="close-button"
+                  onClick={() => this.handleCloseModal()}
+                >
+                  Close
+                </Button>
+              </div>
+            </Paper>
+          </Modal>
         )}
       </div>
     );
