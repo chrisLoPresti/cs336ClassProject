@@ -30,6 +30,13 @@ class App extends Component {
               <Route exact path="/randomQuerys" component={RandomQuery} />
               <Route path="*" component={NotFound} />
             </Switch>
+            <div
+              style={{
+                height: "50px",
+                width: "100%",
+                backgroundColor: "#303030"
+              }}
+            />
           </div>
         </Router>
       </Provider>

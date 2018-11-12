@@ -60,9 +60,6 @@ const About = () => {
           <img className="tech" src={tec} alt="Technologies" />
         </Grid>
       </Grid>
-      <div
-        style={{ height: "50px", width: "100%", backgroundColor: "#303030" }}
-      />
     </div>
   );
 };
