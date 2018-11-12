@@ -85,12 +85,16 @@ const Project = props => {
                   <Typography component="p">{item.info}</Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
+              <CardActions style={{ justifyContent: "center" }}>
                 <Button
                   size="small"
                   color="primary"
                   onClick={() => props.history.push(`/${item.url}`)}
-                  style={{ color: "white", backgroundColor: "#303030" }}
+                  style={{
+                    color: "white",
+                    backgroundColor: "gray",
+                    width: "200px"
+                  }}
                 >
                   Explore
                 </Button>
