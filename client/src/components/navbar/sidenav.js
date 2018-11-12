@@ -65,7 +65,7 @@ class Sidenav extends Component {
             className="side-nav-text"
             onClick={() => {
               props.toggleDrawer();
-              props.history.push("/randomQuery");
+              props.history.push("/randomQuerys");
             }}
           >
             <i className="fa fa-laptop icon" />
@@ -73,10 +73,10 @@ class Sidenav extends Component {
           </Typography>
           <Typography
             className="side-nav-text"
-            onClick={props.scrollOrChangeToAbout(props)}
+            onClick={props.scrollOrChangeToExplore(props)}
           >
-            <i className="fa fa-question-circle icon" />
-            About
+            <i className="fa fa-list icon" />
+            Explore
           </Typography>
         </div>
       </Drawer>
@@ -87,6 +87,6 @@ class Sidenav extends Component {
 Sidenav.propTypes = {
   open: PropTypes.bool.isRequired,
   toggleDrawer: PropTypes.func.isRequired,
-  scrollOrChangeToAbout: PropTypes.func.isRequired
+  scrollOrChangeToExplore: PropTypes.func.isRequired
 };
 export default withRouter(Sidenav);

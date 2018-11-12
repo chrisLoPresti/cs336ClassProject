@@ -53,9 +53,9 @@ class NavBar extends Component {
     }
   };
 
-  scrollOrChangeToAbout = props => () => {
-    if (document.getElementById("about-container")) {
-      scrollToElement("#about-container", {
+  scrollOrChangeToExplore = props => () => {
+    if (document.getElementById("project-container")) {
+      scrollToElement("#project-container", {
         offset: -52,
         ease: "inOutCube",
         duration: 1000
@@ -64,7 +64,7 @@ class NavBar extends Component {
       props.history.push("/");
       setTimeout(
         () =>
-          scrollToElement("#about-container", {
+          scrollToElement("#project-container", {
             offset: -52,
             ease: "inOutCube",
             duration: 1000
@@ -125,19 +125,19 @@ class NavBar extends Component {
               <Grid id="buttons" className="grid-item" item xs={1} md={8}>
                 <Typography
                   className="nav-content nav-text"
-                  onClick={this.scrollOrChangeToAbout(this.props)}
+                  onClick={this.scrollOrChangeToExplore(this.props)}
                 >
-                  About
+                  Explore
                 </Typography>
                 <Typography
                   className="nav-content nav-text"
-                  onClick={() => this.props.history.push("/randomQuery")}
+                  onClick={() => this.props.history.push("/randomQuerys")}
                 >
                   Query
                 </Typography>
                 <Typography
                   className="nav-content nav-text"
-                  onClick={() => this.props.history.push("/drinker")}
+                  onClick={() => this.props.history.push("/drinkers")}
                 >
                   Drinker
                 </Typography>
@@ -149,13 +149,13 @@ class NavBar extends Component {
                 </Typography>
                 <Typography
                   className="nav-content nav-text"
-                  onClick={() => this.props.history.push("/brand")}
+                  onClick={() => this.props.history.push("/brands")}
                 >
                   Brand
                 </Typography>
                 <Typography
                   className="nav-content nav-text"
-                  onClick={() => this.props.history.push("/bartender")}
+                  onClick={() => this.props.history.push("/bartenders")}
                 >
                   Bartender
                 </Typography>
@@ -172,7 +172,7 @@ class NavBar extends Component {
         <SideNav
           open={this.state.drawerNavOpen}
           toggleDrawer={this.toggleDrawer}
-          scrollOrChangeToAbout={this.scrollOrChangeToAbout}
+          scrollOrChangeToExplore={this.scrollOrChangeToExplore}
         />
       </div>
     );

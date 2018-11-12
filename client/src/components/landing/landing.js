@@ -21,18 +21,6 @@ const LandingPage = props => {
           <Button
             className="title-button"
             onClick={() =>
-              scrollToElement("#about-container", {
-                offset: -52,
-                ease: "inOutCube",
-                duration: 1000
-              })
-            }
-          >
-            About Us
-          </Button>
-          <Button
-            className="title-button"
-            onClick={() =>
               scrollToElement("#project-container", {
                 offset: -52,
                 ease: "inOutCube",
@@ -42,10 +30,22 @@ const LandingPage = props => {
           >
             Explore
           </Button>
+          <Button
+            className="title-button"
+            onClick={() =>
+              scrollToElement("#about-container", {
+                offset: -52,
+                ease: "inOutCube",
+                duration: 1000
+              })
+            }
+          >
+            About Us
+          </Button>
         </div>
       </div>
-      <About />
       <Project {...props} />
+      <About />
     </div>
   );
 };
