@@ -57,7 +57,7 @@ const cardInfo = [
     header: "Queries",
     info:
       "Using the text box on the queries page, you can type in an SQL query and have it evaluated on our database. All of the results will be returned in structured JSON. If the query is invalid we will let you know.",
-    url: "randomQuery",
+    url: "randomQuerys",
     image: require("../../../images/random.jpg")
   }
 ];
