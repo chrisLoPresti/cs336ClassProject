@@ -131,7 +131,7 @@ class Bar extends Component {
 
   changeDay = day => {
     this.props.decrementCount();
-    this.setState({ selectedDay: day, target: "graph" }, () =>
+    this.setState({ selectedDay: day, target: "top-per-day" }, () =>
       this.getTopManfOnDay()
     );
   };
@@ -182,6 +182,18 @@ class Bar extends Component {
         duration: 1000
       });
     }
+
+    if (
+      this.state.target === "top-per-day" &&
+      document.getElementById("top-per-day")
+    ) {
+      scrollToElement("#top-per-day", {
+        offset: -52,
+        ease: "inOutCube",
+        duration: 1000
+      });
+    }
+
     const noInfo =
       Object.keys(this.props.bars.topManf).length <= 0 &&
       Object.keys(this.props.bars.spenders).length <= 0 &&
@@ -394,7 +406,7 @@ class Bar extends Component {
                 ))}
               {!this.props.bars.loadingBarsOne &&
                 Object.keys(this.props.bars.topManf).length && (
-                  <Grid item xs={12}>
+                  <Grid item id="top-per-day" xs={12}>
                     <ChartPicker
                       list={this.props.bars.topManf}
                       title={`${
