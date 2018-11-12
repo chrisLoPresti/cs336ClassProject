@@ -81,12 +81,12 @@
 }
 
 #navbar-container .scrolled {
-  background-color: slategrey;
+  background-color: #303030;
   transition: 0.3s;
   opacity: 0.9;
 }
 
 #navbar-container .colorSwitch {
-  background-color: slategrey;
+  background-color: #303030;
   transition: 0.3s;
 }

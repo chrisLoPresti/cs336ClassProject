@@ -14,7 +14,7 @@ import "./project.css";
 const cardInfo = [
   {
     title: "check out our bars",
-    header: "Bar",
+    header: "Bars",
     info:
       "Check out our bar page! Here you will be able to see all of our bars in the database. From here you can pick a bar and get bar graphs visualizing their statistics!",
     url: "bars",
@@ -38,7 +38,7 @@ const cardInfo = [
   },
   {
     title: "check out our beers",
-    header: "Beer",
+    header: "Beers",
     info:
       "Check out our beer page! With all of the beers we stock across our bars, you will be able to pick one and check out statistics about the beer. Head on over to find out.",
     url: "beers",
@@ -46,7 +46,7 @@ const cardInfo = [
   },
   {
     title: "check out our drinkers",
-    header: "Drinker",
+    header: "Drinkers",
     info:
       "Check out our drinkers page! Here you will find thousands of drinkers who visit the bars in our database. These drinkers all live in various states across the US and consume a ton of beer! Head to the drinkers page for stats!",
     url: "bars",

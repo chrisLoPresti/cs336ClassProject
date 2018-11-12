@@ -1,7 +1,3 @@
-.landing-image {
-  background-image: url("../../images/beerdrinker.jpg");
-}
-
 .title-buttons {
   text-align: center;
 }
@@ -10,20 +6,28 @@
   font-size: 2vw;
   color: White;
   margin: 20px;
-  background-color: lightslategrey;
+  margin-top: 35px;
+  background-color: #303030;
+  border: 1px solid slategray;
 }
 .title-buttons .title-button:hover {
   background-color: white;
-  color: lightslategrey;
+  color: #303030;
 }
 
 @media only screen and (min-width: 600px) {
+  .landing-image {
+    background-image: url("../../images/homepage.jpg");
+  }
   .title-buttons .title-button {
     font-size: 20px;
   }
 }
 
 @media only screen and (max-width: 600px) {
+  .landing-image {
+    background-image: url("../../images/homepagesmall.jpg");
+  }
   .title-buttons .title-button {
     font-size: 15px;
   }
