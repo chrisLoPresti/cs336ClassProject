@@ -24,7 +24,7 @@ const queries = [
   {
     title: "Drinkers Only Frequent Bars In State",
     description:
-      "Run this query to check to make sure drinkers only frewuent bars within the same state they live. If true we will return 1, if not we will return 0",
+      "Run this query to check to make sure drinkers only frequent bars within the same state they live. If true we will return 1, if not we will return 0",
     req: {
       query:
         "SELECT NOT EXISTS (SELECT * FROM Frequents f, Bar b, Drinker d WHERE d.name = f.drinker AND f.bar = b.name AND b.state <> d.state) AS No_Out_of_State_Drinkers;"
@@ -42,7 +42,7 @@ const queries = [
   {
     title: "Bars Cant Sell More Than Whats In Stock",
     description:
-      "Run this query to make sure bars cannot sell more beers of specific brand, than it has in its inventory. If true we will return 1, if not we will return 0",
+      "Run this query to make sure bars cannot sell more beers of a specific brand than it has in its inventory. If true we will return 1, if not we will return 0",
     req: {
       query:
         'SELECT NOT EXISTS (SELECT * FROM (SELECT SUM(t.quantity) AS quantity_in_transactions, b1.start_quantity FROM (SELECT b.bill_id AS bill_id, i.beer AS beer, b.bar AS bar, b.date AS date, i.startquantity AS start_quantity FROM Inventory i, Bills b WHERE i.bar = b.bar AND i.date = b.date) b1, Transactions t WHERE t.type = "beer" AND b1.bill_id = t.bill_id AND t.item = b1.beer GROUP BY b1.beer, b1.bar, b1.date) c WHERE c.start_quantity < c.quantity_in_transactions) AS not_selling_more_than_have;'
