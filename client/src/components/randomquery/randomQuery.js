@@ -10,6 +10,7 @@ import {
   clearResults
 } from "../../actions/randomQueryActions";
 import { clearErrors } from "../../actions/errorsActions";
+import Patterns from "./patternqueries";
 import "./randomQuery.css";
 
 let scrollToElement = require("scroll-to-element");
@@ -60,11 +61,16 @@ class RandomQuery extends Component {
     this.props.clearErrors();
   };
 
+  runPattern = pattern => {
+    this.props.getQueryResults(pattern);
+    this.setState({ scroll: true });
+  };
+
   submitQuery = () => {
-    const badWords = ["drop", "delete", "update", "insert"];
+    const badWords = ["drop", "delete", "update", "insert", "create"];
     var i = 0;
     var bad = false;
-    for (i = 0; i < 4; ++i) {
+    for (i = 0; i < badWords.length; ++i) {
       if (this.state.query.toLocaleLowerCase().includes(badWords[i])) {
         bad = true;
         break;
@@ -125,7 +131,7 @@ class RandomQuery extends Component {
             <Typography className="step-text">
               To prevent damage to our database we have set some restrictions on
               what types of querys you can commit. We dont allow drops, updates,
-              deletes or insertions from the query box (or any strings to
+              deletes, inserts or creates from the query box (or any strings to
               contain those key words). If you would like to perform any of
               these modifications, with the exception of drops, head on over to
               the modification pafe. From there you will be able to update,
@@ -133,6 +139,15 @@ class RandomQuery extends Component {
               is to be used to verify that your modifcations actually took
               place.
             </Typography>
+          </Grid>
+          <Grid item xs={12} className="step-grid">
+            <Typography variant="h4" className="step-title">
+              Patterns
+            </Typography>
+            <Patterns
+              runPattern={this.runPattern}
+              loadingQuery={this.props.query.loadingQuery}
+            />
           </Grid>
           <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
@@ -144,10 +159,10 @@ class RandomQuery extends Component {
               will present them below the box so you can see the results of your
               query. If there is an error with your query, we will let you know.
               In which casse you wont get any results, just an error message. If
-              we find the words "drop", "insert", "delete" or "update" present
-              in your query, we will warn you that this is not allowed and offer
-              you the option to remain on the page and change your query, or
-              give you a link to the modifcation page.
+              we find the words "drop", "insert", "delete" , "create" or
+              "update" present in your query, we will warn you that this is not
+              allowed and offer you the option to remain on the page and change
+              your query, or give you a link to the modifcation page.
             </Typography>
           </Grid>
         </Grid>

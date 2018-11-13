@@ -1,0 +1,13 @@
+#pattern-container .pattern-text {
+  padding: 20px;
+}
+
+#pattern-container .pattern-button-container {
+  width: 100%;
+  text-align: center;
+}
+
+#pattern-container .pattern-button {
+  background-color: #303030;
+  color: whitesmoke;
+}
