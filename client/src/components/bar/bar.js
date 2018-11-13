@@ -334,7 +334,7 @@ class Bar extends Component {
             </Grid>
           </Grid>
         )}
-        {this.state.selectedBar && (
+        {this.state.selectedBar && this.props.bars.count === 6 && (
           <div id="graph-section">
             <Grid container>
               {this.state.selectedBar &&

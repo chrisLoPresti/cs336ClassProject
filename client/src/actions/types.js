@@ -48,7 +48,15 @@ export const SET_LIKES = "SET_LIKES";
 //bartender actions
 export const SET_BARTENDERS = "SET_BARTENDERS";
 export const SET_BARTENDERS_LOADING = "SET_BARTENDERS_LOADING";
+export const SET_BARTENDERS_LOADING_ONE = "SET_BARTENDERS_LOADING_ONE";
 export const CLEAR_BARTENDERS = "CLEAR_BARTENDERS";
+export const SET_WORKS = "SET_WORKS";
+export const CLEAR_SELECTED_BARTENDER = "CLEAR_SELECTED_BARTENDER";
+export const SET_SHIFTS = "SET_SHIFTS";
+export const SET_SOLD = "SET_SOLD";
+export const SET_ANALYTICS = "SET_ANALYTICS";
+export const CLEAR_ANALYTICS = "CLEAR_ANALYTICS";
+export const LOADING_ANALYTICS = "LOADING_ANALYTICS";
 
 //random query actions
 export const SET_QUERY = "SET_QUERY";

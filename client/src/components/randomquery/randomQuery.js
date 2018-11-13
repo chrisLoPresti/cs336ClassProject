@@ -125,12 +125,13 @@ class RandomQuery extends Component {
             <Typography className="step-text">
               To prevent damage to our database we have set some restrictions on
               what types of querys you can commit. We dont allow drops, updates,
-              deletes or insertions from the query box. If you would like to
-              perform any of these modifications, with the exception of drops,
-              head on over to the modification pafe. From there you will be able
-              to update, insert, or delete using our database. The query box's
-              main purpose is to be used to verify that your modifcations
-              actually took place.
+              deletes or insertions from the query box (or any strings to
+              contain those key words). If you would like to perform any of
+              these modifications, with the exception of drops, head on over to
+              the modification pafe. From there you will be able to update,
+              insert, or delete using our database. The query box's main purpose
+              is to be used to verify that your modifcations actually took
+              place.
             </Typography>
           </Grid>
           <Grid item xs={12} className="step-grid">

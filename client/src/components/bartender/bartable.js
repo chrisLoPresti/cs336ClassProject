@@ -21,7 +21,7 @@ import {
   LastPage,
   Close
 } from "@material-ui/icons";
-import Form from "./formcontrol";
+import Form from "./formcontrolbar";
 
 import "./bartender.css";
 
@@ -164,7 +164,7 @@ const getSorting = (order, orderBy) => {
 
 class CustomPaginationActionsTable extends React.Component {
   state = {
-    rows: this.props.bartenders.bartenders,
+    rows: this.props.bartenders.works,
     page: 0,
     rowsPerPage: 5,
     order: "ascending",
@@ -188,16 +188,16 @@ class CustomPaginationActionsTable extends React.Component {
     });
   };
 
-  selectedBartenderChange = name => () => {
-    this.props.handleSelectedBartender(name)();
+  selectedBarChange = name => () => {
+    this.props.handleSelectedBar(name)();
   };
 
   handleChange = event => {
     this.setState({
       rows:
         event.target.value === ""
-          ? this.props.bartenders.bartenders
-          : this.props.bartenders.bartenders.filter(
+          ? this.props.bartenders.works
+          : this.props.bartenders.works.filter(
               person =>
                 person.name
                   .toLowerCase()
@@ -208,9 +208,9 @@ class CustomPaginationActionsTable extends React.Component {
   };
 
   clearSearch = () => {
-    document.getElementById("search-box").value = "";
+    document.getElementById("search-box").value = null;
     this.setState({
-      rows: this.props.bartenders.bartenders
+      rows: this.props.bartenders.works
     });
   };
 
@@ -259,7 +259,6 @@ class CustomPaginationActionsTable extends React.Component {
                   <CustomTableCell className="head-row left-row">
                     Name
                   </CustomTableCell>
-                  <CustomTableCell className="head-row">Number</CustomTableCell>
                   <CustomTableCell className="head-row right-row">
                     State
                   </CustomTableCell>
@@ -277,18 +276,15 @@ class CustomPaginationActionsTable extends React.Component {
                         key={row.name}
                         id="info-row"
                         className={
-                          this.props.selectedBartender === row.name
-                            ? "selected"
-                            : ""
+                          this.props.selectedBar === row.name ? "selected" : ""
                         }
-                        disabled={this.props.bartenders.loadingDrinker}
+                        disabled={this.props.bartenders.loadingbar}
                         onClick={
                           !this.props.loading &&
-                          this.selectedBartenderChange(row.name)
+                          this.selectedBarChange(row.name)
                         }
                       >
                         <TableCell>{row.name}</TableCell>
-                        <TableCell>{row.phone}</TableCell>
                         <TableCell>{row.state}</TableCell>
                       </TableRow>
                     );
@@ -323,8 +319,8 @@ class CustomPaginationActionsTable extends React.Component {
 CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   bartenders: PropTypes.object.isRequired,
-  selectedBartender: PropTypes.string.isRequired,
-  handleSelectedBartender: PropTypes.func.isRequired,
+  selectedBar: PropTypes.string.isRequired,
+  handleSelectedBar: PropTypes.func.isRequired,
   loading: PropTypes.bool.isRequired
 };
 
