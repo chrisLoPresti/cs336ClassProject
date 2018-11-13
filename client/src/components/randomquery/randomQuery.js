@@ -63,19 +63,27 @@ class RandomQuery extends Component {
   submitQuery = () => {
     const badWords = ["drop", "delete", "update", "insert"];
     var i = 0;
+    var bad = false;
     for (i = 0; i < 4; ++i) {
       if (this.state.query.toLocaleLowerCase().includes(badWords[i])) {
-        this.setState({
-          badQuery: badWords[i]
-        });
+        bad = true;
+        break;
       }
-      this.setState({ scroll: true });
     }
 
-    if (this.state.badQuery) {
-      this.props.setQueryErrors(`You can not use ${badWords[i]} in your query`);
+    if (bad) {
+      this.setState(
+        {
+          badQuery: badWords[i]
+        },
+        () =>
+          this.props.setQueryErrors(
+            `You can not use ${badWords[i]} in your query`
+          )
+      );
       return;
     }
+    this.setState({ scroll: true });
 
     const req = {
       query: this.state.query
