@@ -169,7 +169,7 @@ class RandomQuery extends Component {
         <Grid container className="query-box">
           <Grid item xs={12} className="query-box-type">
             <div>
-              {Object.keys(this.props.errors.error).length > 0 && (
+              {Object.keys(this.props.errors).length > 0 && (
                 <Typography style={{ color: "red" }}>
                   *{this.props.errors.error}
                 </Typography>
