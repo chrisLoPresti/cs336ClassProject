@@ -1,13 +1,25 @@
+#pattern-container {
+  margin-bottom: 20px;
+}
+
 #pattern-container .pattern-text {
   padding: 20px;
+  background-color: whitesmoke;
 }
 
 #pattern-container .pattern-button-container {
   width: 100%;
   text-align: center;
+  background-color: whitesmoke;
 }
 
 #pattern-container .pattern-button {
   background-color: #303030;
   color: whitesmoke;
+}
+
+#pattern-container .pannel {
+  background-color: whitesmoke;
+  margin-left: 20px;
+  margin-right: 20px;
 }

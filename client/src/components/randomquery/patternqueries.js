@@ -13,7 +13,7 @@ import "./pattern.css";
 
 const queries = [
   {
-    title: "No Transactions When A Bar Is Closed",
+    title: "No Bars Can Have Transactions When They Are Closed",
     description:
       "Run this query to make sure that no bars have transactions when they are closed. If true, we will return 1, if false we will return 0",
     req: {
@@ -22,7 +22,7 @@ const queries = [
     }
   },
   {
-    title: "Drinkers Only Frequent Bars In State",
+    title: "Drinkers Only Frequent Bars In The Same State They Live In",
     description:
       "Run this query to check to make sure drinkers only frequent bars within the same state they live. If true we will return 1, if not we will return 0",
     req: {
@@ -49,7 +49,7 @@ const queries = [
     }
   },
   {
-    title: "Make Sure Inventory Matches Numbers Sold",
+    title: "Inventory Must Properly Represent What Has Been Sold",
     description:
       "Run this query to make sure that our inventory is properly deducted from when we sell an item and that the totals all check out. If true we will return 1, if not we will return 0",
     req: {
@@ -89,6 +89,7 @@ class ControlledExpansionPanels extends React.Component {
       <div id="pattern-container">
         {queries.map(item => (
           <ExpansionPanel
+            className="pannel"
             key={item.title}
             expanded={expanded === `${item.title}`}
             onChange={this.handleChange(`${item.title}`)}
