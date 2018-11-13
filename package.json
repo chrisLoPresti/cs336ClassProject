@@ -1,10 +1,10 @@
 {
-  "name": "dev_connector",
+  "name": "barbeerdrinker",
   "version": "1.0.0",
   "engines": {
     "node": "10.4.0"
   },
-  "description": "social network for devs",
+  "description": "rutgers cs336 semester project",
   "main": "server.js",
   "scripts": {
     "client-install": "npm install --prefix client",
