@@ -524,13 +524,14 @@ class Bartender extends Component {
         <Grid container className="step-container">
           <Grid item xs={12} className="step-grid">
             <Typography variant="h4" className="step-title">
-              Top Bartendrs By Sales Given Paramaters
+              Top Bartenders Analytics
             </Typography>
             <Typography className="step-text">
-              From the three drop down menues, select a day, start time and end
-              time. We will then give you a ranking of bartenders who have sold
-              the most beers during that shift time on the given day! Feel cree
-              to clear your results and try with differnt input.
+              From the four drop down menues, select a bar, day, start time and
+              end time. We will then give you a ranking of bartenders who have
+              sold the most beers from that bar during the shift time on the
+              given day! Feel cree to clear your results and try with differnt
+              input.
             </Typography>
           </Grid>
           <Grid item xs={6} sm={3} className="form-control-grid">
