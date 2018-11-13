@@ -258,7 +258,8 @@ class RandomQuery extends Component {
               <Typography id="simple-modal-description">
                 You can not use this word in your query. If you want to update,
                 insert, or delete, go to the modification page. Otherwise remain
-                here! Also, as the restrictions state, we can not drop tables.
+                here! Also, as the restrictions state, we can not drop or create
+                tables.
               </Typography>
               <div id="modal-button-container">
                 <Button id="modification-page-button">Modifcation</Button>
