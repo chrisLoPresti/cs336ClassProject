@@ -713,9 +713,11 @@ class Bartender extends Component {
             <Grid item xs={12} id="bar-analytics">
               <BarChart
                 list={this.props.bartenders.analytics}
-                title={`Top 10 Bartenders On ${this.state.selectedDay} From ${
+                title={`Top Bartenders On ${this.state.selectedDay} From ${
                   this.state.selectedStart
-                } - ${this.state.selectedEnd}`}
+                } - ${this.state.selectedEnd} At ${
+                  this.state.selectedBarAnalytics
+                }`}
                 color={colors[5]}
                 x={"Bartender"}
                 y={"Total product sold"}
