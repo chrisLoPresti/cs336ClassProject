@@ -9,7 +9,8 @@ import {
   SET_SOLD,
   SET_ANALYTICS,
   CLEAR_ANALYTICS,
-  LOADING_ANALYTICS
+  LOADING_ANALYTICS,
+  CLEAR_SELECTED_BAR
 } from "../actions/types";
 
 let initialState = {
@@ -33,6 +34,13 @@ export default function(state = initialState, action) {
         shifts: {},
         sold: {},
         analytics: {},
+        count: 0
+      };
+    case CLEAR_SELECTED_BAR:
+      return {
+        ...state,
+        shifts: {},
+        sold: {},
         count: 0
       };
     case SET_WORKS:

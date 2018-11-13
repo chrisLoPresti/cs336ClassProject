@@ -11,7 +11,8 @@ import {
   SET_SOLD,
   SET_ANALYTICS,
   CLEAR_ANALYTICS,
-  LOADING_ANALYTICS
+  LOADING_ANALYTICS,
+  CLEAR_SELECTED_BAR
 } from "./types";
 
 //set bartenders loading
@@ -39,6 +40,14 @@ export const setBartendersLoadingOne = () => {
 export const clearBartenders = () => dispatch => {
   dispatch({
     type: CLEAR_BARTENDERS,
+    payload: {}
+  });
+};
+
+//clear bartenders
+export const clearSelectedBar = () => dispatch => {
+  dispatch({
+    type: CLEAR_SELECTED_BAR,
     payload: {}
   });
 };

@@ -57,6 +57,7 @@ export const SET_SOLD = "SET_SOLD";
 export const SET_ANALYTICS = "SET_ANALYTICS";
 export const CLEAR_ANALYTICS = "CLEAR_ANALYTICS";
 export const LOADING_ANALYTICS = "LOADING_ANALYTICS";
+export const CLEAR_SELECTED_BAR = "CLEAR_SELECTED_BAR";
 
 //random query actions
 export const SET_QUERY = "SET_QUERY";

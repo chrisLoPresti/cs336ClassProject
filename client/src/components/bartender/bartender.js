@@ -26,7 +26,8 @@ import {
   getShifts,
   getSold,
   getAnalytics,
-  clearAnalytics
+  clearAnalytics,
+  clearSelectedBar
 } from "../../actions/bartenderActions";
 import { getBars, clearBars } from "../../actions/barActions";
 import { clearErrors } from "../../actions/errorsActions";
@@ -110,6 +111,7 @@ class Bartender extends Component {
       selectedBar: ""
     });
     this.handleBack();
+    this.props.clearSelectedBar();
   };
 
   populateBartender = () => {
@@ -756,6 +758,7 @@ export default connect(
     clearBars,
     getAnalytics,
     clearAnalytics,
-    clearErrors
+    clearErrors,
+    clearSelectedBar
   }
 )(withRouter(Bartender));
