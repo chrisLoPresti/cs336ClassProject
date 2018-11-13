@@ -201,8 +201,8 @@ class Bartender extends Component {
     ];
     const noInfo =
       Object.keys(this.props.bartenders.bartenders).length <= 0 &&
-      Object.keys(this.props.bartenders.works).length <= 0;
-    Object.keys(this.props.bartenders.shifts).length <= 0;
+      Object.keys(this.props.bartenders.works).length <= 0 &&
+      Object.keys(this.props.bartenders.shifts).length <= 0;
 
     const steps = this.getSteps();
     const { activeStep } = this.state;
