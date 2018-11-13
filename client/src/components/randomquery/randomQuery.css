@@ -59,6 +59,7 @@
   height: 400px;
   background-color: white;
   transition: 0.3s;
+  border-radius: 20px;
 }
 @media only screen and (min-width: 600px) {
   #query-modal-content {
@@ -78,6 +79,8 @@
   padding: 20px;
   background-color: #303030;
   color: whitesmoke;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
 }
 
 #simple-modal-description {
@@ -101,6 +104,8 @@
   width: 100%;
   text-align: center;
   background-color: lightgrey;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 #modification-page-button {
