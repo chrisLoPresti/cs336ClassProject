@@ -41,9 +41,9 @@ class modaldelete extends React.Component {
       this.state.start,
       this.state.end,
       this.state.date,
-      this.props.row.bartender,
-      this.props.row.bar,
-      this.props.row.date
+      this.state.bartender,
+      this.state.bar,
+      this.state.date
     );
     this.props.doneWithRequest();
     this.handleCloseModal();
