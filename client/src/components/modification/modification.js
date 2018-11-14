@@ -30,7 +30,19 @@ import {
   getTransactions,
   insertDrinker,
   deleteDrinker,
-  updateDrinker
+  updateDrinker,
+  insertBarfood,
+  updateBarfood,
+  deleteBarfood,
+  insertBars,
+  updateBars,
+  deleteBars,
+  insertBartender,
+  updateBartender,
+  deleteBartender,
+  insertBeer,
+  updateBeer,
+  deleteBeer
 } from "../../actions/modificationActions";
 
 //bars
@@ -529,7 +541,8 @@ class Modification extends Component {
                 **{this.state.errors.emptyinput}
               </Typography>
             )}
-            {Object.keys(this.props.errors.error).length > 0 &&
+            {this.state.selectedOperation === "Insert" &&
+              Object.keys(this.props.errors.error).length > 0 &&
               this.props.errors.error !== "Success" && (
                 <Grid item xs={12} style={{ textAlign: "center" }}>
                   <Typography
@@ -540,7 +553,8 @@ class Modification extends Component {
                   </Typography>
                 </Grid>
               )}
-            {Object.keys(this.props.errors.error).length > 0 &&
+            {this.state.selectedOperation === "Insert" &&
+              this.props.errors.error.length > 0 &&
               this.props.errors.error === "Success" && (
                 <Grid item xs={12} style={{ textAlign: "center" }}>
                   <Typography
@@ -599,7 +613,7 @@ class Modification extends Component {
                       </Typography>
                     </Grid>
                   )}
-                {Object.keys(this.props.errors.error).length > 0 &&
+                {this.props.errors.error.length > 0 &&
                   this.props.errors.error === "Success" && (
                     <Grid item xs={12} style={{ textAlign: "center" }}>
                       <Typography
@@ -610,9 +624,11 @@ class Modification extends Component {
                       </Typography>
                     </Grid>
                   )}
-                <Grid item xs={12}>
-                  {table}
-                </Grid>
+                {!this.props.modification.loadingModification && (
+                  <Grid item xs={12}>
+                    {table}
+                  </Grid>
+                )}
               </Grid>
             </div>
           )}
@@ -625,7 +641,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={() => alert("Delete!")}
+              handleDelete={this.props.deleteBars}
             />
           )}
         {this.state.processRequest &&
@@ -636,7 +652,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={() => alert("Delete!")}
+              handleUpdate={this.props.updateBars}
             />
           )}
         {this.state.processRequest &&
@@ -646,10 +662,10 @@ class Modification extends Component {
             <BarModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertBars}
             />
           )}
-        {/* BAR FOOD */}
+        {/* BARFOOD */}
         {this.state.processRequest &&
           this.state.open &&
           this.state.selectedOperation === "Delete" &&
@@ -658,7 +674,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={() => alert("Delete!")}
+              handleDelete={this.props.deleteBarfood}
             />
           )}
         {this.state.processRequest &&
@@ -669,7 +685,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={() => alert("Delete!")}
+              handleUpdate={this.props.updateBarfood}
             />
           )}
         {this.state.processRequest &&
@@ -679,7 +695,7 @@ class Modification extends Component {
             <BarFoodModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertBarfood}
             />
           )}
         {/* BARTENDER */}
@@ -691,7 +707,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteBartender}
             />
           )}
         {this.state.processRequest &&
@@ -702,7 +718,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateBartender}
             />
           )}
         {this.state.processRequest &&
@@ -712,7 +728,7 @@ class Modification extends Component {
             <BartenderModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertBartender}
             />
           )}
         {/* BEER */}
@@ -724,7 +740,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteBeer}
             />
           )}
         {this.state.processRequest &&
@@ -735,7 +751,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateBeer}
             />
           )}
         {this.state.processRequest &&
@@ -745,7 +761,7 @@ class Modification extends Component {
             <BeerModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertBeer}
             />
           )}
         {/* DAY */}
@@ -1050,6 +1066,18 @@ export default connect(
     getTransactions,
     insertDrinker,
     deleteDrinker,
-    updateDrinker
+    updateDrinker,
+    insertBarfood,
+    updateBarfood,
+    deleteBarfood,
+    insertBars,
+    updateBars,
+    deleteBars,
+    insertBartender,
+    updateBartender,
+    deleteBartender,
+    insertBeer,
+    updateBeer,
+    deleteBeer
   }
 )(withRouter(Modification));

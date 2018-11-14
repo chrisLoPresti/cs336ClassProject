@@ -15,6 +15,7 @@ class modaldelete extends React.Component {
     this.state = {
       openModal: this.props.open,
       name: "",
+      phome: "",
       state: ""
     };
   }
@@ -29,7 +30,11 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
-    this.props.handleInsert(this.state.name, this.state.state);
+    this.props.handleInsert(
+      this.state.name,
+      this.state.phone,
+      this.state.state
+    );
     this.props.doneWithRequest();
     this.handleCloseModal();
   };
@@ -55,6 +60,15 @@ class modaldelete extends React.Component {
                 label="Name"
                 value={this.state.name}
                 onChange={this.handleChange("name")}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                className="modal-text-insert"
+                label="Phone"
+                value={this.state.phone}
+                onChange={this.handleChange("phone")}
                 margin="normal"
               />
             </Grid>

@@ -29,7 +29,7 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
-    this.props.handleInsert(this.state.name, this.state.manf);
+    this.props.handleInsert(this.state.name, this.state.manf, this.state.name);
     this.props.doneWithRequest();
     this.handleCloseModal();
   };
@@ -65,9 +65,6 @@ class modaldelete extends React.Component {
                 value={this.state.manf}
                 onChange={this.handleChange("manf")}
                 margin="normal"
-                inputProps={{
-                  maxLength: 2
-                }}
               />
             </Grid>
           </Grid>

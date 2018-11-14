@@ -69,7 +69,7 @@ export const getDrinkers = data => dispatch => {
     });
 };
 
-export const getBars = () => dispatch => {
+export const getBars = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get("https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar")
@@ -78,10 +78,17 @@ export const getBars = () => dispatch => {
         type: SET_MOD_BAR,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -95,7 +102,7 @@ export const getBars = () => dispatch => {
     });
 };
 
-export const getBeers = () => dispatch => {
+export const getBeers = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get("https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/beer")
@@ -104,10 +111,17 @@ export const getBeers = () => dispatch => {
         type: SET_MOD_BEER,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -149,7 +163,7 @@ export const getShifts = () => dispatch => {
     });
 };
 
-export const getBarfood = () => dispatch => {
+export const getBarfood = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -160,10 +174,17 @@ export const getBarfood = () => dispatch => {
         type: SET_MOD_BARFOOD,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -373,7 +394,7 @@ export const getSellsfood = () => dispatch => {
     });
 };
 
-export const getBartenders = () => dispatch => {
+export const getBartenders = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -384,10 +405,17 @@ export const getBartenders = () => dispatch => {
         type: SET_MOD_BARTENDER,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -501,6 +529,214 @@ export const updateDrinker = (name, phone, state, oldname) => dispatch => {
     )
     .then(res => {
       dispatch(getDrinkers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertBarfood = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/barfood/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getBarfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteBarfood = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/barfood/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getBarfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateBarfood = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/barfood/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getBarfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertBars = (name, state, oldname) => dispatch => {
+  var obj = { name, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bar/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getBars(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteBars = (name, state, oldname) => dispatch => {
+  var obj = { name, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bar/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getBars(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateBars = (name, state, oldname) => dispatch => {
+  var obj = { name, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bar/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getBars(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertBartender = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bartender/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getBartenders(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteBartender = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bartender/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getBartenders(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateBartender = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bartender/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getBartenders(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertBeer = (name, manf, oldname) => dispatch => {
+  var obj = { name, manf, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/beer/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getBeers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteBeer = (name, manf, oldname) => dispatch => {
+  var obj = { name, manf, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/beer/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getBeers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateBeer = (name, manf, oldname) => dispatch => {
+  var obj = { name, manf, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/beer/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getBeers(res.data));
     })
     .catch(err => {
       dispatch({
