@@ -60,7 +60,10 @@ import {
   deleteSellsbeer,
   insertSellsfood,
   updateSellsfood,
-  deleteSellsfood
+  deleteSellsfood,
+  insertShifts,
+  updateShifts,
+  deleteShifts
 } from "../../actions/modificationActions";
 
 import { clearErrors } from "../../actions/errorsActions";
@@ -1029,7 +1032,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteShifts}
             />
           )}
         {this.state.processRequest &&
@@ -1040,7 +1043,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateShifts}
             />
           )}
         {this.state.processRequest &&
@@ -1050,7 +1053,7 @@ class Modification extends Component {
             <ShiftsModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertShifts}
             />
           )}
       </div>
@@ -1122,6 +1125,9 @@ export default connect(
     deleteSellsbeer,
     insertSellsfood,
     updateSellsfood,
-    deleteSellsfood
+    deleteSellsfood,
+    insertShifts,
+    updateShifts,
+    deleteShifts
   }
 )(withRouter(Modification));

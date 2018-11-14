@@ -135,7 +135,7 @@ export const getBeers = data => dispatch => {
     });
 };
 
-export const getShifts = () => dispatch => {
+export const getShifts = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -146,10 +146,17 @@ export const getShifts = () => dispatch => {
         type: SET_MOD_SHIFTS,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -1181,6 +1188,118 @@ export const updateSellsfood = (
     )
     .then(res => {
       dispatch(getSellsfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertShifts = (
+  bar,
+  bartender,
+  day,
+  start,
+  end,
+  date,
+  old_bartender,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    day,
+    start,
+    end,
+    date,
+    old_bartender,
+    old_bar,
+    old_date
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getShifts(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteShifts = (
+  bar,
+  bartender,
+  day,
+  start,
+  end,
+  date,
+  old_bartender,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    day,
+    start,
+    end,
+    date,
+    old_bartender,
+    old_bar,
+    old_date
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getShifts(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateShifts = (
+  bar,
+  bartender,
+  day,
+  start,
+  end,
+  date,
+  old_bartender,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    day,
+    start,
+    end,
+    date,
+    old_bartender,
+    old_bar,
+    old_date
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getShifts(res.data));
     })
     .catch(err => {
       dispatch({

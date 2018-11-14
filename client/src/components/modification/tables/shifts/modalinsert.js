@@ -37,10 +37,13 @@ class modaldelete extends React.Component {
     this.props.handleInsert(
       this.state.bar,
       this.state.bartender,
-      this.state.date,
       this.state.day,
+      this.state.start,
       this.state.end,
-      this.state.start
+      this.state.date,
+      this.props.row.bartender,
+      this.props.row.bar,
+      this.props.row.date
     );
     this.props.doneWithRequest();
     this.handleCloseModal();
@@ -97,17 +100,8 @@ class modaldelete extends React.Component {
               <TextField
                 className="modal-text-insert"
                 label="Day"
-                value={this.state.end}
-                onChange={this.handleChange("end")}
-                margin="normal"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="modal-text-insert"
-                label="End"
-                value={this.state.end}
-                onChange={this.handleChange("end")}
+                value={this.state.day}
+                onChange={this.handleChange("day")}
                 margin="normal"
               />
             </Grid>
@@ -117,6 +111,15 @@ class modaldelete extends React.Component {
                 label="Start"
                 value={this.state.start}
                 onChange={this.handleChange("start")}
+                margin="normal"
+              />
+            </Grid>
+            <Grid item xs={12}>
+              <TextField
+                className="modal-text-insert"
+                label="End"
+                value={this.state.end}
+                onChange={this.handleChange("end")}
                 margin="normal"
               />
             </Grid>
