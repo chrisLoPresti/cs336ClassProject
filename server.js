@@ -10,8 +10,6 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 //set up routes
-const drinkers = require("./routes/api/drinkers");
-app.use("/api/drinkers", drinkers);
 const randomQuery = require("./routes/api/randomQuery");
 app.use("/api/randomQuery", randomQuery);
 
@@ -26,7 +24,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //every day at 12:01am this call will update our inventory table to match the previous days inventory
-var j = schedule.scheduleJob("1 0 * * *", function() {
+var j = schedule.scheduleJob("0 5 * * *", function() {
   axios
     .post(
       "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/daily/update/inventory"
