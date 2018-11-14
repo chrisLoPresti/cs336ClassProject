@@ -22,7 +22,8 @@ class modaldelete extends React.Component {
     };
   }
   handleCloseModal = () => {
-    this.setState({ openModal: false, badQuery: "" });
+    this.setState({ openModal: false });
+    this.props.doneWithRequest();
   };
 
   handleChange = name => event => {
@@ -98,7 +99,7 @@ class modaldelete extends React.Component {
                 onChange={this.handleChange("start")}
                 margin="normal"
               />
-            </Grid>{" "}
+            </Grid>
             <Grid item xs={12}>
               <TextField
                 className="modal-text-insert"

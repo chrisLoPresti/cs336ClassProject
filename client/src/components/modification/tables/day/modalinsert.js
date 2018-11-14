@@ -18,7 +18,7 @@ class modaldelete extends React.Component {
     };
   }
   handleCloseModal = () => {
-    this.setState({ openModal: false, badQuery: "" });
+    this.props.doneWithRequest();
   };
 
   handleChange = name => event => {

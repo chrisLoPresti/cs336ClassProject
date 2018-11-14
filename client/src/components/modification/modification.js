@@ -116,7 +116,8 @@ class Modification extends Component {
       currentTable: "",
       selectedRow: {},
       processRequest: false,
-      results: false
+      results: false,
+      open: false
     };
   }
   componentDidMount() {
@@ -152,11 +153,11 @@ class Modification extends Component {
   };
 
   handelInsert = () => {
-    this.setState({ processRequest: true, results: true });
+    this.setState({ processRequest: true, results: true, open: true });
   };
 
   doneWithRequest = () => {
-    this.setState({ selectedRow: {}, processRequest: false, results: false });
+    this.setState({ selectedRow: {}, open: false });
   };
 
   handleBegin = () => {
@@ -244,7 +245,11 @@ class Modification extends Component {
   };
 
   handleSelectedRow = row => () => {
-    this.setState({ selectedRow: row, processRequest: true });
+    this.setState({
+      selectedRow: row,
+      processRequest: true,
+      open: true
+    });
   };
 
   handleClearResults = () => {
@@ -566,361 +571,397 @@ class Modification extends Component {
           )}
         {/* BAR */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Bar" && (
             <BarModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={() => alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Bar" && (
             <BarModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={() => alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Bar" && (
             <BarModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* BAR FOOD */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "BarFood" && (
             <BarFoodModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={() => alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "BarFood" && (
             <BarFoodModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={() => alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "BarFood" && (
             <BarFoodModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* BARTENDER */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Bartender" && (
             <BartenderModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Bartender" && (
             <BartenderModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Bartender" && (
             <BartenderModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* BEER */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Beer" && (
             <BeerModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Beer" && (
             <BeerModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Beer" && (
             <BeerModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* DAY */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Day" && (
             <DayModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Day" && (
             <DayModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Day" && (
             <DayModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* DRINKER */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Drinker" && (
             <DrinkerModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Drinker" && (
             <DrinkerModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Drinker" && (
             <DrinkerModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* FREQUENTS */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Frequents" && (
             <FrequentsModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Frequents" && (
             <FrequentsModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Frequents" && (
             <FrequentsModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* lIKES */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Likes" && (
             <LikesModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Likes" && (
             <LikesModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Likes" && (
             <LikesModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* OPERATES */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Operates" && (
             <OperatesModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Operates" && (
             <OperatesModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Operates" && (
             <OperatesModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* SELLSBEER */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "SellsBeer" && (
             <SellsbeerModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "SellsBeer" && (
             <SellsbeerModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "SellsBeer" && (
             <SellsbeerModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* SELLSFOOD */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "SellsFood" && (
             <SellsfoodModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "SellsFood" && (
             <SellsfoodModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "SellsFood" && (
             <SellsfoodModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
         {/* SHIFTS */}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Shifts" && (
             <ShiftsModalDelete
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Shifts" && (
             <ShiftsModalUpdate
               row={this.state.selectedRow}
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleDelete={alert("Delete!")}
             />
           )}
         {this.state.processRequest &&
+          this.state.open &&
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Shifts" && (
             <ShiftsModalInsert
-              open={true}
-              doneWithRequest={this.state.doneWithRequest}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
               handleInsert={alert("Insert!")}
             />
           )}
