@@ -198,7 +198,7 @@ export const getBarfood = data => dispatch => {
     });
 };
 
-export const getDay = () => dispatch => {
+export const getDay = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -209,10 +209,17 @@ export const getDay = () => dispatch => {
         type: SET_MOD_DAY,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -226,7 +233,7 @@ export const getDay = () => dispatch => {
     });
 };
 
-export const getFrequents = () => dispatch => {
+export const getFrequents = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -237,10 +244,17 @@ export const getFrequents = () => dispatch => {
         type: SET_MOD_FREQUENTS,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -254,7 +268,7 @@ export const getFrequents = () => dispatch => {
     });
 };
 
-export const getLikes = () => dispatch => {
+export const getLikes = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -265,10 +279,17 @@ export const getLikes = () => dispatch => {
         type: SET_MOD_LIKES,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -310,7 +331,7 @@ export const getInventory = () => dispatch => {
     });
 };
 
-export const getOperates = () => dispatch => {
+export const getOperates = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -321,10 +342,17 @@ export const getOperates = () => dispatch => {
         type: SET_MOD_OPERATES,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -338,7 +366,7 @@ export const getOperates = () => dispatch => {
     });
 };
 
-export const getSellsbeer = () => dispatch => {
+export const getSellsbeer = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -349,10 +377,17 @@ export const getSellsbeer = () => dispatch => {
         type: SET_MOD_SELLSBEER,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -366,7 +401,7 @@ export const getSellsbeer = () => dispatch => {
     });
 };
 
-export const getSellsfood = () => dispatch => {
+export const getSellsfood = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -377,10 +412,17 @@ export const getSellsfood = () => dispatch => {
         type: SET_MOD_SELLSFOOD,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -737,6 +779,408 @@ export const updateBeer = (name, manf, oldname) => dispatch => {
     )
     .then(res => {
       dispatch(getBeers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertDay = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/day/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getDay(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteDay = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/day/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getDay(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateDay = (name, oldname) => dispatch => {
+  var obj = { name, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/day/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getDay(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertFrequents = (
+  bar,
+  drinker,
+  old_bar,
+  old_drinker
+) => dispatch => {
+  var obj = { drinker, bar, old_bar, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/frequents/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getFrequents(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteFrequents = (
+  bar,
+  drinker,
+  old_bar,
+  old_drinker
+) => dispatch => {
+  var obj = { drinker, bar, old_bar, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/frequents/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getFrequents(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateFrequents = (
+  beer,
+  drinker,
+  old_beer,
+  old_drinker
+) => dispatch => {
+  var obj = { beer, drinker, old_beer, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/frequents/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getFrequents(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertLikes = (
+  beer,
+  drinker,
+  old_beer,
+  old_drinker
+) => dispatch => {
+  var obj = { beer, drinker, old_beer, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/likes/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getLikes(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteLikes = (
+  beer,
+  drinker,
+  old_beer,
+  old_drinker
+) => dispatch => {
+  var obj = { beer, drinker, old_beer, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/likes/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getLikes(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateLikes = (
+  beer,
+  drinker,
+  old_beer,
+  old_drinker
+) => dispatch => {
+  var obj = { drinker, beer, old_beer, old_drinker };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/likes/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getLikes(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertOperates = (
+  bar,
+  day,
+  start,
+  end,
+  date,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = { bar, day, start, end, date, old_bar, old_date };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getOperates(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteOperates = (
+  bar,
+  day,
+  start,
+  end,
+  date,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = { bar, day, start, end, date, old_bar, old_date };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getOperates(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateOperates = (
+  bar,
+  day,
+  start,
+  end,
+  date,
+  old_bar,
+  old_date
+) => dispatch => {
+  var obj = { bar, day, start, end, date, old_bar, old_date };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getOperates(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertSellsbeer = (
+  beername,
+  barname,
+  price,
+  old_bar,
+  old_beer
+) => dispatch => {
+  var obj = { beername, barname, price, old_bar, old_beer };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsbeer/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsbeer(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteSellsbeer = (
+  beername,
+  barname,
+  price,
+  old_bar,
+  old_beer
+) => dispatch => {
+  var obj = { beername, barname, price, old_bar, old_beer };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsbeer/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsbeer(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateSellsbeer = (
+  beername,
+  barname,
+  price,
+  old_bar,
+  old_beer
+) => dispatch => {
+  var obj = { beername, barname, price, old_bar, old_beer };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsbeer/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsbeer(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertSellsfood = (
+  foodname,
+  barname,
+  price,
+  old_bar,
+  old_food
+) => dispatch => {
+  var obj = { foodname, barname, price, old_bar, old_food };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsfood/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteSellsfood = (
+  foodname,
+  barname,
+  price,
+  old_bar,
+  old_food
+) => dispatch => {
+  var obj = { foodname, barname, price, old_bar, old_food };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsfood/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsfood(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateSellsfood = (
+  foodname,
+  barname,
+  price,
+  old_bar,
+  old_food
+) => dispatch => {
+  var obj = { foodname, barname, price, old_bar, old_food };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsfood/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getSellsfood(res.data));
     })
     .catch(err => {
       dispatch({

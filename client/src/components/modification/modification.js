@@ -42,8 +42,28 @@ import {
   deleteBartender,
   insertBeer,
   updateBeer,
-  deleteBeer
+  deleteBeer,
+  insertDay,
+  updateDay,
+  deleteDay,
+  insertFrequents,
+  updateFrequents,
+  deleteFrequents,
+  insertLikes,
+  updateLikes,
+  deleteLikes,
+  insertOperates,
+  updateOperates,
+  deleteOperates,
+  insertSellsbeer,
+  updateSellsbeer,
+  deleteSellsbeer,
+  insertSellsfood,
+  updateSellsfood,
+  deleteSellsfood
 } from "../../actions/modificationActions";
+
+import { clearErrors } from "../../actions/errorsActions";
 
 //bars
 import BarTable from "./tables/bar/bar";
@@ -156,6 +176,7 @@ class Modification extends Component {
       processRequest: false,
       results: false
     });
+    this.props.clearErrors();
   };
 
   handleClear = picker => {
@@ -165,6 +186,7 @@ class Modification extends Component {
       processRequest: false,
       results: false
     });
+    this.props.clearErrors();
   };
 
   handelInsert = () => {
@@ -200,7 +222,7 @@ class Modification extends Component {
       results: false
     });
     this.props.clearModifications();
-
+    this.props.clearErrors();
     switch (this.state.selectedTable) {
       case "Bar":
         this.props.getBars();
@@ -265,6 +287,8 @@ class Modification extends Component {
       processRequest: true,
       open: true
     });
+
+    this.props.clearErrors();
   };
 
   handleClearResults = () => {
@@ -274,6 +298,7 @@ class Modification extends Component {
       results: false
     });
     this.props.clearModifications();
+    this.props.clearErrors();
   };
 
   render() {
@@ -773,7 +798,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteDay}
             />
           )}
         {this.state.processRequest &&
@@ -784,7 +809,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateDay}
             />
           )}
         {this.state.processRequest &&
@@ -794,7 +819,7 @@ class Modification extends Component {
             <DayModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertDay}
             />
           )}
         {/* DRINKER */}
@@ -839,7 +864,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteFrequents}
             />
           )}
         {this.state.processRequest &&
@@ -850,7 +875,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateFrequents}
             />
           )}
         {this.state.processRequest &&
@@ -860,7 +885,7 @@ class Modification extends Component {
             <FrequentsModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertFrequents}
             />
           )}
         {/* lIKES */}
@@ -872,7 +897,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteLikes}
             />
           )}
         {this.state.processRequest &&
@@ -883,7 +908,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateLikes}
             />
           )}
         {this.state.processRequest &&
@@ -893,7 +918,7 @@ class Modification extends Component {
             <LikesModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertLikes}
             />
           )}
         {/* OPERATES */}
@@ -905,7 +930,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteOperates}
             />
           )}
         {this.state.processRequest &&
@@ -916,7 +941,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateOperates}
             />
           )}
         {this.state.processRequest &&
@@ -926,7 +951,7 @@ class Modification extends Component {
             <OperatesModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertOperates}
             />
           )}
         {/* SELLSBEER */}
@@ -938,7 +963,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteSellsbeer}
             />
           )}
         {this.state.processRequest &&
@@ -949,7 +974,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateSellsbeer}
             />
           )}
         {this.state.processRequest &&
@@ -959,7 +984,7 @@ class Modification extends Component {
             <SellsbeerModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertSellsbeer}
             />
           )}
         {/* SELLSFOOD */}
@@ -971,7 +996,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteSellsfood}
             />
           )}
         {this.state.processRequest &&
@@ -982,7 +1007,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateSellsfood}
             />
           )}
         {this.state.processRequest &&
@@ -992,7 +1017,7 @@ class Modification extends Component {
             <SellsfoodModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertSellsfood}
             />
           )}
         {/* SHIFTS */}
@@ -1048,6 +1073,7 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   {
+    clearErrors,
     clearModifications,
     getDrinkers,
     getBars,
@@ -1078,6 +1104,24 @@ export default connect(
     deleteBartender,
     insertBeer,
     updateBeer,
-    deleteBeer
+    deleteBeer,
+    insertDay,
+    updateDay,
+    deleteDay,
+    insertFrequents,
+    updateFrequents,
+    deleteFrequents,
+    insertLikes,
+    updateLikes,
+    deleteLikes,
+    insertOperates,
+    updateOperates,
+    deleteOperates,
+    insertSellsbeer,
+    updateSellsbeer,
+    deleteSellsbeer,
+    insertSellsfood,
+    updateSellsfood,
+    deleteSellsfood
   }
 )(withRouter(Modification));

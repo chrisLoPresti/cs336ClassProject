@@ -29,9 +29,10 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
-    this.props.handleInsert(
-      this.state.drinker,
-      this.state.bar,
+    this.props.handleUpdate(
+      this.state.bar ? this.state.bar : this.props.row.bar,
+      this.state.drinker ? this.state.drinker : this.props.row.drinker,
+      this.props.row.bar,
       this.props.row.drinker
     );
     this.props.doneWithRequest();
@@ -98,7 +99,7 @@ class modaldelete extends React.Component {
 
 modaldelete.propTypes = {
   row: PropTypes.func.isRequired,
-  handleInsert: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
   doneWithRequest: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired
 };

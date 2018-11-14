@@ -261,9 +261,9 @@ class CustomPaginationActionsTable extends React.Component {
                   </CustomTableCell>
                   <CustomTableCell className="head-row">Date</CustomTableCell>
                   <CustomTableCell className="head-row ">Day</CustomTableCell>
-                  <CustomTableCell className="head-row ">End</CustomTableCell>
+                  <CustomTableCell className="head-row ">Start</CustomTableCell>
                   <CustomTableCell className="head-row right-row">
-                    Start
+                    End
                   </CustomTableCell>
                 </TableRow>
               </TableHead>
@@ -286,8 +286,8 @@ class CustomPaginationActionsTable extends React.Component {
                         <TableCell>{row.bar}</TableCell>
                         <TableCell>{row.date}</TableCell>
                         <TableCell>{row.day}</TableCell>
-                        <TableCell>{row.end}</TableCell>
                         <TableCell>{row.start}</TableCell>
+                        <TableCell>{row.end}</TableCell>
                       </TableRow>
                     );
                   })}

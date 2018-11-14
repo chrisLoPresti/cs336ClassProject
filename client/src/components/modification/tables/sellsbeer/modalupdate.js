@@ -31,10 +31,11 @@ class modaldelete extends React.Component {
 
   processAction = () => {
     this.props.handleInsert(
-      this.state.barname,
-      this.state.beername,
-      this.state.price,
-      this.props.row.barname
+      this.state.beername ? this.state.beername : this.props.row.beername,
+      this.state.barname ? this.state.barname : this.props.row.barname,
+      this.state.price ? this.state.price : this.props.row.price,
+      this.props.row.barname,
+      this.props.row.beername
     );
     this.props.doneWithRequest();
     this.handleCloseModal();

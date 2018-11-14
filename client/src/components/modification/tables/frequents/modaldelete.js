@@ -15,6 +15,7 @@ class modaldelete extends React.Component {
 
   processAction = () => {
     this.props.handleDelete(
+      this.props.row.bar,
       this.props.row.drinker,
       this.props.row.bar,
       this.props.row.drinker

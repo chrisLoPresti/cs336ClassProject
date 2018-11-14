@@ -15,10 +15,11 @@ class modaldelete extends React.Component {
 
   processAction = () => {
     this.props.handleDelete(
-      this.props.row.barname,
       this.props.row.beername,
+      this.props.row.barname,
       this.props.row.price,
-      this.props.row.barname
+      this.props.row.barname,
+      this.props.row.beername
     );
     this.props.doneWithRequest();
     this.handleCloseModal();
