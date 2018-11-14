@@ -135,6 +135,7 @@ export const getBeers = data => dispatch => {
     });
 };
 
+//ERRRORORORORORORORORO
 export const getShifts = data => dispatch => {
   dispatch(setModificationLoading());
   axios
@@ -338,6 +339,7 @@ export const getInventory = () => dispatch => {
     });
 };
 
+//ERRRORORORORORORORORO
 export const getOperates = data => dispatch => {
   dispatch(setModificationLoading());
   axios
@@ -478,11 +480,12 @@ export const getBartenders = data => dispatch => {
     });
 };
 
-export const getBills = () => dispatch => {
+//ERRRORORORORORORORORO
+export const getBills = num => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills"
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills?num=0`
     )
     .then(res => {
       dispatch({
@@ -1006,6 +1009,8 @@ export const insertOperates = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const deleteOperates = (
   bar,
   day,
@@ -1031,6 +1036,8 @@ export const deleteOperates = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const updateOperates = (
   bar,
   day,
@@ -1057,6 +1064,7 @@ export const updateOperates = (
     });
 };
 
+//ERRRORORORORORORORORO
 export const insertSellsbeer = (
   beername,
   barname,
@@ -1080,6 +1088,8 @@ export const insertSellsbeer = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const deleteSellsbeer = (
   beername,
   barname,
@@ -1103,6 +1113,8 @@ export const deleteSellsbeer = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const updateSellsbeer = (
   beername,
   barname,
@@ -1127,6 +1139,7 @@ export const updateSellsbeer = (
     });
 };
 
+//ERRRORORORORORORORORO
 export const insertSellsfood = (
   foodname,
   barname,
@@ -1150,6 +1163,8 @@ export const insertSellsfood = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const deleteSellsfood = (
   foodname,
   barname,
@@ -1173,6 +1188,8 @@ export const deleteSellsfood = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const updateSellsfood = (
   foodname,
   barname,
@@ -1197,6 +1214,7 @@ export const updateSellsfood = (
     });
 };
 
+//ERRRORORORORORORORORO
 export const insertShifts = (
   bar,
   bartender,
@@ -1234,6 +1252,8 @@ export const insertShifts = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const deleteShifts = (
   bar,
   bartender,
@@ -1271,6 +1291,8 @@ export const deleteShifts = (
       });
     });
 };
+
+//ERRRORORORORORORORORO
 export const updateShifts = (
   bar,
   bartender,

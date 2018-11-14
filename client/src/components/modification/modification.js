@@ -140,6 +140,9 @@ import ShiftsModalDelete from "./tables/shifts/modaldelete";
 import ShiftsModalInsert from "./tables/shifts/modalinsert";
 import ShiftsModalUpdate from "./tables/shifts/modalupdate";
 
+//bills
+import BillsTable from "./tables/bills/bills";
+
 import "./modification.css";
 
 let scrollToElement = require("scroll-to-element");
@@ -155,7 +158,8 @@ class Modification extends Component {
       selectedRow: {},
       processRequest: false,
       results: false,
-      open: false
+      open: false,
+      num: 0
     };
   }
   componentDidMount() {
@@ -419,6 +423,15 @@ class Modification extends Component {
             />
           );
         }
+        if (this.state.currentTable === "Bills") {
+          table = (
+            <BillsTable
+              modification={this.props.modification}
+              handleSelectedRow={this.handleSelectedRow}
+              loading={this.props.modification.loadingModification}
+            />
+          );
+        }
       } else {
         table = `There is no data in the ${this.state.currentTable} table`;
       }
@@ -464,7 +477,7 @@ class Modification extends Component {
               First pick a table from the 'Select Table' picker. This will load
               in information from your selected table. From here you will then
               move on to step two where you will pick an operation which you
-              wish to carry out on your selcted table.
+              wish to carry out on your selcted table. **Inventory is too big and we dont want front end modifications to it, head to the query page and use the query box to use a select with limit query to exam Inventory**
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className="step-grid">
@@ -512,7 +525,7 @@ class Modification extends Component {
                   <MenuItem value="Day">Day</MenuItem>
                   <MenuItem value="Drinker">Drinker</MenuItem>
                   <MenuItem value="Frequents">Frequents</MenuItem>
-                  <MenuItem value="Inventory">Inventory</MenuItem>
+                  {/* <MenuItem value="Inventory">Inventory</MenuItem> */}
                   <MenuItem value="Likes">Likes</MenuItem>
                   <MenuItem value="Operates">Operates</MenuItem>
                   <MenuItem value="SellsBeer">SellsBeer</MenuItem>

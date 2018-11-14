@@ -23,7 +23,7 @@ let initialState = {
   BarFood: {},
   Bartender: {},
   Beer: {},
-  Bills: {},
+  Bills: [],
   Day: {},
   Drinker: {},
   Frequents: {},
