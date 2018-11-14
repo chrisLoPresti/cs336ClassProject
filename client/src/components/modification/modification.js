@@ -553,6 +553,11 @@ class Modification extends Component {
                     Clear Results
                   </Button>
                 </Grid>
+                <Grid item xs={12} style={{ textAlign: "center" }}>
+                  <Typography variant="h5" style={{ marginTop: "10px" }}>
+                    Click on a row to perform your desired operation
+                  </Typography>
+                </Grid>
                 <Grid item xs={12}>
                   {table}
                 </Grid>
