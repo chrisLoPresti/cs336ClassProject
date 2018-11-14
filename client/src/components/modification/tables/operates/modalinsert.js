@@ -1,5 +1,4 @@
 import React from "react";
-import moment from "moment";
 import {
   Typography,
   Button,
@@ -80,7 +79,6 @@ class modaldelete extends React.Component {
                 InputLabelProps={{
                   shrink: true
                 }}
-                formatDate={date => moment(date).format("YYYY-MM-DD")}
               />
             </Grid>
             <Grid item xs={12}>

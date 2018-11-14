@@ -27,7 +27,10 @@ import {
   getSellsfood,
   getBartenders,
   getBills,
-  getTransactions
+  getTransactions,
+  insertDrinker,
+  deleteDrinker,
+  updateDrinker
 } from "../../actions/modificationActions";
 
 //bars
@@ -526,6 +529,28 @@ class Modification extends Component {
                 **{this.state.errors.emptyinput}
               </Typography>
             )}
+            {Object.keys(this.props.errors.error).length > 0 &&
+              this.props.errors.error !== "Success" && (
+                <Grid item xs={12} style={{ textAlign: "center" }}>
+                  <Typography
+                    variant="h5"
+                    style={{ marginTop: "10px", color: "red" }}
+                  >
+                    {this.props.errors.error.data.message}
+                  </Typography>
+                </Grid>
+              )}
+            {Object.keys(this.props.errors.error).length > 0 &&
+              this.props.errors.error === "Success" && (
+                <Grid item xs={12} style={{ textAlign: "center" }}>
+                  <Typography
+                    variant="h5"
+                    style={{ marginTop: "10px", color: "#4BB543" }}
+                  >
+                    {this.props.errors.error}
+                  </Typography>
+                </Grid>
+              )}
             <div id="begin-button-container">
               <Button id="begin-button" onClick={() => this.handleBegin()}>
                 Begin Operation
@@ -563,6 +588,28 @@ class Modification extends Component {
                     Click on a row to perform your desired operation
                   </Typography>
                 </Grid>
+                {Object.keys(this.props.errors.error).length > 0 &&
+                  this.props.errors.error !== "Success" && (
+                    <Grid item xs={12} style={{ textAlign: "center" }}>
+                      <Typography
+                        variant="h5"
+                        style={{ marginTop: "10px", color: "red" }}
+                      >
+                        {this.props.errors.error.data.message}
+                      </Typography>
+                    </Grid>
+                  )}
+                {Object.keys(this.props.errors.error).length > 0 &&
+                  this.props.errors.error === "Success" && (
+                    <Grid item xs={12} style={{ textAlign: "center" }}>
+                      <Typography
+                        variant="h5"
+                        style={{ marginTop: "10px", color: "#4BB543" }}
+                      >
+                        {this.props.errors.error}
+                      </Typography>
+                    </Grid>
+                  )}
                 <Grid item xs={12}>
                   {table}
                 </Grid>
@@ -743,7 +790,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleDelete={this.props.deleteDrinker}
             />
           )}
         {this.state.processRequest &&
@@ -754,7 +801,7 @@ class Modification extends Component {
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleDelete={alert("Delete!")}
+              handleUpdate={this.props.updateDrinker}
             />
           )}
         {this.state.processRequest &&
@@ -764,7 +811,7 @@ class Modification extends Component {
             <DrinkerModalInsert
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
-              handleInsert={alert("Insert!")}
+              handleInsert={this.props.insertDrinker}
             />
           )}
         {/* FREQUENTS */}
@@ -1000,6 +1047,9 @@ export default connect(
     getSellsfood,
     getBartenders,
     getBills,
-    getTransactions
+    getTransactions,
+    insertDrinker,
+    deleteDrinker,
+    updateDrinker
   }
 )(withRouter(Modification));

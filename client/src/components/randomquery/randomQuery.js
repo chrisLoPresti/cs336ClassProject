@@ -23,7 +23,8 @@ class RandomQuery extends Component {
       errors: {},
       sroll: false,
       openModal: false,
-      badQuery: ""
+      badQuery: "",
+      ran: false
     };
   }
   componentWillMount() {
@@ -63,7 +64,7 @@ class RandomQuery extends Component {
 
   runPattern = pattern => {
     this.props.getQueryResults(pattern);
-    this.setState({ scroll: true });
+    this.setState({ scroll: true, ran: true });
   };
 
   submitQuery = () => {
@@ -89,7 +90,7 @@ class RandomQuery extends Component {
       );
       return;
     }
-    this.setState({ scroll: true });
+    this.setState({ scroll: true, ran: true });
 
     const req = {
       query: this.state.query
@@ -198,7 +199,7 @@ class RandomQuery extends Component {
               Clear Query
             </Button>
           </Grid>
-          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
+          {this.state.ran && !this.props.query.loadingQuery && (
             <Grid item xs={12} id="results">
               <div id="lets-get-started">
                 <Typography
@@ -211,26 +212,45 @@ class RandomQuery extends Component {
               </div>
             </Grid>
           )}
-          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
-            <Grid item xs={12} style={{ textAlign: "center" }}>
-              <Button
-                id="results-button"
-                onClick={() => this.props.clearResults()}
-                style={{ width: "200px" }}
-              >
-                Clear Results
-              </Button>
-            </Grid>
-          )}
-          {this.props.query.query.length > 0 && !this.props.query.loadingQuery && (
-            <Grid item xs={12}>
-              <JSONPretty
-                style={{ margin: "20px", marginBottom: "50px" }}
-                id="json-pretty"
-                json={JSON.stringify(this.props.query.query)}
-              />
-            </Grid>
-          )}
+          {this.state.ran &&
+            this.props.query.query.length <= 0 &&
+            !this.props.query.loadingQuery && (
+              <Grid item xs={12} style={{ textAlign: "center" }}>
+                <Typography
+                  variant="h5"
+                  style={{ color: "red", margin: "20px" }}
+                >
+                  **We have found no results
+                </Typography>
+              </Grid>
+            )}
+          {this.state.ran &&
+            this.props.query.query.length > 0 &&
+            !this.props.query.loadingQuery && (
+              <Grid item xs={12} style={{ textAlign: "center" }}>
+                <Button
+                  id="results-button"
+                  onClick={() => {
+                    this.props.clearResults();
+                    this.setState({ ran: false });
+                  }}
+                  style={{ width: "200px" }}
+                >
+                  Clear Results
+                </Button>
+              </Grid>
+            )}
+          {this.state.ran &&
+            this.props.query.query.length > 0 &&
+            !this.props.query.loadingQuery && (
+              <Grid item xs={12}>
+                <JSONPretty
+                  style={{ margin: "20px", marginBottom: "50px" }}
+                  id="json-pretty"
+                  json={JSON.stringify(this.props.query.query)}
+                />
+              </Grid>
+            )}
         </Grid>
         {this.props.query.loadingQuery && (
           <img
@@ -262,7 +282,12 @@ class RandomQuery extends Component {
                 tables.
               </Typography>
               <div id="modal-button-container">
-                <Button id="modification-page-button">Modifcation</Button>
+                <Button
+                  id="modification-page-button"
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation
+                </Button>
                 <Button
                   id="close-button"
                   onClick={() => this.handleCloseModal()}

@@ -34,7 +34,7 @@ export const clearModifications = () => {
   };
 };
 
-export const getDrinkers = () => dispatch => {
+export const getDrinkers = data => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
@@ -45,10 +45,17 @@ export const getDrinkers = () => dispatch => {
         type: SET_MOD_DRINKER,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -443,6 +450,59 @@ export const getTransactions = () => dispatch => {
         type: SET_MOD_TRANSACTIONS,
         payload: {}
       });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+//modifications
+export const insertDrinker = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/drinker/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getDrinkers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const deleteDrinker = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/drinker/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getDrinkers(res.data));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+export const updateDrinker = (name, phone, state, oldname) => dispatch => {
+  var obj = { name, phone, state, old_name: oldname };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/drinker/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getDrinkers(res.data));
+    })
+    .catch(err => {
       dispatch({
         type: GET_ERRORS,
         payload: err.response
