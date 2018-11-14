@@ -7,6 +7,7 @@ import Brand from "./brand/brand";
 import Beer from "./beer/beer";
 import Drinker from "./drinker/drinker";
 import RandomQuery from "./randomquery/randomQuery";
+import Modification from "./modification/modification";
 import NotFound from "./notfound/notfound";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
@@ -28,6 +29,7 @@ class App extends Component {
               <Route exact path="/beers" component={Beer} />
               <Route exact path="/drinkers" component={Drinker} />
               <Route exact path="/randomQuerys" component={RandomQuery} />
+              <Route exact path="/modifications" component={Modification} />
               <Route path="*" component={NotFound} />
             </Switch>
             <div

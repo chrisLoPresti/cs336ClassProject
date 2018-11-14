@@ -1,0 +1,172 @@
+#modal-content-mod {
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 450px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+#modal-content-mod-big {
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 620px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+#modal-content-mod-big2 {
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 700px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 30px;
+}
+
+@media only screen and (min-width: 600px) {
+  #modal-content-mod {
+    width: 400px;
+    transition: 0.3s;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #modal-content-mod {
+    width: 80%;
+    transition: 0.3s;
+  }
+}
+
+#modal-title-mod {
+  padding: 20px;
+  background-color: #303030;
+  color: whitesmoke;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+}
+
+#simple-modal-description-mod {
+  padding: 20px;
+}
+
+#simple-modal-header-mod {
+  margin-top: 10px;
+  padding: 10px;
+  text-align: center;
+}
+
+#modal-button-container-mod {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  background-color: lightgrey;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+#cancel-button-mod {
+  margin: 10px;
+  background-color: #303030;
+  color: whitesmoke;
+}
+
+#action-button-delete-mod {
+  margin: 10px;
+  background-color: red;
+  color: whitesmoke;
+}
+
+#action-button-insert-mod {
+  margin: 10px;
+  background-color: #4bb543;
+  color: whitesmoke;
+}
+
+#modal .modal-text-insert {
+  width: 80%;
+  margin-left: 20px;
+}
+
+#info-row:hover {
+  cursor: pointer;
+  background-color: lightgray;
+}
+
+#table-grid .search-box {
+  margin-top: 20px;
+  margin-left: 20px;
+  width: 100%;
+  color: black;
+}
+
+#table-grid .clear-button-searched-mod {
+  height: 10px;
+  width: 10px;
+  margin-top: 40px;
+  margin-left: 40px;
+  text-align: center;
+}
+#table-grid .close-button-searched-mod {
+  font-size: 15px;
+  margin-top: -7px;
+  margin-left: 1px;
+}
+#table-container {
+  margin: 20px;
+  transition: 0.3s;
+}
+
+@media only screen and (max-width: 600px) {
+  #hidden-when-small {
+    display: none !important;
+  }
+
+  #table-grid .search-box {
+    margin-bottom: 20px;
+    margin-top: -15px;
+  }
+
+  #table-grid .clear-button-searched-mod {
+    margin-bottom: 20px;
+    margin-top: 0;
+    margin-left: 30px;
+  }
+  #table-grid .close-button-searched-mod {
+    margin-bottom: 20px;
+    margin-top: -6px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  #table-container {
+    margin: 0;
+    transition: 0.3s;
+  }
+}
+#table-container .head-row {
+  background-color: #303030;
+}
+#table-container .left-row {
+  border-top-left-radius: 5px;
+}
+#table-container .right-row {
+  border-top-right-radius: 5px;
+}
+
+#table-container .full {
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  width: 100%;
+}

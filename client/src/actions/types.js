@@ -64,5 +64,25 @@ export const SET_QUERY = "SET_QUERY";
 export const CLEAR_QUERY_RESULTS = "CLEAR_QUERY_RESULTS";
 export const SET_LOADING_QUERY = "SET_LOADING_QUERY";
 
+//modification page
+
+export const SET_MOD_BAR = "SET_MOD_BAR";
+export const SET_MOD_BARFOOD = "SET_MOD_BARFOOD";
+export const SET_MOD_BARTENDER = "SET_MOD_BARTENDER";
+export const SET_MOD_BEER = "SET_MOD_BEER";
+export const SET_MOD_BILLS = "SET_MOD_BILLS";
+export const SET_MOD_DAY = "SET_MOD_DAY";
+export const SET_MOD_DRINKER = "SET_MOD_DRINKER";
+export const SET_MOD_FREQUENTS = "SET_MOD_FREQUENTS";
+export const SET_MOD_INVENTORY = "SET_MOD_";
+export const SET_MOD_LIKES = "SET_MOD_LIKES";
+export const SET_MOD_OPERATES = "SET_MOD_OPERATES";
+export const SET_MOD_SELLSBEER = "SET_MOD_SELLSBEER";
+export const SET_MOD_SELLSFOOD = "SET_MOD_SELLSFOOD";
+export const SET_MOD_SHIFTS = "SET_MOD_SHIFTS";
+export const SET_MOD_TRANSACTIONS = "SET_MOD_TRANSACTIONS";
+export const SET_MOD_LOADING = "SET_MOD_LOADING";
+export const CLEAR_MODIFICATION = "CLEAR_MODIFICATION";
+
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

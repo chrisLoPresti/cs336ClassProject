@@ -131,6 +131,12 @@ class NavBar extends Component {
                 </Typography>
                 <Typography
                   className="nav-content nav-text"
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation
+                </Typography>
+                <Typography
+                  className="nav-content nav-text"
                   onClick={() => this.props.history.push("/randomQuerys")}
                 >
                   Query

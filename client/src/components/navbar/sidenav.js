@@ -73,6 +73,16 @@ class Sidenav extends Component {
           </Typography>
           <Typography
             className="side-nav-text"
+            onClick={() => {
+              props.toggleDrawer();
+              props.history.push("/modifications");
+            }}
+          >
+            <i className="fa fa-pencil icon" />
+            Modification
+          </Typography>
+          <Typography
+            className="side-nav-text"
             onClick={props.scrollOrChangeToExplore(props)}
           >
             <i className="fa fa-list icon" />

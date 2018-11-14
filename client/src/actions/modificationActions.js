@@ -1,0 +1,451 @@
+import axios from "axios";
+import {
+  SET_MOD_BAR,
+  SET_MOD_BARFOOD,
+  SET_MOD_BARTENDER,
+  SET_MOD_BEER,
+  SET_MOD_BILLS,
+  SET_MOD_DAY,
+  SET_MOD_DRINKER,
+  SET_MOD_FREQUENTS,
+  SET_MOD_INVENTORY,
+  SET_MOD_LIKES,
+  SET_MOD_OPERATES,
+  SET_MOD_SELLSBEER,
+  SET_MOD_SELLSFOOD,
+  SET_MOD_SHIFTS,
+  SET_MOD_TRANSACTIONS,
+  SET_MOD_LOADING,
+  CLEAR_MODIFICATION,
+  GET_ERRORS
+} from "./types";
+
+//set bartenders loading
+export const setModificationLoading = () => {
+  return {
+    type: SET_MOD_LOADING
+  };
+};
+
+//clear mods
+export const clearModifications = () => {
+  return {
+    type: CLEAR_MODIFICATION
+  };
+};
+
+export const getDrinkers = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/drinker"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_DRINKER,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_DRINKER,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBars = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get("https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bar")
+    .then(res => {
+      dispatch({
+        type: SET_MOD_BAR,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_BAR,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBeers = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get("https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/beer")
+    .then(res => {
+      dispatch({
+        type: SET_MOD_BEER,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_BEER,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getShifts = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_SHIFTS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_SHIFTS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBarfood = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/barfood"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_BARFOOD,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_BARFOOD,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getDay = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/day"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_DAY,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_DAY,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getFrequents = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/frequents"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_FREQUENTS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_FREQUENTS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getLikes = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/likes"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_LIKES,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_LIKES,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getInventory = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/inventory"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_INVENTORY,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_INVENTORY,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getOperates = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_OPERATES,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_OPERATES,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getSellsbeer = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsbeer"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_SELLSBEER,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_SELLSBEER,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getSellsfood = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/sellsfood"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_SELLSFOOD,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_SELLSFOOD,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBartenders = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/bartender"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_BARTENDER,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_BARTENDER,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getBills = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_BILLS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_BILLS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const getTransactions = () => dispatch => {
+  dispatch(setModificationLoading());
+  axios
+    .get(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions"
+    )
+    .then(res => {
+      dispatch({
+        type: SET_MOD_TRANSACTIONS,
+        payload: res.data
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: {}
+      });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_MOD_TRANSACTIONS,
+        payload: {}
+      });
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
