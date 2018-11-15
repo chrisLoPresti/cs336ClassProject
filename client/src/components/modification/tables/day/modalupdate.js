@@ -4,7 +4,10 @@ import {
   Button,
   Modal,
   Paper,
-  TextField,
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
   Grid
 } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -21,9 +24,9 @@ class modaldelete extends React.Component {
     this.props.doneWithRequest();
   };
 
-  handleChange = name => event => {
+  handleChange = event => {
     this.setState({
-      [name]: event.target.value
+      [event.target.name]: event.target.value
     });
   };
 
@@ -52,13 +55,31 @@ class modaldelete extends React.Component {
           </Typography>
           <Grid container>
             <Grid item xs={12}>
-              <TextField
+              <FormControl
                 className="modal-text-insert"
-                label={this.props.row.name}
-                value={this.state.name}
-                onChange={this.handleChange("name")}
-                margin="normal"
-              />
+                style={{ marginTop: "20px", marginBottom: "20px" }}
+              >
+                <InputLabel>{this.props.row.day}</InputLabel>
+                <Select
+                  className="selecter"
+                  value={this.state.name}
+                  inputProps={{
+                    name: "name"
+                  }}
+                  onChange={this.handleChange}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="Monday">Monday</MenuItem>
+                  <MenuItem value="Tuesday">Tuesday</MenuItem>
+                  <MenuItem value="Wednesday">Wednesday</MenuItem>
+                  <MenuItem value="Thursday">Thursday</MenuItem>
+                  <MenuItem value="Friday">Friday</MenuItem>
+                  <MenuItem value="Saturday">Saturday</MenuItem>
+                  <MenuItem value="Sunday">Sunday</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
           <Typography id="simple-modal-description-mod">

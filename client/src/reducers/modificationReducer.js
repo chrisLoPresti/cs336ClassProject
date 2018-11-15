@@ -29,10 +29,10 @@ let initialState = {
   Frequents: {},
   Inventory: {},
   Likes: {},
-  Operates: {},
+  Operates: [],
   SellsBeer: {},
   SellsFood: {},
-  Shifts: {},
+  Shifts: [],
   Transactions: {},
   loadingModification: false
 };
@@ -126,7 +126,7 @@ export default function(state = initialState, action) {
     case SET_MOD_OPERATES:
       return {
         ...state,
-        Operates: action.payload,
+        Operates: [...state.Operates, ...action.payload],
         loadingModification: false
       };
     case SET_MOD_SELLSBEER:
@@ -144,7 +144,7 @@ export default function(state = initialState, action) {
     case SET_MOD_SHIFTS:
       return {
         ...state,
-        Shifts: action.payload,
+        Shifts: [...state.Shifts, ...action.payload],
         loadingModification: false
       };
     case SET_MOD_TRANSACTIONS:

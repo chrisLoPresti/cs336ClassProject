@@ -30,7 +30,7 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
-    this.props.handleInsert(
+    this.props.handleUpdate(
       this.state.beername ? this.state.beername : this.props.row.beername,
       this.state.barname ? this.state.barname : this.props.row.barname,
       this.state.price ? this.state.price : this.props.row.price,
@@ -81,9 +81,6 @@ class modaldelete extends React.Component {
                 value={this.state.price}
                 onChange={this.handleChange("price")}
                 margin="normal"
-                inputProps={{
-                  maxLength: 2
-                }}
               />
             </Grid>
           </Grid>
@@ -113,7 +110,7 @@ class modaldelete extends React.Component {
 
 modaldelete.propTypes = {
   row: PropTypes.func.isRequired,
-  handleInsert: PropTypes.func.isRequired,
+  handleUpdate: PropTypes.func.isRequired,
   doneWithRequest: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired
 };

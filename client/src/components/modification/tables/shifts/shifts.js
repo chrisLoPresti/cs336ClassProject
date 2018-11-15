@@ -11,6 +11,7 @@ import {
   TableRow,
   Paper,
   IconButton,
+  Button,
   TextField,
   Grid
 } from "@material-ui/core";
@@ -222,6 +223,11 @@ class CustomPaginationActionsTable extends React.Component {
     return (
       <div id="table-container">
         <Grid container id="table-grid">
+          <Grid xs={12} style={{ textAlign: "center" }}>
+            <Button onClick={() => this.props.getMore()} className="get-more">
+              Get More Data
+            </Button>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <Form
               changeOrder={this.changeOrder}
@@ -264,9 +270,9 @@ class CustomPaginationActionsTable extends React.Component {
                   </CustomTableCell>
                   <CustomTableCell className="head-row">Date</CustomTableCell>
                   <CustomTableCell className="head-row ">Day</CustomTableCell>
-                  <CustomTableCell className="head-row ">End</CustomTableCell>
+                  <CustomTableCell className="head-row ">Start</CustomTableCell>
                   <CustomTableCell className="head-row right-row">
-                    Start
+                    End
                   </CustomTableCell>
                 </TableRow>
               </TableHead>
@@ -290,8 +296,8 @@ class CustomPaginationActionsTable extends React.Component {
                         <TableCell>{row.bartender}</TableCell>
                         <TableCell>{row.date}</TableCell>
                         <TableCell>{row.day}</TableCell>
-                        <TableCell>{row.end}</TableCell>
                         <TableCell>{row.start}</TableCell>
+                        <TableCell>{row.end}</TableCell>
                       </TableRow>
                     );
                   })}
@@ -326,7 +332,8 @@ CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   modification: PropTypes.object.isRequired,
   handleSelectedRow: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  getMore: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(CustomPaginationActionsTable);

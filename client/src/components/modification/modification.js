@@ -181,7 +181,8 @@ class Modification extends Component {
       [event.target.name]: event.target.value,
       selectedRow: {},
       processRequest: false,
-      results: false
+      results: false,
+      num: 0
     });
     this.props.clearErrors();
   };
@@ -191,11 +192,27 @@ class Modification extends Component {
       [picker]: "",
       selectedRow: {},
       processRequest: false,
-      results: false
+      results: false,
+      num: 0
     });
     this.props.clearErrors();
   };
 
+  getMore = () => {
+    this.setState({ num: this.state.num + 5000 }, () =>
+      this.processGet(this.state.num)
+    );
+  };
+  processGet = num => {
+    switch (this.state.selectedTable) {
+      case "Operates":
+        this.props.getOperates(0, num);
+        break;
+      case "Shifts":
+        this.props.getShifts(0, num);
+        break;
+    }
+  };
   handelInsert = () => {
     this.setState({ processRequest: true, results: true, open: true });
   };
@@ -226,7 +243,8 @@ class Modification extends Component {
       errors: {},
       selectedRow: {},
       processRequest: false,
-      results: false
+      results: false,
+      num: 0
     });
     this.props.clearModifications();
     this.props.clearErrors();
@@ -262,7 +280,7 @@ class Modification extends Component {
         this.props.getLikes();
         break;
       case "Operates":
-        this.props.getOperates();
+        this.props.getOperates(0, this.state.num);
         break;
       case "SellsBeer":
         this.props.getSellsbeer();
@@ -271,7 +289,7 @@ class Modification extends Component {
         this.props.getSellsfood();
         break;
       case "Shifts":
-        this.props.getShifts();
+        this.props.getShifts(0, this.state.num);
         break;
       case "Transactions":
         this.props.getTransactions();
@@ -302,7 +320,8 @@ class Modification extends Component {
     this.setState({
       selectedRow: {},
       processRequest: false,
-      results: false
+      results: false,
+      num: 0
     });
     this.props.clearModifications();
     this.props.clearErrors();
@@ -390,6 +409,7 @@ class Modification extends Component {
         if (this.state.currentTable === "Operates") {
           table = (
             <OperatesTable
+              getMore={this.getMore}
               modification={this.props.modification}
               handleSelectedRow={this.handleSelectedRow}
               loading={this.props.modification.loadingModification}
@@ -417,6 +437,7 @@ class Modification extends Component {
         if (this.state.currentTable === "Shifts") {
           table = (
             <ShiftsTable
+              getMore={this.getMore}
               modification={this.props.modification}
               handleSelectedRow={this.handleSelectedRow}
               loading={this.props.modification.loadingModification}
@@ -477,7 +498,10 @@ class Modification extends Component {
               First pick a table from the 'Select Table' picker. This will load
               in information from your selected table. From here you will then
               move on to step two where you will pick an operation which you
-              wish to carry out on your selcted table. **Inventory is too big and we dont want front end modifications to it, head to the query page and use the query box to use a select with limit query to exam Inventory**
+              wish to carry out on your selcted table. **Inventory is too big
+              and we dont want front end modifications to it, head to the query
+              page and use the query box to use a select with limit query to
+              exam Inventory**
             </Typography>
           </Grid>
           <Grid item xs={12} sm={6} className="step-grid">

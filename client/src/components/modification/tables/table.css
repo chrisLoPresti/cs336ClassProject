@@ -115,6 +115,11 @@
   margin-left: 20px;
 }
 
+#modal .picker {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
 #info-row:hover {
   cursor: pointer;
   background-color: lightgray;
@@ -185,4 +190,9 @@
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   width: 100%;
+}
+
+#table-container .get-more {
+  background-color: #303030;
+  color: ghostwhite;
 }

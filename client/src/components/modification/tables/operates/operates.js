@@ -12,7 +12,8 @@ import {
   Paper,
   IconButton,
   TextField,
-  Grid
+  Grid,
+  Button
 } from "@material-ui/core";
 import {
   FirstPage,
@@ -222,6 +223,11 @@ class CustomPaginationActionsTable extends React.Component {
     return (
       <div id="table-container">
         <Grid container id="table-grid">
+          <Grid xs={12} style={{ textAlign: "center" }}>
+            <Button onClick={() => this.props.getMore()} className="get-more">
+              Get More Data
+            </Button>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <Form
               changeOrder={this.changeOrder}
@@ -322,7 +328,8 @@ CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   modification: PropTypes.object.isRequired,
   handleSelectedRow: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  getMore: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(CustomPaginationActionsTable);

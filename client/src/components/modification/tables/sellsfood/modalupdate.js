@@ -81,9 +81,6 @@ class modaldelete extends React.Component {
                 value={this.state.price}
                 onChange={this.handleChange("price")}
                 margin="normal"
-                inputProps={{
-                  maxLength: 2
-                }}
               />
             </Grid>
           </Grid>

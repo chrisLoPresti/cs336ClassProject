@@ -19,7 +19,7 @@ class modaldelete extends React.Component {
       this.props.row.day,
       this.props.row.start,
       this.props.row.end,
-      this.props.row.data,
+      this.props.row.date,
       this.props.row.bar,
       this.props.row.date
     );

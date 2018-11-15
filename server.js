@@ -1,8 +1,8 @@
 const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
-const schedule = require("node-schedule");
-const axios = require("axios");
+// const schedule = require("node-schedule");
+// const axios = require("axios");
 
 //sett up our app
 const app = express();
@@ -24,18 +24,18 @@ if (process.env.NODE_ENV === "production") {
 }
 
 //every day at 12:01am this call will update our inventory table to match the previous days inventory
-var j = schedule.scheduleJob("0 5 * * *", function() {
-  axios
-    .post(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/daily/update/inventory"
-    )
-    .then(res => {
-      console.log("Updated database at 12:00am");
-    })
-    .catch(err => {
-      console.log(err);
-    });
-});
+// var j = schedule.scheduleJob("0 5 * * *", function() {
+//   axios
+//     .post(
+//       "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/daily/update/inventory"
+//     )
+//     .then(res => {
+//       console.log("Updated database at 12:00am");
+//     })
+//     .catch(err => {
+//       console.log(err);
+//     });
+// });
 
 //use the env. server port or localhost:5000
 const port = process.env.PORT || 5000;

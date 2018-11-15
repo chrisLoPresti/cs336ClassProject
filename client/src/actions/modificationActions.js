@@ -136,11 +136,14 @@ export const getBeers = data => dispatch => {
 };
 
 //ERRRORORORORORORORORO
-export const getShifts = data => dispatch => {
+export const getShifts = (data, num) => dispatch => {
+  if (num === 0) {
+    dispatch(clearModifications());
+  }
   dispatch(setModificationLoading());
   axios
     .get(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts"
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/shifts?num=${num}`
     )
     .then(res => {
       dispatch({
@@ -339,12 +342,14 @@ export const getInventory = () => dispatch => {
     });
 };
 
-//ERRRORORORORORORORORO
-export const getOperates = data => dispatch => {
+export const getOperates = (data, num) => dispatch => {
+  if (num === 0) {
+    dispatch(clearModifications());
+  }
   dispatch(setModificationLoading());
   axios
     .get(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates"
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/operates?num=${num}`
     )
     .then(res => {
       dispatch({
@@ -485,7 +490,7 @@ export const getBills = num => dispatch => {
   dispatch(setModificationLoading());
   axios
     .get(
-      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills?num=0`
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills?num=${num}`
     )
     .then(res => {
       dispatch({
@@ -1000,7 +1005,7 @@ export const insertOperates = (
       obj
     )
     .then(res => {
-      dispatch(getOperates(res.data));
+      dispatch(getOperates(res.data, 0));
     })
     .catch(err => {
       dispatch({
@@ -1010,7 +1015,6 @@ export const insertOperates = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const deleteOperates = (
   bar,
   day,
@@ -1027,7 +1031,7 @@ export const deleteOperates = (
       obj
     )
     .then(res => {
-      dispatch(getOperates(res.data));
+      dispatch(getOperates(res.data, 0));
     })
     .catch(err => {
       dispatch({
@@ -1037,7 +1041,6 @@ export const deleteOperates = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const updateOperates = (
   bar,
   day,
@@ -1054,7 +1057,7 @@ export const updateOperates = (
       obj
     )
     .then(res => {
-      dispatch(getOperates(res.data));
+      dispatch(getOperates(res.data, 0));
     })
     .catch(err => {
       dispatch({
@@ -1064,7 +1067,6 @@ export const updateOperates = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const insertSellsbeer = (
   beername,
   barname,
@@ -1089,7 +1091,6 @@ export const insertSellsbeer = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const deleteSellsbeer = (
   beername,
   barname,
@@ -1114,7 +1115,6 @@ export const deleteSellsbeer = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const updateSellsbeer = (
   beername,
   barname,
@@ -1139,7 +1139,6 @@ export const updateSellsbeer = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const insertSellsfood = (
   foodname,
   barname,
@@ -1164,7 +1163,6 @@ export const insertSellsfood = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const deleteSellsfood = (
   foodname,
   barname,
@@ -1189,7 +1187,6 @@ export const deleteSellsfood = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const updateSellsfood = (
   foodname,
   barname,
@@ -1214,7 +1211,6 @@ export const updateSellsfood = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const insertShifts = (
   bar,
   bartender,
@@ -1243,7 +1239,7 @@ export const insertShifts = (
       obj
     )
     .then(res => {
-      dispatch(getShifts(res.data));
+      dispatch(getShifts(res.data, 0));
     })
     .catch(err => {
       dispatch({
@@ -1253,7 +1249,6 @@ export const insertShifts = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const deleteShifts = (
   bar,
   bartender,
@@ -1282,7 +1277,7 @@ export const deleteShifts = (
       obj
     )
     .then(res => {
-      dispatch(getShifts(res.data));
+      dispatch(getShifts(res.data, 0));
     })
     .catch(err => {
       dispatch({
@@ -1321,7 +1316,7 @@ export const updateShifts = (
       obj
     )
     .then(res => {
-      dispatch(getShifts(res.data));
+      dispatch(getShifts(res.data, 0));
     })
     .catch(err => {
       dispatch({

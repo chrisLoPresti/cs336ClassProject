@@ -4,8 +4,12 @@ import {
   Button,
   Modal,
   Paper,
-  TextField,
-  Grid
+  FormControl,
+  MenuItem,
+  Select,
+  InputLabel,
+  Grid,
+  TextField
 } from "@material-ui/core";
 import PropTypes from "prop-types";
 
@@ -47,6 +51,12 @@ class modaldelete extends React.Component {
     );
     this.props.doneWithRequest();
     this.handleCloseModal();
+  };
+
+  handleChangePicker = event => {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
   };
 
   render() {
@@ -96,31 +106,110 @@ class modaldelete extends React.Component {
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                className="modal-text-insert"
-                label={this.props.row.day}
-                value={this.state.day}
-                onChange={this.handleChange("day")}
-                margin="normal"
-              />
-            </Grid>{" "}
+              <FormControl className="modal-text-insert picker">
+                <InputLabel>{this.props.row.day}</InputLabel>
+                <Select
+                  className="selecter"
+                  value={this.state.day}
+                  inputProps={{
+                    name: "day"
+                  }}
+                  onChange={this.handleChangePicker}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="Monday">Monday</MenuItem>
+                  <MenuItem value="Tuesday">Tuesday</MenuItem>
+                  <MenuItem value="Wednesday">Wednesday</MenuItem>
+                  <MenuItem value="Thursday">Thursday</MenuItem>
+                  <MenuItem value="Friday">Friday</MenuItem>
+                  <MenuItem value="Saturday">Saturday</MenuItem>
+                  <MenuItem value="Sunday">Sunday</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid item xs={12}>
-              <TextField
-                className="modal-text-insert"
-                label={this.props.row.start}
-                value={this.state.start}
-                onChange={this.handleChange("start")}
-                margin="normal"
-              />
-            </Grid>{" "}
+              <FormControl className="modal-text-insert picker">
+                <InputLabel>{this.props.row.start}</InputLabel>
+                <Select
+                  className="selecter"
+                  value={this.state.start}
+                  inputProps={{
+                    name: "start"
+                  }}
+                  onChange={this.handleChangePicker}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="00:00">00:00</MenuItem>
+                  <MenuItem value="01:00">01:00</MenuItem>
+                  <MenuItem value="02:00">02:00</MenuItem>
+                  <MenuItem value="03:00">03:00</MenuItem>
+                  <MenuItem value="04:00">04:00</MenuItem>
+                  <MenuItem value="05:00">05:00</MenuItem>
+                  <MenuItem value="06:00">06:00</MenuItem>
+                  <MenuItem value="07:00">07:00</MenuItem>
+                  <MenuItem value="08:00">08:00</MenuItem>
+                  <MenuItem value="09:00">09:00</MenuItem>
+                  <MenuItem value="10:00">10:00</MenuItem>
+                  <MenuItem value="11:00">11:00</MenuItem>
+                  <MenuItem value="12:00">12:00</MenuItem>
+                  <MenuItem value="13:00">13:00</MenuItem>
+                  <MenuItem value="14:00">14:00</MenuItem>
+                  <MenuItem value="15:00">15:00</MenuItem>
+                  <MenuItem value="16:00">16:00</MenuItem>
+                  <MenuItem value="17:00">17:00</MenuItem>
+                  <MenuItem value="18:00">18:00</MenuItem>
+                  <MenuItem value="19:00">19:00</MenuItem>
+                  <MenuItem value="20:00">20:00</MenuItem>
+                  <MenuItem value="21:00">21:00</MenuItem>
+                  <MenuItem value="22:00">22:00</MenuItem>
+                  <MenuItem value="23:00">23:00</MenuItem>
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid item xs={12}>
-              <TextField
-                className="modal-text-insert"
-                label={this.props.row.end}
-                value={this.state.end}
-                onChange={this.handleChange("end")}
-                margin="normal"
-              />
+              <FormControl className="modal-text-insert picker">
+                <InputLabel>{this.props.row.end}</InputLabel>
+                <Select
+                  className="selecter"
+                  value={this.state.end}
+                  inputProps={{
+                    name: "end"
+                  }}
+                  onChange={this.handleChangePicker}
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value="00:00">00:00</MenuItem>
+                  <MenuItem value="01:00">01:00</MenuItem>
+                  <MenuItem value="02:00">02:00</MenuItem>
+                  <MenuItem value="03:00">03:00</MenuItem>
+                  <MenuItem value="04:00">04:00</MenuItem>
+                  <MenuItem value="05:00">05:00</MenuItem>
+                  <MenuItem value="06:00">06:00</MenuItem>
+                  <MenuItem value="07:00">07:00</MenuItem>
+                  <MenuItem value="08:00">08:00</MenuItem>
+                  <MenuItem value="09:00">09:00</MenuItem>
+                  <MenuItem value="10:00">10:00</MenuItem>
+                  <MenuItem value="11:00">11:00</MenuItem>
+                  <MenuItem value="12:00">12:00</MenuItem>
+                  <MenuItem value="13:00">13:00</MenuItem>
+                  <MenuItem value="14:00">14:00</MenuItem>
+                  <MenuItem value="15:00">15:00</MenuItem>
+                  <MenuItem value="16:00">16:00</MenuItem>
+                  <MenuItem value="17:00">17:00</MenuItem>
+                  <MenuItem value="18:00">18:00</MenuItem>
+                  <MenuItem value="19:00">19:00</MenuItem>
+                  <MenuItem value="20:00">20:00</MenuItem>
+                  <MenuItem value="21:00">21:00</MenuItem>
+                  <MenuItem value="22:00">22:00</MenuItem>
+                  <MenuItem value="23:00">23:00</MenuItem>
+                </Select>
+              </FormControl>
             </Grid>
           </Grid>
           <Typography id="simple-modal-description-mod">
