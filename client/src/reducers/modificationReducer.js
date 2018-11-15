@@ -33,7 +33,7 @@ let initialState = {
   SellsBeer: {},
   SellsFood: {},
   Shifts: [],
-  Transactions: {},
+  Transactions: [],
   loadingModification: false
 };
 
@@ -50,17 +50,17 @@ export default function(state = initialState, action) {
         BarFood: {},
         Bartender: {},
         Beer: {},
-        Bills: {},
+        Bills: [],
         Day: {},
         Drinker: {},
         Frequents: {},
         Inventory: {},
         Likes: {},
-        Operates: {},
+        Operates: [],
         SellsBeer: {},
         SellsFood: {},
-        Shifts: {},
-        Transactions: {},
+        Shifts: [],
+        Transactions: [],
         loadingModification: false
       };
     case SET_MOD_BAR:
@@ -90,7 +90,7 @@ export default function(state = initialState, action) {
     case SET_MOD_BILLS:
       return {
         ...state,
-        Bills: action.payload,
+        Bills: [...state.Bills, ...action.payload],
         loadingModification: false
       };
     case SET_MOD_DAY:
@@ -150,7 +150,7 @@ export default function(state = initialState, action) {
     case SET_MOD_TRANSACTIONS:
       return {
         ...state,
-        Transactions: action.payload,
+        Transactions: [...state.Transactions, ...action.payload],
         loadingModification: false
       };
     default:

@@ -12,7 +12,9 @@ import {
   Paper,
   IconButton,
   TextField,
-  Grid
+  Grid,
+  Button,
+  Typography
 } from "@material-ui/core";
 import {
   FirstPage,
@@ -199,7 +201,7 @@ class CustomPaginationActionsTable extends React.Component {
           ? this.props.modification.Bills
           : this.props.modification.Bills.filter(
               person =>
-                person.name
+                person.drinker
                   .toLowerCase()
                   .substring(0, event.target.value.length) ===
                 event.target.value.toLowerCase()
@@ -221,6 +223,14 @@ class CustomPaginationActionsTable extends React.Component {
       rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     return (
       <div id="table-container">
+        <Grid xs={12} style={{ textAlign: "center" }}>
+          <Button onClick={() => this.props.getMore()} className="get-more">
+            Get More Data
+          </Button>
+          <Typography>
+            Drag or scroll the graph to the right for more results
+          </Typography>
+        </Grid>
         <Grid container id="table-grid">
           <Grid item xs={12} sm={4}>
             <Form
@@ -259,12 +269,20 @@ class CustomPaginationActionsTable extends React.Component {
                   <CustomTableCell className="head-row left-row">
                     Drinker
                   </CustomTableCell>
-                  <CustomTableCell className="head-row">
-                    Bill ID
-                  </CustomTableCell>
+                  <CustomTableCell className="head-row">Bar</CustomTableCell>
                   <CustomTableCell className="head-row">
                     Bartender
                   </CustomTableCell>
+                  <CustomTableCell className="head-row">
+                    Bill ID
+                  </CustomTableCell>
+                  <CustomTableCell className="head-row">Date</CustomTableCell>
+                  <CustomTableCell className="head-row">Day</CustomTableCell>
+                  <CustomTableCell className="head-row">
+                    Items Price
+                  </CustomTableCell>
+                  <CustomTableCell className="head-row">Tax</CustomTableCell>
+                  <CustomTableCell className="head-row">Tip</CustomTableCell>
                   <CustomTableCell className="head-row">Total</CustomTableCell>
                   <CustomTableCell className="head-row right-row">
                     Time
@@ -288,9 +306,15 @@ class CustomPaginationActionsTable extends React.Component {
                         }
                       >
                         <TableCell>{row.drinker}</TableCell>
-                        <TableCell>{row.bill_id}</TableCell>
+                        <TableCell>{row.bar}</TableCell>
                         <TableCell>{row.bartender}</TableCell>
-                        <TableCell>{row.total}</TableCell>
+                        <TableCell>{row.bill_id}</TableCell>
+                        <TableCell>{row.date}</TableCell>
+                        <TableCell>{row.day}</TableCell>
+                        <TableCell>{row.items_price}</TableCell>
+                        <TableCell>{row.tax_price}</TableCell>
+                        <TableCell>{row.tip}</TableCell>
+                        <TableCell>{row.total_price}</TableCell>
                         <TableCell>{row.time}</TableCell>
                       </TableRow>
                     );
@@ -326,7 +350,8 @@ CustomPaginationActionsTable.propTypes = {
   classes: PropTypes.object.isRequired,
   modification: PropTypes.object.isRequired,
   handleSelectedRow: PropTypes.func.isRequired,
-  loading: PropTypes.bool.isRequired
+  loading: PropTypes.bool.isRequired,
+  getMore: PropTypes.func.isRequired
 };
 
 export default withStyles(styles)(CustomPaginationActionsTable);

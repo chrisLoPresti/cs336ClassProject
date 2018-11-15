@@ -66,16 +66,40 @@ class ControlledOpenSelect extends React.Component {
             </MenuItem>
             <MenuItem value={"drinker-ascending"}>Drinker-Ascending</MenuItem>
             <MenuItem value={"drinker-descending"}>Drinker-Descending</MenuItem>
-            <MenuItem value={"bill_id-ascending"}>Bill_Id-Ascending</MenuItem>
-            <MenuItem value={"bill_id-descending"}>Bill_Id-Descending</MenuItem>
             <MenuItem value={"bartender-ascending"}>
               Bartender-Ascending
             </MenuItem>
             <MenuItem value={"bartender-descending"}>
               Bartender-Descending
             </MenuItem>
-            <MenuItem value={"total-ascending"}>Total-Ascending</MenuItem>
-            <MenuItem value={"total-descending"}>Total-Descending</MenuItem>
+            <MenuItem value={"bar-ascending"}>Bar-Ascending</MenuItem>
+            <MenuItem value={"bar-descending"}>Bar-Descending</MenuItem>
+            <MenuItem value={"bill_id-ascending"}>Bill_Id-Ascending</MenuItem>
+            <MenuItem value={"bill_id-descending"}>Bill_Id-Descending</MenuItem>
+            <MenuItem value={"day-ascending"}>Day-Ascending</MenuItem>
+            <MenuItem value={"day-descending"}>Day-Descending</MenuItem>
+            <MenuItem value={"date-ascending"}>Date-Ascending</MenuItem>
+            <MenuItem value={"date-descending"}>Date-Descending</MenuItem>
+            <MenuItem value={"total_price-ascending"}>
+              Total_Price-Ascending
+            </MenuItem>
+            <MenuItem value={"total_price-descending"}>
+              Total_Price-Descending
+            </MenuItem>
+            <MenuItem value={"items_price-ascending"}>
+              Items_price-Ascending
+            </MenuItem>
+            <MenuItem value={"items_price-descending"}>
+              Items_price-Descending
+            </MenuItem>
+            <MenuItem value={"tax_price-ascending"}>
+              Tax_price-Ascending
+            </MenuItem>
+            <MenuItem value={"tax_price-descending"}>
+              Tax_price-Descending
+            </MenuItem>
+            <MenuItem value={"tip-ascending"}>Tip-Ascending</MenuItem>
+            <MenuItem value={"tip-descending"}>Tip-Descending</MenuItem>
             <MenuItem value={"time-ascending"}>Time-Ascending</MenuItem>
             <MenuItem value={"time-descending"}>Time-Descending</MenuItem>
           </Select>

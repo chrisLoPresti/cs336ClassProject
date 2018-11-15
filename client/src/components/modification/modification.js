@@ -63,7 +63,9 @@ import {
   deleteSellsfood,
   insertShifts,
   updateShifts,
-  deleteShifts
+  deleteShifts,
+  insertBills,
+  deleteBills
 } from "../../actions/modificationActions";
 
 import { clearErrors } from "../../actions/errorsActions";
@@ -142,6 +144,8 @@ import ShiftsModalUpdate from "./tables/shifts/modalupdate";
 
 //bills
 import BillsTable from "./tables/bills/bills";
+import BillsModalInsert from "./tables/bills/modalinsert";
+import BillsModalDelete from "./tables/bills/modaldelete";
 
 import "./modification.css";
 
@@ -208,6 +212,9 @@ class Modification extends Component {
       case "Operates":
         this.props.getOperates(0, num);
         break;
+      case "Bills":
+        this.props.getBills(0, num);
+        break;
       case "Shifts":
         this.props.getShifts(0, num);
         break;
@@ -262,7 +269,7 @@ class Modification extends Component {
         this.props.getBeers();
         break;
       case "Bills":
-        this.props.getBills();
+        this.props.getBills(0, this.state.num);
         break;
       case "Day":
         this.props.getDay();
@@ -292,7 +299,7 @@ class Modification extends Component {
         this.props.getShifts(0, this.state.num);
         break;
       case "Transactions":
-        this.props.getTransactions();
+        this.props.getTransactions(0, this.state.num);
         break;
       default:
         this.setState({
@@ -447,6 +454,7 @@ class Modification extends Component {
         if (this.state.currentTable === "Bills") {
           table = (
             <BillsTable
+              getMore={this.getMore}
               modification={this.props.modification}
               handleSelectedRow={this.handleSelectedRow}
               loading={this.props.modification.loadingModification}
@@ -1093,6 +1101,39 @@ class Modification extends Component {
               handleInsert={this.props.insertShifts}
             />
           )}
+        {/* BILLs */}
+        {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Delete" &&
+          this.state.currentTable === "Bills" && (
+            <BillsModalDelete
+              row={this.state.selectedRow}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={this.props.deleteBills}
+            />
+          )}
+        {/* {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Update" &&
+          this.state.currentTable === "Bills" && (
+            <BillsModalUpdate
+              row={this.state.selectedRow}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleUpdate={this.props.updateBills}
+            />
+          )} */}
+        {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Insert" &&
+          this.state.selectedTable === "Bills" && (
+            <BillsModalInsert
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleInsert={this.props.insertBills}
+            />
+          )}
       </div>
     );
   }
@@ -1103,7 +1144,7 @@ Modification.propTypes = {
   errors: PropTypes.object.isRequired
 };
 Modification.defaultProps = {
-  modification: {}
+  modification: { Shifts: [], Operates: [] }
 };
 
 const mapStateToProps = state => ({
@@ -1165,6 +1206,8 @@ export default connect(
     deleteSellsfood,
     insertShifts,
     updateShifts,
-    deleteShifts
+    deleteShifts,
+    insertBills,
+    deleteBills
   }
 )(withRouter(Modification));

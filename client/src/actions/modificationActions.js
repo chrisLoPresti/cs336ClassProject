@@ -135,7 +135,6 @@ export const getBeers = data => dispatch => {
     });
 };
 
-//ERRRORORORORORORORORO
 export const getShifts = (data, num) => dispatch => {
   if (num === 0) {
     dispatch(clearModifications());
@@ -314,6 +313,7 @@ export const getLikes = data => dispatch => {
     });
 };
 
+//dead call not using this
 export const getInventory = () => dispatch => {
   dispatch(setModificationLoading());
   axios
@@ -486,7 +486,10 @@ export const getBartenders = data => dispatch => {
 };
 
 //ERRRORORORORORORORORO
-export const getBills = num => dispatch => {
+export const getBills = (data, num) => dispatch => {
+  if (num === 0) {
+    dispatch(clearModifications());
+  }
   dispatch(setModificationLoading());
   axios
     .get(
@@ -497,10 +500,17 @@ export const getBills = num => dispatch => {
         type: SET_MOD_BILLS,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -514,21 +524,31 @@ export const getBills = num => dispatch => {
     });
 };
 
-export const getTransactions = () => dispatch => {
+export const getTransactions = (data, num) => dispatch => {
+  if (num === 0) {
+    dispatch(clearModifications());
+  }
   dispatch(setModificationLoading());
   axios
     .get(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions"
+      `https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions?num=${num}`
     )
     .then(res => {
       dispatch({
         type: SET_MOD_TRANSACTIONS,
         payload: res.data
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: {}
-      });
+      if (data) {
+        dispatch({
+          type: GET_ERRORS,
+          payload: data
+        });
+      } else {
+        dispatch({
+          type: GET_ERRORS,
+          payload: {}
+        });
+      }
     })
     .catch(err => {
       dispatch({
@@ -1317,6 +1337,139 @@ export const updateShifts = (
     )
     .then(res => {
       dispatch(getShifts(res.data, 0));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const insertBills = (
+  bar,
+  bartender,
+  bill_id,
+  date,
+  day,
+  drinker,
+  items_price,
+  tax_price,
+  time,
+  tip,
+  total_price,
+  old_bill_id
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    bill_id,
+    date,
+    day,
+    drinker,
+    items_price,
+    tax_price,
+    time,
+    tip,
+    total_price,
+    old_bill_id
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getBills(res.data, 0));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const deleteBills = (
+  bar,
+  bartender,
+  bill_id,
+  date,
+  day,
+  drinker,
+  items_price,
+  tax_price,
+  time,
+  tip,
+  total_price,
+  old_bill_id
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    bill_id,
+    date,
+    day,
+    drinker,
+    items_price,
+    tax_price,
+    time,
+    tip,
+    total_price,
+    old_bill_id
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getBills(res.data, 0));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+//ERRRORORORORORORORORO
+export const updateBills = (
+  bar,
+  bartender,
+  bill_id,
+  date,
+  day,
+  drinker,
+  items_price,
+  tax_price,
+  time,
+  tip,
+  total_price,
+  old_bill_id
+) => dispatch => {
+  var obj = {
+    bar,
+    bartender,
+    bill_id,
+    date,
+    day,
+    drinker,
+    items_price,
+    tax_price,
+    time,
+    tip,
+    total_price,
+    old_bill_id
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/bills/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getBills(res.data, 0));
     })
     .catch(err => {
       dispatch({

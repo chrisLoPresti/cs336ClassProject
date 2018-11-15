@@ -33,6 +33,17 @@
   transition: 0.3s;
   border-radius: 30px;
 }
+#modal-content-mod-big-3 {
+  outline: none;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+  height: 780px;
+  background-color: white;
+  transition: 0.3s;
+  border-radius: 30px;
+}
 
 @media only screen and (min-width: 600px) {
   #modal-content-mod {
@@ -193,6 +204,7 @@
 }
 
 #table-container .get-more {
+  margin: 20px;
   background-color: #303030;
   color: ghostwhite;
 }
