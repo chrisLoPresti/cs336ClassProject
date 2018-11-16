@@ -23,7 +23,9 @@ class modaldelete extends React.Component {
       price: 0,
       quantity: 0,
       type: "",
-      error: false
+      error: false,
+      emptyBillId: false,
+      emptyQuantity: false
     };
   }
   handleCloseModal = () => {
@@ -43,8 +45,16 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
+    if (!this.state.bill_id) {
+      this.setState({ emptyBillId: true, emptyQuantity: false, error: false });
+      return;
+    }
     if (!this.state.item) {
-      this.setState({ error: true });
+      this.setState({ error: true, emptyBillId: false, emptyQuantity: false });
+      return;
+    }
+    if (!this.state.quantity || this.state.quantity === 0) {
+      this.setState({ error: false, emptyBillId: false, emptyQuantity: true });
       return;
     }
     let type = "";
@@ -118,15 +128,33 @@ class modaldelete extends React.Component {
               >
                 Load Menu
               </Button>
-              {(Object.keys(this.props.errors.error).length > 0 ||
-                this.state.error) && (
+              {this.state.emptyQuantity && (
                 <Typography
-                  style={{ color: "red" }}
+                  style={{ color: "red", margin: "20px" }}
                   id="simple-modal-header-mod"
                 >
-                  Invalid Bill ID
+                  Please enter a valid quantity above 0
                 </Typography>
               )}
+              {this.state.emptyBillId && (
+                <Typography
+                  style={{ color: "red", margin: "20px" }}
+                  id="simple-modal-header-mod"
+                >
+                  Please type a bill id and load the menu
+                </Typography>
+              )}
+              {(Object.keys(this.props.errors.error).length > 0 ||
+                this.state.error) &&
+                this.state.bill_id && (
+                  <Typography
+                    style={{ color: "red", margin: "20px" }}
+                    id="simple-modal-header-mod"
+                  >
+                    Invalid Bill ID or no item selected. Check your bill id and
+                    load the menu to select an item.
+                  </Typography>
+                )}
             </Grid>
             {this.props.prices && Object.keys(this.props.prices).length > 0 && (
               <Grid item xs={12}>
