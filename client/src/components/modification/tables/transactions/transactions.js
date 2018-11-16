@@ -227,9 +227,6 @@ class CustomPaginationActionsTable extends React.Component {
           <Button onClick={() => this.props.getMore()} className="get-more">
             Get More Data
           </Button>
-          <Typography>
-            Drag or scroll the graph to the right for more results
-          </Typography>
         </Grid>
         <Grid container id="table-grid">
           <Grid item xs={12} sm={4}>
