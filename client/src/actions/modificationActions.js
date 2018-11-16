@@ -486,7 +486,6 @@ export const getBartenders = data => dispatch => {
     });
 };
 
-//ERRRORORORORORORORORO
 export const getBills = (data, num) => dispatch => {
   if (num === 0) {
     dispatch(clearModifications());
@@ -1308,7 +1307,6 @@ export const deleteShifts = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const updateShifts = (
   bar,
   bartender,
@@ -1435,7 +1433,6 @@ export const deleteBills = (
     });
 };
 
-//ERRRORORORORORORORORO
 export const updateBills = (
   bar,
   bartender,
