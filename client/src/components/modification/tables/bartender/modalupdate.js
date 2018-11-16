@@ -71,6 +71,7 @@ class modaldelete extends React.Component {
                 value={this.state.phone}
                 onChange={this.handleChange("phone")}
                 margin="normal"
+                type="number"
               />
             </Grid>
             <Grid item xs={12}>

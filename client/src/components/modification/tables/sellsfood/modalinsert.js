@@ -81,6 +81,7 @@ class modaldelete extends React.Component {
                 value={this.state.price}
                 onChange={this.handleChange("price")}
                 margin="normal"
+                type="number"
               />
             </Grid>
           </Grid>

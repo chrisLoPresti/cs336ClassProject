@@ -101,8 +101,7 @@ class modaldelete extends React.Component {
           <Typography id="simple-modal-description-mod">
             You can only modify the tip you leave on a bill. You can delete the
             bill using our delete operation or you can edit a bill by adding
-            transactions or edditing existing transactiosn. ** Important: you
-            can not update if the tax is NaN or 0 **
+            transactions or edditing existing transactiosn.
           </Typography>
           <Grid container>
             <Grid item xs={12}>
@@ -130,10 +129,6 @@ class modaldelete extends React.Component {
             <Button
               id="action-button-insert-mod"
               onClick={() => this.processAction()}
-              disabled={
-                (this.state.result === 0 && this.state.tax === 0) ||
-                isNaN(this.state.result)
-              }
             >
               Update
             </Button>
