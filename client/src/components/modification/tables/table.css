@@ -1,3 +1,17 @@
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
 #modal-content-mod {
   outline: none;
   top: 50%;
@@ -6,7 +20,6 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
-  height: 500px;
   max-height: 600px;
   overflow: auto;
   position: relative;
@@ -20,7 +33,6 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
-  height: 500px;
   max-height: 600px;
   overflow: auto;
   position: relative;
@@ -34,7 +46,6 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
-  height: 500px;
   max-height: 600px;
   overflow: auto;
   position: relative;
@@ -47,7 +58,6 @@
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
-  height: 500px;
   max-height: 600px;
   overflow: auto;
   position: relative;
@@ -96,7 +106,7 @@
   background-color: #303030;
   color: whitesmoke;
   border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
+  border-top-right-radius: 5px;
 }
 
 #simple-modal-description-mod {
@@ -112,11 +122,10 @@
 #modal-button-container-mod {
   bottom: 0;
   width: 100%;
-  position: sticky;
   text-align: center;
   background-color: lightgrey;
   border-bottom-left-radius: 20px;
-  border-bottom-right-radius: 20px;
+  border-bottom-right-radius: 10px;
 }
 
 #cancel-button-mod {
@@ -138,7 +147,7 @@
 }
 
 #modal .modal-text-insert {
-  width: 80%;
+  width: 86%;
   margin-left: 20px;
 }
 
