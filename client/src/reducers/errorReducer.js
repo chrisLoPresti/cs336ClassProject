@@ -7,7 +7,9 @@ let initialState = {
 export default function(state = initialState, action) {
   switch (action.type) {
     case GET_ERRORS:
-      return { ...state, error: action.payload };
+      return (
+        action.payload !== "undefined" && { ...state, error: action.payload }
+      );
     default:
       return state;
   }

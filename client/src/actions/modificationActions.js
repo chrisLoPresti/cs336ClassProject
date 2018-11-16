@@ -571,9 +571,13 @@ export const insertDrinker = (name, phone, state, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getDrinkers(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -623,7 +627,10 @@ export const insertBarfood = (name, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getBarfood(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
       dispatch({
@@ -675,9 +682,13 @@ export const insertBars = (name, state, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getBars(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -727,9 +738,13 @@ export const insertBartender = (name, phone, state, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getBartenders(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -779,9 +794,13 @@ export const insertBeer = (name, manf, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getBeers(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -831,9 +850,13 @@ export const insertDay = (name, oldname) => dispatch => {
       obj
     )
     .then(res => {
-      dispatch(getDay(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -888,9 +911,13 @@ export const insertFrequents = (
       obj
     )
     .then(res => {
-      dispatch(getFrequents(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -955,7 +982,10 @@ export const insertLikes = (
       obj
     )
     .then(res => {
-      dispatch(getLikes(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
       dispatch({
@@ -1025,7 +1055,10 @@ export const insertOperates = (
       obj
     )
     .then(res => {
-      dispatch(getOperates(res.data, 0));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
       dispatch({
@@ -1101,9 +1134,13 @@ export const insertSellsbeer = (
       obj
     )
     .then(res => {
-      dispatch(getSellsbeer(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -1173,9 +1210,13 @@ export const insertSellsfood = (
       obj
     )
     .then(res => {
-      dispatch(getSellsfood(res.data));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -1259,9 +1300,13 @@ export const insertShifts = (
       obj
     )
     .then(res => {
-      dispatch(getShifts(res.data, 0));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -1379,9 +1424,13 @@ export const insertBills = (
       obj
     )
     .then(res => {
-      dispatch(getBills(res.data, 0));
+      dispatch({
+        type: GET_ERRORS,
+        payload: res.data
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response
@@ -1480,8 +1529,8 @@ export const updateBills = (
 //HELPER TO GET FOOD AND BEER PRICES
 
 export const setPrices = bill_id => dispatch => {
+  let error = { data: { message: "Please enter a valid bill id" } };
   if (bill_id === "") {
-    let error = { data: { message: "Please enter a valid bill id" } };
     dispatch({
       type: GET_ERRORS,
       payload: error
@@ -1519,7 +1568,7 @@ export const setPrices = bill_id => dispatch => {
               });
               dispatch({
                 type: GET_ERRORS,
-                payload: {}
+                payload: error
               });
             })
             .catch(err => {
@@ -1539,8 +1588,8 @@ export const setPrices = bill_id => dispatch => {
             payload: {}
           });
           dispatch({
-            type: SET_PRICES,
-            payload: err.response
+            type: GET_ERRORS,
+            payload: error
           });
         });
     })
@@ -1550,8 +1599,8 @@ export const setPrices = bill_id => dispatch => {
         payload: {}
       });
       dispatch({
-        type: SET_PRICES,
-        payload: err.response
+        type: GET_ERRORS,
+        payload: error
       });
     });
 };
@@ -1580,9 +1629,15 @@ export const insertTransactions = (
       obj
     )
     .then(res => {
-      dispatch(getTransactions(res.data, 0));
+      dispatch(clearModifications());
+      console.log(res);
+      dispatch({
+        type: GET_ERRORS,
+        payload: "Success"
+      });
     })
     .catch(err => {
+      dispatch(clearModifications());
       dispatch({
         type: GET_ERRORS,
         payload: err.response

@@ -198,7 +198,6 @@ class Modification extends Component {
       results: false,
       num: 0
     });
-    this.props.clearErrors();
   };
 
   handleClear = picker => {
@@ -209,7 +208,6 @@ class Modification extends Component {
       results: false,
       num: 0
     });
-    this.props.clearErrors();
   };
 
   getMore = () => {
@@ -217,6 +215,7 @@ class Modification extends Component {
       this.processGet(this.state.num)
     );
   };
+
   processGet = num => {
     switch (this.state.selectedTable) {
       case "Operates":
@@ -236,6 +235,7 @@ class Modification extends Component {
         return;
     }
   };
+
   handelInsert = () => {
     this.setState({ processRequest: true, results: true, open: true });
   };
@@ -245,6 +245,7 @@ class Modification extends Component {
   };
 
   handleBegin = () => {
+    this.props.clearErrors();
     if (this.state.selectedOperation === "Insert") {
       this.handelInsert();
       return;
@@ -270,7 +271,6 @@ class Modification extends Component {
       num: 0
     });
     this.props.clearModifications();
-    this.props.clearErrors();
     switch (this.state.selectedTable) {
       case "Bar":
         this.props.getBars();
@@ -339,7 +339,6 @@ class Modification extends Component {
     if (this.state.currentTable === "Transactions") {
       this.props.setPrices(row.bill_id);
     }
-    this.props.clearErrors();
   };
 
   handleClearResults = () => {
@@ -644,6 +643,7 @@ class Modification extends Component {
               </Typography>
             )}
             {this.state.selectedOperation === "Insert" &&
+              this.state.selectedTable !== "Transaction" &&
               Object.keys(this.props.errors.error).length > 0 &&
               this.props.errors.error !== "Success" && (
                 <Grid item xs={12} style={{ textAlign: "center" }}>
@@ -1193,6 +1193,7 @@ class Modification extends Component {
           this.state.selectedOperation === "Insert" &&
           this.state.selectedTable === "Transactions" && (
             <TransactionsModalInsert
+              clear={this.props.clearModifications}
               loadItems={this.props.setPrices}
               errors={this.props.errors}
               prices={this.props.modification.Prices}

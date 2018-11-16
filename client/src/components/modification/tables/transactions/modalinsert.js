@@ -29,6 +29,7 @@ class modaldelete extends React.Component {
     };
   }
   handleCloseModal = () => {
+    this.props.clear();
     this.props.doneWithRequest();
   };
 
@@ -79,7 +80,7 @@ class modaldelete extends React.Component {
         }
       }
     }
-
+    this.setState({ error: false, emptyBillId: false, emptyQuantity: false });
     this.props.handleInsert(
       this.state.bill_id,
       this.state.quantity,
@@ -106,7 +107,9 @@ class modaldelete extends React.Component {
           <Typography id="modal-title-mod">Are You Sure?</Typography>
           <Typography id="simple-modal-header-mod">
             Lets insert this row in to the Operates Table. First you must type a
-            valid Bill ID, then press "Load Menu".
+            valid Bill ID, then press "Load Menu". If no menu is loaded and you
+            dont get an error, then that bar has no items yet. Go add some using
+            sellsbeer and sellsfood interface!
           </Typography>
           <Grid container>
             <Grid item xs={12}>
@@ -156,6 +159,7 @@ class modaldelete extends React.Component {
                   </Typography>
                 )}
             </Grid>
+
             {this.props.prices && Object.keys(this.props.prices).length > 0 && (
               <Grid item xs={12}>
                 <FormControl className="modal-text-insert picker">
@@ -227,6 +231,7 @@ class modaldelete extends React.Component {
 }
 
 modaldelete.propTypes = {
+  clear: PropTypes.func.isRequired,
   handleInsert: PropTypes.func.isRequired,
   doneWithRequest: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,
