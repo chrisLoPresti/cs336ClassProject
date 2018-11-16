@@ -109,7 +109,7 @@ class modaldelete extends React.Component {
                 className="modal-text-insert"
                 type="number"
                 label={this.props.row.tax_price}
-                value={this.state.tax}
+                value={this.state.tax === 0 ? "" : this.state.tax}
                 onChange={this.handleChange("tax")}
                 margin="normal"
               />
