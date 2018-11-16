@@ -3,11 +3,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
-  height: 500px;
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
+  height: 500px;
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
 }
 
 #modal-content-mod-big {
@@ -15,11 +17,13 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
-  height: 620px;
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
+  height: 500px;
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
 }
 
 #modal-content-mod-big2 {
@@ -27,22 +31,26 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
-  height: 700px;
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
+  height: 500px;
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
 }
 #modal-content-mod-big-3 {
   outline: none;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  position: absolute;
-  height: 780px;
   background-color: white;
   transition: 0.3s;
   border-radius: 30px;
+  height: 500px;
+  max-height: 600px;
+  overflow: auto;
+  position: relative;
 }
 
 @media only screen and (min-width: 600px) {
@@ -58,6 +66,10 @@
     width: 400px;
     transition: 0.3s;
   }
+  #modal-content-mod-big-3 {
+    width: 400px;
+    transition: 0.3s;
+  }
 }
 
 @media only screen and (max-width: 600px) {
@@ -70,6 +82,10 @@
     transition: 0.3s;
   }
   #modal-content-mod-big2 {
+    width: 80%;
+    transition: 0.3s;
+  }
+  #modal-content-mod-big-3 {
     width: 80%;
     transition: 0.3s;
   }
@@ -94,9 +110,9 @@
 }
 
 #modal-button-container-mod {
-  position: absolute;
   bottom: 0;
   width: 100%;
+  position: sticky;
   text-align: center;
   background-color: lightgrey;
   border-bottom-left-radius: 20px;

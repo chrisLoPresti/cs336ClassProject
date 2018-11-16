@@ -65,7 +65,8 @@ import {
   updateShifts,
   deleteShifts,
   insertBills,
-  deleteBills
+  deleteBills,
+  updateBills
 } from "../../actions/modificationActions";
 
 import { clearErrors } from "../../actions/errorsActions";
@@ -146,6 +147,7 @@ import ShiftsModalUpdate from "./tables/shifts/modalupdate";
 import BillsTable from "./tables/bills/bills";
 import BillsModalInsert from "./tables/bills/modalinsert";
 import BillsModalDelete from "./tables/bills/modaldelete";
+import BillsModalUpdate from "./tables/bills/modalupdate";
 
 import "./modification.css";
 
@@ -218,6 +220,9 @@ class Modification extends Component {
       case "Shifts":
         this.props.getShifts(0, num);
         break;
+      default:
+        alert("Impossible");
+        return;
     }
   };
   handelInsert = () => {
@@ -1113,7 +1118,7 @@ class Modification extends Component {
               handleDelete={this.props.deleteBills}
             />
           )}
-        {/* {this.state.processRequest &&
+        {this.state.processRequest &&
           this.state.open &&
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Bills" && (
@@ -1123,7 +1128,7 @@ class Modification extends Component {
               doneWithRequest={this.doneWithRequest}
               handleUpdate={this.props.updateBills}
             />
-          )} */}
+          )}
         {this.state.processRequest &&
           this.state.open &&
           this.state.selectedOperation === "Insert" &&
@@ -1208,6 +1213,7 @@ export default connect(
     updateShifts,
     deleteShifts,
     insertBills,
-    deleteBills
+    deleteBills,
+    updateBills
   }
 )(withRouter(Modification));

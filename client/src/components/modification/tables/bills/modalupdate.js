@@ -4,10 +4,6 @@ import {
   Button,
   Modal,
   Paper,
-  FormControl,
-  MenuItem,
-  Select,
-  InputLabel,
   Grid,
   TextField
 } from "@material-ui/core";
@@ -18,11 +14,8 @@ class modaldelete extends React.Component {
     super(props);
     this.state = {
       openModal: this.props.open,
-      bar: "",
-      date: "",
-      day: "",
-      start: "",
-      end: ""
+      tax: 0,
+      result: 0
     };
   }
   handleCloseModal = () => {
@@ -31,21 +24,56 @@ class modaldelete extends React.Component {
   };
 
   handleChange = name => event => {
-    this.setState({
-      [name]: event.target.value
-    });
+    this.setState(
+      {
+        [name]: event.target.value
+      },
+      () => this.calculateTotal()
+    );
+  };
+
+  calculateTotal = () => {
+    let addition;
+    if (this.state.tax === 0) {
+      this.setState({ result: this.props.row.total_price });
+      return;
+    }
+
+    let input = this.state.tax;
+    let data = Number(this.props.row.tax_price);
+    let total = Number(this.props.row.total_price);
+    if (input < data) {
+      addition = data - input;
+      this.setState({
+        result: total - addition
+      });
+      return;
+    } else if (input > data) {
+      addition = input - data;
+      this.setState({
+        result: total + addition
+      });
+      return;
+    }
+    this.setState({ result: total });
   };
 
   processAction = () => {
     this.props.handleUpdate(
-      this.state.bar ? this.state.bar : this.props.row.bar,
-      this.state.day ? this.state.day : this.props.row.day,
-      this.state.start ? this.state.start : this.props.row.start,
-      this.state.end ? this.state.end : this.props.row.end,
-      this.state.date ? this.state.date : this.props.row.date,
       this.props.row.bar,
-      this.props.row.date
+      this.props.row.bartender,
+      this.props.row.bill_id,
+      this.props.row.date,
+      this.props.row.day,
+      this.props.row.drinker,
+      this.props.row.items_price,
+      this.state.tax ? this.state.tax : this.props.row.tax_price,
+      this.props.row.time,
+      this.props.row.tip,
+      this.state.result,
+      this.props.row.bill_id
     );
+
     this.props.doneWithRequest();
     this.handleCloseModal();
   };
@@ -70,134 +98,22 @@ class modaldelete extends React.Component {
           <Typography id="simple-modal-header-mod">
             Lets update this row in the Operates Table
           </Typography>
+          <Typography id="simple-modal-description-mod">
+            You can only modify the tip you leave on a bill. You can delete the
+            bill using our delete operation or you can edit a bill by adding
+            transactions or edditing existing transactiosn. ** Important: you
+            can not update if the tax is NaN or 0 **
+          </Typography>
           <Grid container>
             <Grid item xs={12}>
               <TextField
                 className="modal-text-insert"
-                label={this.props.row.bar}
-                value={this.state.bar}
-                onChange={this.handleChange("bar")}
+                type="number"
+                label={this.props.row.tax_price}
+                value={this.state.tax}
+                onChange={this.handleChange("tax")}
                 margin="normal"
               />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                className="modal-text-insert"
-                label={this.props.row.date}
-                value={this.state.date}
-                type="date"
-                onChange={this.handleChange("date")}
-                margin="normal"
-                InputLabelProps={{
-                  shrink: true
-                }}
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl className="modal-text-insert picker">
-                <InputLabel>{this.props.row.day}</InputLabel>
-                <Select
-                  className="selecter"
-                  value={this.state.day}
-                  inputProps={{
-                    name: "day"
-                  }}
-                  onChange={this.handleChangePicker}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value="Monday">Monday</MenuItem>
-                  <MenuItem value="Tuesday">Tuesday</MenuItem>
-                  <MenuItem value="Wednesday">Wednesday</MenuItem>
-                  <MenuItem value="Thursday">Thursday</MenuItem>
-                  <MenuItem value="Friday">Friday</MenuItem>
-                  <MenuItem value="Saturday">Saturday</MenuItem>
-                  <MenuItem value="Sunday">Sunday</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl className="modal-text-insert picker">
-                <InputLabel>{this.props.row.start}</InputLabel>
-                <Select
-                  className="selecter"
-                  value={this.state.start}
-                  inputProps={{
-                    name: "start"
-                  }}
-                  onChange={this.handleChangePicker}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value="00:00">00:00</MenuItem>
-                  <MenuItem value="01:00">01:00</MenuItem>
-                  <MenuItem value="02:00">02:00</MenuItem>
-                  <MenuItem value="03:00">03:00</MenuItem>
-                  <MenuItem value="04:00">04:00</MenuItem>
-                  <MenuItem value="05:00">05:00</MenuItem>
-                  <MenuItem value="06:00">06:00</MenuItem>
-                  <MenuItem value="07:00">07:00</MenuItem>
-                  <MenuItem value="08:00">08:00</MenuItem>
-                  <MenuItem value="09:00">09:00</MenuItem>
-                  <MenuItem value="10:00">10:00</MenuItem>
-                  <MenuItem value="11:00">11:00</MenuItem>
-                  <MenuItem value="12:00">12:00</MenuItem>
-                  <MenuItem value="13:00">13:00</MenuItem>
-                  <MenuItem value="14:00">14:00</MenuItem>
-                  <MenuItem value="15:00">15:00</MenuItem>
-                  <MenuItem value="16:00">16:00</MenuItem>
-                  <MenuItem value="17:00">17:00</MenuItem>
-                  <MenuItem value="18:00">18:00</MenuItem>
-                  <MenuItem value="19:00">19:00</MenuItem>
-                  <MenuItem value="20:00">20:00</MenuItem>
-                  <MenuItem value="21:00">21:00</MenuItem>
-                  <MenuItem value="22:00">22:00</MenuItem>
-                  <MenuItem value="23:00">23:00</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-            <Grid item xs={12}>
-              <FormControl className="modal-text-insert picker">
-                <InputLabel>{this.props.row.end}</InputLabel>
-                <Select
-                  className="selecter"
-                  value={this.state.end}
-                  inputProps={{
-                    name: "end"
-                  }}
-                  onChange={this.handleChangePicker}
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value="00:00">00:00</MenuItem>
-                  <MenuItem value="01:00">01:00</MenuItem>
-                  <MenuItem value="02:00">02:00</MenuItem>
-                  <MenuItem value="03:00">03:00</MenuItem>
-                  <MenuItem value="04:00">04:00</MenuItem>
-                  <MenuItem value="05:00">05:00</MenuItem>
-                  <MenuItem value="06:00">06:00</MenuItem>
-                  <MenuItem value="07:00">07:00</MenuItem>
-                  <MenuItem value="08:00">08:00</MenuItem>
-                  <MenuItem value="09:00">09:00</MenuItem>
-                  <MenuItem value="10:00">10:00</MenuItem>
-                  <MenuItem value="11:00">11:00</MenuItem>
-                  <MenuItem value="12:00">12:00</MenuItem>
-                  <MenuItem value="13:00">13:00</MenuItem>
-                  <MenuItem value="14:00">14:00</MenuItem>
-                  <MenuItem value="15:00">15:00</MenuItem>
-                  <MenuItem value="16:00">16:00</MenuItem>
-                  <MenuItem value="17:00">17:00</MenuItem>
-                  <MenuItem value="18:00">18:00</MenuItem>
-                  <MenuItem value="19:00">19:00</MenuItem>
-                  <MenuItem value="20:00">20:00</MenuItem>
-                  <MenuItem value="21:00">21:00</MenuItem>
-                  <MenuItem value="22:00">22:00</MenuItem>
-                  <MenuItem value="23:00">23:00</MenuItem>
-                </Select>
-              </FormControl>
             </Grid>
           </Grid>
           <Typography id="simple-modal-description-mod">
@@ -214,6 +130,10 @@ class modaldelete extends React.Component {
             <Button
               id="action-button-insert-mod"
               onClick={() => this.processAction()}
+              disabled={
+                (this.state.result === 0 && this.state.tax === 0) ||
+                isNaN(this.state.result)
+              }
             >
               Update
             </Button>
