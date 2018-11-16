@@ -1630,11 +1630,80 @@ export const insertTransactions = (
     )
     .then(res => {
       dispatch(clearModifications());
-      console.log(res);
       dispatch({
         type: GET_ERRORS,
         payload: "Success"
       });
+    })
+    .catch(err => {
+      dispatch(clearModifications());
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const deleteTransactions = (
+  bill_id,
+  quantity,
+  item,
+  item_type,
+  price,
+  old_bill_id,
+  old_item
+) => dispatch => {
+  var obj = {
+    bill_id,
+    quantity,
+    item,
+    item_type,
+    price,
+    old_bill_id,
+    old_item
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions/delete",
+      obj
+    )
+    .then(res => {
+      dispatch(getTransactions("Success", 0));
+    })
+    .catch(err => {
+      dispatch(clearModifications());
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+export const updateTransactions = (
+  bill_id,
+  quantity,
+  item,
+  item_type,
+  price,
+  old_bill_id,
+  old_item
+) => dispatch => {
+  var obj = {
+    bill_id,
+    quantity,
+    item,
+    item_type,
+    price,
+    old_bill_id,
+    old_item
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions/update",
+      obj
+    )
+    .then(res => {
+      dispatch(getTransactions("Success", 0));
     })
     .catch(err => {
       dispatch(clearModifications());

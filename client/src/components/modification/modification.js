@@ -68,7 +68,9 @@ import {
   deleteBills,
   updateBills,
   setPrices,
-  insertTransactions
+  insertTransactions,
+  deleteTransactions,
+  updateTransactions
 } from "../../actions/modificationActions";
 
 import { clearErrors } from "../../actions/errorsActions";
@@ -154,8 +156,8 @@ import BillsModalUpdate from "./tables/bills/modalupdate";
 //transactions
 import TransactionsTable from "./tables/transactions/transactions";
 import TransactionsModalInsert from "./tables/transactions/modalinsert";
-// import TransactionsModalDelete from "./tables/transactions/modaldelete";
-// import TransactionsModalUpdate from "./tables/transactions/modalupdate";
+import TransactionsModalDelete from "./tables/transactions/modaldelete";
+import TransactionsModalUpdate from "./tables/transactions/modalupdate";
 
 import "./modification.css";
 
@@ -336,7 +338,10 @@ class Modification extends Component {
       open: true
     });
 
-    if (this.state.currentTable === "Transactions") {
+    if (
+      this.state.currentTable === "Transactions" &&
+      this.state.selectedOperation === "Insert"
+    ) {
       this.props.setPrices(row.bill_id);
     }
   };
@@ -1164,7 +1169,7 @@ class Modification extends Component {
             />
           )}
         {/* Transactions */}
-        {/* {this.state.processRequest &&
+        {this.state.processRequest &&
           this.state.open &&
           this.state.selectedOperation === "Delete" &&
           this.state.currentTable === "Transactions" && (
@@ -1180,14 +1185,12 @@ class Modification extends Component {
           this.state.selectedOperation === "Update" &&
           this.state.currentTable === "Transactions" && (
             <TransactionsModalUpdate
-              beer={this.props.modification.Prices.beer}
-              food={this.props.modification.Prices.food}
               row={this.state.selectedRow}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
               handleUpdate={this.props.updateTransactions}
             />
-          )} */}
+          )}
         {this.state.processRequest &&
           this.state.open &&
           this.state.selectedOperation === "Insert" &&
@@ -1279,6 +1282,8 @@ export default connect(
     deleteBills,
     updateBills,
     setPrices,
-    insertTransactions
+    insertTransactions,
+    deleteTransactions,
+    updateTransactions
   }
 )(withRouter(Modification));
