@@ -17,7 +17,8 @@ import {
   SET_MOD_TRANSACTIONS,
   SET_MOD_LOADING,
   CLEAR_MODIFICATION,
-  GET_ERRORS
+  GET_ERRORS,
+  SET_PRICES
 } from "./types";
 
 //set bartenders loading
@@ -1470,6 +1471,119 @@ export const updateBills = (
     )
     .then(res => {
       dispatch(getBills(res.data, 0));
+    })
+    .catch(err => {
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response
+      });
+    });
+};
+
+//HELPER TO GET FOOD AND BEER PRICES
+
+export const setPrices = bill_id => dispatch => {
+  if (bill_id === "") {
+    let error = { data: { message: "Please enter a valid bill id" } };
+    dispatch({
+      type: GET_ERRORS,
+      payload: error
+    });
+    return;
+  }
+  let result = {};
+  let req = {
+    query: `select bar from Bills where bill_id = ${'"' +
+      bill_id +
+      '"'} limit 1`
+  };
+  let bar = "";
+  axios
+    .post("/api/randomQuery", req)
+    .then(res => {
+      bar = res.data[0].bar;
+      req = {
+        query: `select * from SellsBeer where barname = ${'"' + bar + '"'}`
+      };
+      axios
+        .post("/api/randomQuery", req)
+        .then(res => {
+          result.beer = res.data;
+          let req = {
+            query: `select * from SellsFood where barname = ${'"' + bar + '"'}`
+          };
+          axios
+            .post("/api/randomQuery", req)
+            .then(res => {
+              result.food = res.data;
+              dispatch({
+                type: SET_PRICES,
+                payload: result
+              });
+              dispatch({
+                type: GET_ERRORS,
+                payload: {}
+              });
+            })
+            .catch(err => {
+              dispatch({
+                type: SET_PRICES,
+                payload: {}
+              });
+              dispatch({
+                type: GET_ERRORS,
+                payload: err.response
+              });
+            });
+        })
+        .catch(err => {
+          dispatch({
+            type: SET_PRICES,
+            payload: {}
+          });
+          dispatch({
+            type: SET_PRICES,
+            payload: err.response
+          });
+        });
+    })
+    .catch(err => {
+      dispatch({
+        type: SET_PRICES,
+        payload: {}
+      });
+      dispatch({
+        type: SET_PRICES,
+        payload: err.response
+      });
+    });
+};
+
+export const insertTransactions = (
+  bill_id,
+  quantity,
+  item,
+  item_type,
+  price,
+  old_bill_id,
+  old_item
+) => dispatch => {
+  var obj = {
+    bill_id,
+    quantity,
+    item,
+    item_type,
+    price,
+    old_bill_id,
+    old_item
+  };
+  axios
+    .post(
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/transactions/insert",
+      obj
+    )
+    .then(res => {
+      dispatch(getTransactions(res.data, 0));
     })
     .catch(err => {
       dispatch({

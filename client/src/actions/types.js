@@ -83,6 +83,7 @@ export const SET_MOD_SHIFTS = "SET_MOD_SHIFTS";
 export const SET_MOD_TRANSACTIONS = "SET_MOD_TRANSACTIONS";
 export const SET_MOD_LOADING = "SET_MOD_LOADING";
 export const CLEAR_MODIFICATION = "CLEAR_MODIFICATION";
+export const SET_PRICES = "SET_PRICES";
 
 //errors actions
 export const GET_ERRORS = "GET_ERRORS";

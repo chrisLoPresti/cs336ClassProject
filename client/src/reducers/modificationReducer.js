@@ -15,7 +15,8 @@ import {
   SET_MOD_SHIFTS,
   SET_MOD_TRANSACTIONS,
   SET_MOD_LOADING,
-  CLEAR_MODIFICATION
+  CLEAR_MODIFICATION,
+  SET_PRICES
 } from "../actions/types";
 
 let initialState = {
@@ -34,6 +35,7 @@ let initialState = {
   SellsFood: {},
   Shifts: [],
   Transactions: [],
+  Prices: [],
   loadingModification: false
 };
 
@@ -61,6 +63,7 @@ export default function(state = initialState, action) {
         SellsFood: {},
         Shifts: [],
         Transactions: [],
+        Prices: [],
         loadingModification: false
       };
     case SET_MOD_BAR:
@@ -152,6 +155,11 @@ export default function(state = initialState, action) {
         ...state,
         Transactions: [...state.Transactions, ...action.payload],
         loadingModification: false
+      };
+    case SET_PRICES:
+      return {
+        ...state,
+        Prices: action.payload
       };
     default:
       return state;

@@ -33,7 +33,7 @@ class modaldelete extends React.Component {
     this.props.handleInsert(
       this.state.name,
       this.state.phone,
-      this.state.state,
+      this.state.state.toUpperCase(),
       this.state.name
     );
     this.props.doneWithRequest();
@@ -71,7 +71,7 @@ class modaldelete extends React.Component {
                 value={this.state.phone === 0 ? "" : this.state.phone}
                 onChange={this.handleChange("phone")}
                 margin="normal"
-                type="number"
+                type="tel"
               />
             </Grid>
             <Grid item xs={12}>

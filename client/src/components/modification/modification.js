@@ -66,7 +66,9 @@ import {
   deleteShifts,
   insertBills,
   deleteBills,
-  updateBills
+  updateBills,
+  setPrices,
+  insertTransactions
 } from "../../actions/modificationActions";
 
 import { clearErrors } from "../../actions/errorsActions";
@@ -149,6 +151,12 @@ import BillsModalInsert from "./tables/bills/modalinsert";
 import BillsModalDelete from "./tables/bills/modaldelete";
 import BillsModalUpdate from "./tables/bills/modalupdate";
 
+//transactions
+import TransactionsTable from "./tables/transactions/transactions";
+import TransactionsModalInsert from "./tables/transactions/modalinsert";
+// import TransactionsModalDelete from "./tables/transactions/modaldelete";
+// import TransactionsModalUpdate from "./tables/transactions/modalupdate";
+
 import "./modification.css";
 
 let scrollToElement = require("scroll-to-element");
@@ -218,6 +226,9 @@ class Modification extends Component {
         this.props.getBills(0, num);
         break;
       case "Shifts":
+        this.props.getShifts(0, num);
+        break;
+      case "Transactions":
         this.props.getShifts(0, num);
         break;
       default:
@@ -325,6 +336,9 @@ class Modification extends Component {
       open: true
     });
 
+    if (this.state.currentTable === "Transactions") {
+      this.props.setPrices(row.bill_id);
+    }
     this.props.clearErrors();
   };
 
@@ -459,6 +473,16 @@ class Modification extends Component {
         if (this.state.currentTable === "Bills") {
           table = (
             <BillsTable
+              getMore={this.getMore}
+              modification={this.props.modification}
+              handleSelectedRow={this.handleSelectedRow}
+              loading={this.props.modification.loadingModification}
+            />
+          );
+        }
+        if (this.state.currentTable === "Transactions") {
+          table = (
+            <TransactionsTable
               getMore={this.getMore}
               modification={this.props.modification}
               handleSelectedRow={this.handleSelectedRow}
@@ -1139,6 +1163,44 @@ class Modification extends Component {
               handleInsert={this.props.insertBills}
             />
           )}
+        {/* Transactions */}
+        {/* {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Delete" &&
+          this.state.currentTable === "Transactions" && (
+            <TransactionsModalDelete
+              row={this.state.selectedRow}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleDelete={this.props.deleteTransactions}
+            />
+          )}
+        {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Update" &&
+          this.state.currentTable === "Transactions" && (
+            <TransactionsModalUpdate
+              beer={this.props.modification.Prices.beer}
+              food={this.props.modification.Prices.food}
+              row={this.state.selectedRow}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleUpdate={this.props.updateTransactions}
+            />
+          )} */}
+        {this.state.processRequest &&
+          this.state.open &&
+          this.state.selectedOperation === "Insert" &&
+          this.state.selectedTable === "Transactions" && (
+            <TransactionsModalInsert
+              loadItems={this.props.setPrices}
+              errors={this.props.errors}
+              prices={this.props.modification.Prices}
+              open={this.state.open}
+              doneWithRequest={this.doneWithRequest}
+              handleInsert={this.props.insertTransactions}
+            />
+          )}
       </div>
     );
   }
@@ -1149,7 +1211,7 @@ Modification.propTypes = {
   errors: PropTypes.object.isRequired
 };
 Modification.defaultProps = {
-  modification: { Shifts: [], Operates: [] }
+  modification: { Shifts: [], Operates: [], Prices: [] }
 };
 
 const mapStateToProps = state => ({
@@ -1214,6 +1276,8 @@ export default connect(
     deleteShifts,
     insertBills,
     deleteBills,
-    updateBills
+    updateBills,
+    setPrices,
+    insertTransactions
   }
 )(withRouter(Modification));

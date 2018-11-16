@@ -14,7 +14,7 @@ class modaldelete extends React.Component {
     super(props);
     this.state = {
       openModal: this.props.open,
-      tax: 0,
+      tip: 0,
       result: 0
     };
   }
@@ -34,13 +34,13 @@ class modaldelete extends React.Component {
 
   calculateTotal = () => {
     let addition;
-    if (this.state.tax === 0) {
+    if (this.state.tip === 0) {
       this.setState({ result: this.props.row.total_price });
       return;
     }
 
-    let input = this.state.tax;
-    let data = Number(this.props.row.tax_price);
+    let input = this.state.tip;
+    let data = Number(this.props.row.tip);
     let total = Number(this.props.row.total_price);
     if (input < data) {
       addition = data - input;
@@ -67,9 +67,9 @@ class modaldelete extends React.Component {
       this.props.row.day,
       this.props.row.drinker,
       this.props.row.items_price,
-      this.state.tax ? this.state.tax : this.props.row.tax_price,
+      this.props.row.tax_price,
       this.props.row.time,
-      this.props.row.tip,
+      this.state.tip ? this.state.tip : this.props.row.tip,
       this.state.result,
       this.props.row.bill_id
     );
@@ -108,9 +108,9 @@ class modaldelete extends React.Component {
               <TextField
                 className="modal-text-insert"
                 type="number"
-                label={this.props.row.tax_price}
-                value={this.state.tax === 0 ? "" : this.state.tax}
-                onChange={this.handleChange("tax")}
+                label={this.props.row.tip}
+                value={this.state.tip === 0 ? "" : this.state.tip}
+                onChange={this.handleChange("tip")}
                 margin="normal"
               />
             </Grid>

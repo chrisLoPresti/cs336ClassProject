@@ -31,7 +31,7 @@ class modaldelete extends React.Component {
   processAction = () => {
     this.props.handleUpdate(
       this.state.name ? this.state.name : this.props.row.name,
-      this.state.state ? this.state.state : this.props.row.state,
+      this.state.state ? this.state.state.toUpperCase() : this.props.row.state,
       this.props.row.name
     );
     this.props.doneWithRequest();

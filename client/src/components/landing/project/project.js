@@ -49,7 +49,7 @@ const cardInfo = [
     header: "Drinkers",
     info:
       "Check out our drinkers page! Here you will find thousands of drinkers who visit the bars in our database. These drinkers all live in various states across the US and consume a ton of beer! Head to the drinkers page for stats!",
-    url: "bars",
+    url: "drinkers",
     image: require("../../../images/bar.jpg")
   },
   {

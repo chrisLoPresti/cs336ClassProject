@@ -15,7 +15,7 @@ class modaldelete extends React.Component {
     this.state = {
       openModal: this.props.open,
       name: "",
-      phone: "",
+      phone: 0,
       state: ""
     };
   }
@@ -33,7 +33,7 @@ class modaldelete extends React.Component {
     this.props.handleUpdate(
       this.state.name ? this.state.name : this.props.row.name,
       this.state.phone ? this.state.phone : this.props.row.phone,
-      this.state.state ? this.state.state : this.props.row.state,
+      this.state.state ? this.state.state.toUpperCase() : this.props.row.state,
       this.props.row.name
     );
     this.props.doneWithRequest();
@@ -68,10 +68,10 @@ class modaldelete extends React.Component {
               <TextField
                 className="modal-text-insert"
                 label={this.props.row.phone}
-                value={this.state.phone}
+                value={this.state.phone === 0 ? "" : this.state.phone}
                 onChange={this.handleChange("phone")}
                 margin="normal"
-                type="number"
+                type="tel"
               />
             </Grid>
             <Grid item xs={12}>
