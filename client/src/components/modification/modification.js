@@ -229,7 +229,7 @@ class Modification extends Component {
         this.props.getShifts(0, num);
         break;
       case "Transactions":
-        this.props.getShifts(0, num);
+        this.props.getTransactions(0, num);
         break;
       default:
         alert("Impossible");
