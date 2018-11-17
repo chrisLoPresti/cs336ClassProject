@@ -48,7 +48,7 @@ const About = () => {
           <Typography id="about-us-text">
             BarBeerDrinker+ was a project designed and implemented by Chris
             LoPresti, Aryeh Pechet and Jenny Skripko. Together we created a full
-            stack b app using the technologies presented in our full stack app
+            stack web app using the technologies presented in our full stack app
             picture. The front end is powered using React, Redux, Axios, Node
             JS, Express JS, while the majority of our API calls are powered by
             Flask. Our data is all living on AWS and powered by MySQL. The
