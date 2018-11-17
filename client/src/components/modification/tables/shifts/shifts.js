@@ -224,7 +224,7 @@ class CustomPaginationActionsTable extends React.Component {
     return (
       <div id="table-container">
         <Grid container id="table-grid">
-          <Grid xs={12} style={{ textAlign: "center" }}>
+          <Grid item xs={12} style={{ textAlign: "center" }}>
             <Button onClick={() => this.props.getMore()} className="get-more">
               Get More Data
             </Button>

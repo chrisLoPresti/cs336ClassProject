@@ -131,7 +131,8 @@ class Brand extends Component {
               graphs containing statistics about the manufacturer. Once you
               select a manufacturer you will automatically scroll to the graphs
               once they load. Hover over the manufacturers in the graph to get
-              detailed results.
+              detailed results. ** For some bar graphs that we can not populate,
+              we just wont even render it **
             </Typography>
           </Grid>
           {(this.props.beer.loadingManf ||
@@ -174,8 +175,19 @@ class Brand extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  There are currently no manufacturers in our table
+                  There are currently no manufacturers in our table. Go to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -183,8 +195,19 @@ class Brand extends Component {
           <Grid container>
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                No information on {this.state.selectedManf}
+                No information on {this.state.selectedManf}. Go to the
+                modification page to change this!
               </Typography>
+              <Button
+                style={{
+                  backgroundColor: "slategray",
+                  color: "white",
+                  margin: "20px"
+                }}
+                onClick={() => this.props.history.push("/modifications")}
+              >
+                Modifcation Page
+              </Button>
             </Grid>
           </Grid>
         )}
@@ -221,7 +244,7 @@ class Brand extends Component {
                     </Button>
                   </Grid>
                 )}
-              {Object.keys(this.props.beer.states).length && (
+              {Object.keys(this.props.beer.states).length > 0 && (
                 <Grid item xs={12}>
                   <BarChart
                     list={this.props.beer.states}
@@ -234,7 +257,7 @@ class Brand extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.beer.likes).length && (
+              {Object.keys(this.props.beer.likes).length > 0 && (
                 <Grid item xs={12}>
                   <BarChart
                     list={this.props.beer.likes}

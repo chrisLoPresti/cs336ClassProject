@@ -142,7 +142,8 @@ class Drinker extends Component {
               we will give you some bar graphs containing statistics about the
               drinker. Once you select a drinker you will automatically scroll
               to the graphs once they load. Hover over the bars in the graph to
-              get detailed results.
+              get detailed results. ** For some bar graphs that we can not
+              populate, we just wont even render it **
             </Typography>
           </Grid>
         </Grid>
@@ -182,8 +183,19 @@ class Drinker extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  There are currently no drinkers in our table
+                  There are currently no drinkers in our table. Go to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -193,8 +205,19 @@ class Drinker extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  No information on {this.state.selectedName}
+                  No information on {this.state.selectedName}. Go to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -231,16 +254,18 @@ class Drinker extends Component {
                     </Button>
                   </Grid>
                 )}
-              <Grid item xs={12}>
-                <Typography className="grouped-by-bar-text">
-                  {this.state.selectedName}
-                  's transactions by bar
-                </Typography>
-                {this.props.drinkers.drinker && (
-                  <Transactions transactions={this.props.drinkers.drinker} />
-                )}
-              </Grid>
-              {Object.keys(this.props.drinkers.spending).length && (
+              {!noInfo && (
+                <Grid item xs={12}>
+                  <Typography className="grouped-by-bar-text">
+                    {this.state.selectedName}
+                    's transactions by bar
+                  </Typography>
+                  {this.props.drinkers.drinker && (
+                    <Transactions transactions={this.props.drinkers.drinker} />
+                  )}
+                </Grid>
+              )}
+              {Object.keys(this.props.drinkers.spending).length > 0 && (
                 <Grid item xs={12}>
                   <BarChart
                     list={this.props.drinkers.spending}
@@ -251,7 +276,7 @@ class Drinker extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.drinkers.topBeers).length && (
+              {Object.keys(this.props.drinkers.topBeers).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.drinkers.topBeers}
@@ -262,7 +287,7 @@ class Drinker extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.drinkers.daily).length && (
+              {Object.keys(this.props.drinkers.daily).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.daily}
@@ -273,7 +298,7 @@ class Drinker extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.drinkers.weekly).length && (
+              {Object.keys(this.props.drinkers.weekly).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.weekly}
@@ -284,7 +309,7 @@ class Drinker extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.drinkers.monthly).length && (
+              {Object.keys(this.props.drinkers.monthly).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChartComponentPeriod
                     list={this.props.drinkers.monthly}

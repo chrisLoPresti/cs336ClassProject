@@ -223,16 +223,16 @@ class CustomPaginationActionsTable extends React.Component {
       rowsPerPage - Math.min(rowsPerPage, rows.length - page * rowsPerPage);
     return (
       <div id="table-container">
-        <Grid xs={12} style={{ textAlign: "center" }}>
-          <Button onClick={() => this.props.getMore()} className="get-more">
-            Get More Data
-          </Button>
-          <Typography>
-            If you cant find what your looking for, try pressing 'Get More
-            Data'.
-          </Typography>
-        </Grid>
         <Grid container id="table-grid">
+          <Grid item xs={12} style={{ textAlign: "center" }}>
+            <Button onClick={() => this.props.getMore()} className="get-more">
+              Get More Data
+            </Button>
+            <Typography>
+              If you cant find what your looking for, try pressing 'Get More
+              Data'.
+            </Typography>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <Form
               changeOrder={this.changeOrder}

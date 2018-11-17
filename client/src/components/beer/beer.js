@@ -12,6 +12,7 @@ import {
   timeDistribution,
   clearSelectedBeer
 } from "../../actions/beerActions";
+import { clearErrors } from "../../actions/errorsActions";
 import Table from "./beertable";
 import BarChart from "../charts/barchart";
 import BarChartTime from "../charts/chartstime";
@@ -58,9 +59,12 @@ class Beer extends Component {
       },
       () => this.props.clearSelectedBeer()
     );
+    this.props.clearErrors();
   };
 
   populateBeerInfo = () => {
+    this.props.clearSelectedBeer();
+    this.props.clearErrors();
     this.props.timeDistribution(this.state.selectedBeer);
     this.props.soldMost(this.state.selectedBeer);
     this.props.biggestConsmers(this.state.selectedBeer);
@@ -131,7 +135,8 @@ class Beer extends Component {
               Once you select a beer we will give you some beer graphs
               containing statistics about the beer. Once you select a beer you
               will automatically scroll to the graphs once they load. Hover over
-              the beers in the graph to get detailed results.
+              the beers in the graph to get detailed results. ** For some bar
+              graphs that we can not populate, we just wont even render it **
             </Typography>
           </Grid>
           {(this.props.beer.loadingManf ||
@@ -173,8 +178,19 @@ class Beer extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  There are currently no beers in our table
+                  There are currently no beers in our table. Go to the
+                  modifcation page to change this.
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -182,8 +198,19 @@ class Beer extends Component {
           <Grid container>
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                No information on {this.state.selectedBeer}
+                No information on {this.state.selectedBeer}. Go to the
+                modification page to change this.
               </Typography>
+              <Button
+                style={{
+                  backgroundColor: "slategray",
+                  color: "white",
+                  margin: "20px"
+                }}
+                onClick={() => this.props.history.push("/modifications")}
+              >
+                Modifcation Page
+              </Button>
             </Grid>
           </Grid>
         )}
@@ -220,7 +247,7 @@ class Beer extends Component {
                     </Button>
                   </Grid>
                 )}
-              {Object.keys(this.props.beer.soldMost).length && (
+              {Object.keys(this.props.beer.soldMost).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.beer.soldMost}
@@ -233,7 +260,7 @@ class Beer extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.beer.biggestConsumers).length && (
+              {Object.keys(this.props.beer.biggestConsumers).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.beer.biggestConsumers}
@@ -244,7 +271,7 @@ class Beer extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.beer.timeDistribution).length && (
+              {Object.keys(this.props.beer.timeDistribution).length > 0 && (
                 <Grid item xs={12}>
                   <BarChartTime
                     list={this.props.beer.timeDistribution}
@@ -285,6 +312,7 @@ export default connect(
     soldMost,
     biggestConsmers,
     timeDistribution,
-    clearSelectedBeer
+    clearSelectedBeer,
+    clearErrors
   }
 )(withRouter(Beer));

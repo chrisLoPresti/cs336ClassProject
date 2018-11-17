@@ -190,6 +190,7 @@ class Modification extends Component {
 
   componentWillUnmount = () => {
     this.props.clearModifications();
+    this.props.clearErrors();
   };
 
   handleChange = event => {

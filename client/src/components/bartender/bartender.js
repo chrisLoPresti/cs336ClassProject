@@ -312,7 +312,9 @@ class Bartender extends Component {
               and a bar, we will give you some bartender graphs containing
               statistics about the bartender. Once you select a bartender and a
               bar, you will automatically scroll to the graphs once they load.
-              Hover over the bartenders in the graph to get detailed results.
+              Hover over the bartenders in the graph to get detailed results. **
+              For some bar graphs that we can not populate, we just wont even
+              render it **
             </Typography>
           </Grid>
           {(this.props.bartenders.bartendersLoading ||
@@ -334,9 +336,9 @@ class Bartender extends Component {
               <Grid item xs={12} sm={6}>
                 <div>
                   <Stepper activeStep={activeStep} alternativeLabel>
-                    {steps.map(label => {
+                    {steps.map((label, i) => {
                       return (
-                        <Step key={label}>
+                        <Step key={i}>
                           <StepLabel>{label}</StepLabel>
                         </Step>
                       );
@@ -390,6 +392,31 @@ class Bartender extends Component {
                     loading={this.props.bartenders.bartendersLoading}
                   />
                 )}
+              {this.state.selectedBartender &&
+                this.props.bartenders.works.length === 0 && (
+                  <Grid container>
+                    <Grid item xs={12} style={{ textAlign: "center" }}>
+                      <Typography
+                        style={{ fontSize: "30px", marginTop: "30px" }}
+                      >
+                        {this.state.selectedBartender} does not work at any bars
+                        yet, head to the modification page to get them working!
+                      </Typography>
+                      <Button
+                        style={{
+                          backgroundColor: "slategray",
+                          color: "white",
+                          margin: "20px"
+                        }}
+                        onClick={() =>
+                          this.props.history.push("/modifications")
+                        }
+                      >
+                        Modifcation Page
+                      </Button>
+                    </Grid>
+                  </Grid>
+                )}
             </div>
           </div>
         )}
@@ -398,8 +425,19 @@ class Bartender extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  There are currently no bartenders in our table
+                  There are currently no bartenders in our table. Head to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -409,8 +447,19 @@ class Bartender extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  No information on {this.state.selectedBartender}
+                  No information on {this.state.selectedBartender}. Head to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -464,7 +513,7 @@ class Bartender extends Component {
                   </Grid>
                 )}
               {!this.props.bartenders.bartendersLoadingOne &&
-                Object.keys(this.props.bartenders.shifts).length && (
+                Object.keys(this.props.bartenders.shifts).length > 0 && (
                   <Grid item xs={12}>
                     <Typography
                       variant="h4"
@@ -500,7 +549,7 @@ class Bartender extends Component {
                     </ListItem>
                   </Grid>
                 ))}
-              {Object.keys(this.props.bartenders.sold).length && (
+              {Object.keys(this.props.bartenders.sold).length > 0 && (
                 <Grid item xs={12}>
                   <BarChart
                     list={this.props.bartenders.sold}
@@ -551,8 +600,10 @@ class Bartender extends Component {
                   <em>None</em>
                 </MenuItem>
                 {this.props.bars.bars.length > 0 &&
-                  this.props.bars.bars.map(bar => (
-                    <MenuItem value={bar.name}>{bar.name}</MenuItem>
+                  this.props.bars.bars.map((bar, i) => (
+                    <MenuItem key={i} value={bar.name}>
+                      {bar.name}
+                    </MenuItem>
                   ))}
               </Select>
             </FormControl>

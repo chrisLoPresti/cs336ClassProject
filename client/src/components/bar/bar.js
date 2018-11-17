@@ -280,7 +280,8 @@ class Bar extends Component {
               will give you some bar graphs containing statistics about the bar.
               Once you select a bar you will automatically scroll to the graphs
               once they load. Hover over the bars in the graph to get detailed
-              results.
+              results. ** For some bar graphs that we can not populate, we just
+              wont even render it **
             </Typography>
           </Grid>
         </Grid>
@@ -320,8 +321,19 @@ class Bar extends Component {
             <Grid container>
               <Grid item xs={12} style={{ textAlign: "center" }}>
                 <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                  There are currently no bars in our table
+                  There are currently no bars in our table. Head to the
+                  modification page to change this!
                 </Typography>
+                <Button
+                  style={{
+                    backgroundColor: "slategray",
+                    color: "white",
+                    margin: "20px"
+                  }}
+                  onClick={() => this.props.history.push("/modifications")}
+                >
+                  Modifcation Page
+                </Button>
               </Grid>
             </Grid>
           )}
@@ -329,8 +341,19 @@ class Bar extends Component {
           <Grid container>
             <Grid item xs={12} style={{ textAlign: "center" }}>
               <Typography style={{ fontSize: "30px", marginTop: "30px" }}>
-                No information on {this.state.selectedBar}
+                No information on {this.state.selectedBar}. Head to the
+                modification page to change this!
               </Typography>
+              <Button
+                style={{
+                  backgroundColor: "slategray",
+                  color: "white",
+                  margin: "20px"
+                }}
+                onClick={() => this.props.history.push("/modifications")}
+              >
+                Modifcation Page
+              </Button>
             </Grid>
           </Grid>
         )}
@@ -368,7 +391,7 @@ class Bar extends Component {
                   </Grid>
                 )}
               {!this.props.bars.loadingBarsOne &&
-                Object.keys(this.props.bars.hours).length && (
+                Object.keys(this.props.bars.hours).length > 0 && (
                   <Grid item xs={12}>
                     <Typography
                       variant="h4"
@@ -405,7 +428,7 @@ class Bar extends Component {
                   </Grid>
                 ))}
               {!this.props.bars.loadingBarsOne &&
-                Object.keys(this.props.bars.topManf).length && (
+                Object.keys(this.props.bars.topManf).length > 0 && (
                   <Grid item id="top-per-day" xs={12}>
                     <ChartPicker
                       list={this.props.bars.topManf}
@@ -419,7 +442,7 @@ class Bar extends Component {
                     />
                   </Grid>
                 )}
-              {Object.keys(this.props.bars.spenders).length && (
+              {Object.keys(this.props.bars.spenders).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={this.props.bars.spenders}
@@ -432,7 +455,7 @@ class Bar extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.bars.sales).length && (
+              {Object.keys(this.props.bars.sales).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChartPeriod
                     list={this.props.bars.sales}
@@ -445,7 +468,7 @@ class Bar extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.bars.time).length && (
+              {Object.keys(this.props.bars.time).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChartTime
                     list={this.props.bars.time}
@@ -458,7 +481,7 @@ class Bar extends Component {
                   />
                 </Grid>
               )}
-              {Object.keys(this.props.bars.fraction).length && (
+              {Object.keys(this.props.bars.fraction).length > 0 && (
                 <Grid item xs={12} sm={6}>
                   <BarChart
                     list={newFraction}
