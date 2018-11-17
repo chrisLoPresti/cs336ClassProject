@@ -13,8 +13,7 @@ import {
   IconButton,
   TextField,
   Grid,
-  Button,
-  Typography
+  Button
 } from "@material-ui/core";
 import {
   FirstPage,

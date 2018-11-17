@@ -4,10 +4,6 @@ import {
   Button,
   Modal,
   Paper,
-  FormControl,
-  MenuItem,
-  Select,
-  InputLabel,
   Grid,
   TextField
 } from "@material-ui/core";

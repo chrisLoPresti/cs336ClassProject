@@ -43,17 +43,18 @@ const About = () => {
       <Grid container>
         <Grid item sm={12} md={6} className="about-us-text-grid">
           <Typography variant="h4" id="what-we-used">
-            What we used...
+            What we used
           </Typography>
           <Typography id="about-us-text">
-            We are all seniors here at Rutgers University trying to win best
-            design for the bar beer drinker plus project. We each know various
-            programming languages, but for this project we used React js for our
-            front end, python to populate our tables, SQL to interact with our
-            tables, and flask to execute our requests. On the front end we use
-            axios to make api requests, and redux to keep our state in check.
-            This allows us to make api calls and populate our page without
-            needing to get a whole new page from the server.
+            BarBeerDrinker+ was a project designed and implemented by Chris
+            LoPresti, Aryeh Pechet and Jenny Skripko. Together we created a full
+            stack b app using the technologies presented in our full stack app
+            picture. The front end is powered using React, Redux, Axios, Node
+            JS, Express JS, while the majority of our API calls are powered by
+            Flask. Our data is all living on AWS and powered by MySQL. The
+            website itself is hosted on Heroku. Together, the three of us hope
+            to win best design, which would be a good way to end our fall
+            semester of our senior year.
           </Typography>
         </Grid>
         <Grid item sm={12} md={6} className="about-us-text-grid">
