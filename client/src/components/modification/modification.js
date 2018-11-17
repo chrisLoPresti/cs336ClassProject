@@ -193,6 +193,7 @@ class Modification extends Component {
   };
 
   handleChange = event => {
+    this.props.clearErrors();
     this.setState({
       [event.target.name]: event.target.value,
       selectedRow: {},
@@ -203,6 +204,8 @@ class Modification extends Component {
   };
 
   handleClear = picker => {
+    this.props.clearErrors();
+    this.props.clearModifications();
     this.setState({
       [picker]: "",
       selectedRow: {},
@@ -213,6 +216,10 @@ class Modification extends Component {
   };
 
   getMore = () => {
+    if (this.props.errors.error === "Success") {
+      this.setState({ num: 0 + 5000 }, () => this.processGet(this.state.num));
+      return;
+    }
     this.setState({ num: this.state.num + 5000 }, () =>
       this.processGet(this.state.num)
     );

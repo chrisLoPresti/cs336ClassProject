@@ -228,7 +228,8 @@ class CustomPaginationActionsTable extends React.Component {
             Get More Data
           </Button>
           <Typography>
-            Drag or scroll the graph to the right for more results
+            Drag or scroll the graph to the right for more results. If you cant
+            find what your looking for, try pressing 'Get More Data'.
           </Typography>
         </Grid>
         <Grid container id="table-grid">

@@ -947,12 +947,12 @@ export const deleteFrequents = (
     });
 };
 export const updateFrequents = (
-  beer,
+  bar,
   drinker,
-  old_beer,
+  old_bar,
   old_drinker
 ) => dispatch => {
-  var obj = { beer, drinker, old_beer, old_drinker };
+  var obj = { bar, drinker, old_bar, old_drinker };
   axios
     .post(
       "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/modification/frequents/update",

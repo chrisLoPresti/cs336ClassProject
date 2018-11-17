@@ -13,7 +13,8 @@ import {
   IconButton,
   TextField,
   Grid,
-  Button
+  Button,
+  Typography
 } from "@material-ui/core";
 import {
   FirstPage,
@@ -227,6 +228,10 @@ class CustomPaginationActionsTable extends React.Component {
             <Button onClick={() => this.props.getMore()} className="get-more">
               Get More Data
             </Button>
+            <Typography>
+              If you cant find what your looking for, try pressing 'Get More
+              Data'.
+            </Typography>
           </Grid>
           <Grid item xs={12} sm={4}>
             <Form
