@@ -654,7 +654,8 @@ class Modification extends Component {
                 **{this.state.errors.emptyinput}
               </Typography>
             )}
-            {this.state.selectedOperation === "Insert" &&
+            {!this.props.modification.loadingModification &&
+              this.state.selectedOperation === "Insert" &&
               this.state.selectedTable !== "Transaction" &&
               Object.keys(this.props.errors.error).length > 0 &&
               this.props.errors.error !== "Success" && (
@@ -667,7 +668,8 @@ class Modification extends Component {
                   </Typography>
                 </Grid>
               )}
-            {this.state.selectedOperation === "Insert" &&
+            {!this.props.modification.loadingModification &&
+              this.state.selectedOperation === "Insert" &&
               this.props.errors.error.length > 0 &&
               this.props.errors.error === "Success" && (
                 <Grid item xs={12} style={{ textAlign: "center" }}>
@@ -716,7 +718,8 @@ class Modification extends Component {
                     Click on a row to perform your desired operation
                   </Typography>
                 </Grid>
-                {Object.keys(this.props.errors.error).length > 0 &&
+                {!this.props.modification.loadingModification &&
+                  Object.keys(this.props.errors.error).length > 0 &&
                   this.props.errors.error !== "Success" && (
                     <Grid item xs={12} style={{ textAlign: "center" }}>
                       <Typography
@@ -727,7 +730,8 @@ class Modification extends Component {
                       </Typography>
                     </Grid>
                   )}
-                {this.props.errors.error.length > 0 &&
+                {!this.props.modification.loadingModification &&
+                  this.props.errors.error.length > 0 &&
                   this.props.errors.error === "Success" && (
                     <Grid item xs={12} style={{ textAlign: "center" }}>
                       <Typography
