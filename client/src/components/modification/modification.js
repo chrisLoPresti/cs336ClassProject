@@ -563,7 +563,8 @@ class Modification extends Component {
               an operation you will then carry out the desired change. We will
               make sure that all changes you wish to perform are valid. If they
               are you will get a success message, if not we will display a
-              warning.
+              warning. ** You can not update a transaction, ALL SALES FINAL, but
+              you can insert and delete transactions **
             </Typography>
           </Grid>
           {this.props.modification.loadingModification && (
@@ -634,7 +635,9 @@ class Modification extends Component {
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value="Insert">Insert</MenuItem>
-                  <MenuItem value="Update">Update</MenuItem>
+                  {this.state.selectedTable !== "Transactions" && (
+                    <MenuItem value="Update">Update</MenuItem>
+                  )}
                   <MenuItem value="Delete">Delete</MenuItem>
                 </Select>
               </FormControl>
