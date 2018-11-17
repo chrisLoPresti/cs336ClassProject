@@ -149,9 +149,11 @@ class modaldelete extends React.Component {
               )}
               {(Object.keys(this.props.errors.error).length > 0 ||
                 this.state.error) &&
+                Object.keys(this.props.prices.beer).length === 0 &&
+                Object.keys(this.props.prices.food).length === 0 &&
                 this.state.bill_id && (
                   <Typography
-                    style={{ color: "red", margin: "20px" }}
+                    style={{ color: "redx", margin: "20px" }}
                     id="simple-modal-header-mod"
                   >
                     Invalid Bill ID or no item selected. Check your bill id and

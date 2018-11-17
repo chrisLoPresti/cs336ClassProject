@@ -348,7 +348,7 @@ class Modification extends Component {
 
     if (
       this.state.currentTable === "Transactions" &&
-      this.state.selectedOperation === "Insert"
+      this.state.selectedOperation !== "Delete"
     ) {
       this.props.setPrices(row.bill_id);
     }
@@ -563,8 +563,7 @@ class Modification extends Component {
               an operation you will then carry out the desired change. We will
               make sure that all changes you wish to perform are valid. If they
               are you will get a success message, if not we will display a
-              warning. ** You can not update a transaction, ALL SALES FINAL, but
-              you can insert and delete transactions **
+              warning.
             </Typography>
           </Grid>
           {this.props.modification.loadingModification && (
@@ -635,9 +634,7 @@ class Modification extends Component {
                     <em>None</em>
                   </MenuItem>
                   <MenuItem value="Insert">Insert</MenuItem>
-                  {this.state.selectedTable !== "Transactions" && (
-                    <MenuItem value="Update">Update</MenuItem>
-                  )}
+                  <MenuItem value="Update">Update</MenuItem>
                   <MenuItem value="Delete">Delete</MenuItem>
                 </Select>
               </FormControl>
@@ -1201,6 +1198,7 @@ class Modification extends Component {
           this.state.currentTable === "Transactions" && (
             <TransactionsModalUpdate
               row={this.state.selectedRow}
+              prices={this.props.modification.Prices}
               open={this.state.open}
               doneWithRequest={this.doneWithRequest}
               handleUpdate={this.props.updateTransactions}

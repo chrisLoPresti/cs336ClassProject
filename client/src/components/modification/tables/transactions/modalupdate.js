@@ -29,12 +29,39 @@ class modaldelete extends React.Component {
   };
 
   processAction = () => {
+    let price = 0;
+    let good = false;
+    var i = 0;
+    for (i = 0; i < this.props.prices.beer.length; i++) {
+      if (this.props.prices.beer[i].beername === this.props.row.item) {
+        price = this.props.prices.beer[i].price;
+        good = true;
+        break;
+      }
+    }
+    if (!good) {
+      for (i = 0; i < this.props.prices.food.length; i++) {
+        if (this.props.prices.food[i].foodname === this.props.row.item) {
+          price = this.props.prices.food[i].price;
+          good = true;
+          break;
+        }
+      }
+    }
+    if (!good) {
+      this.setState({
+        warning: `${
+          this.props.row.item
+        } no lenger exists in our database, so we can not update this transaction. Sorry! But you can delete it...`
+      });
+      return;
+    }
     this.props.handleUpdate(
       this.props.row.bill_id,
       this.state.quantity ? this.state.quantity : this.props.row.quantity,
       this.props.row.item,
       this.props.row.type,
-      this.props.row.price,
+      this.state.quantity ? this.state.quantity * price : this.props.row.price,
       this.props.row.bill_id,
       this.props.row.item
     );
@@ -66,6 +93,13 @@ class modaldelete extends React.Component {
           </Typography>
           <Grid container>
             <Grid item xs={12}>
+              {this.state.warning && (
+                <Typography
+                  style={{ margin: "20px", color: "red", textAlign: "center" }}
+                >
+                  {this.state.warning}
+                </Typography>
+              )}
               <TextField
                 className="modal-text-insert"
                 label="Quantity"
@@ -104,7 +138,8 @@ modaldelete.propTypes = {
   row: PropTypes.func.isRequired,
   handleUpdate: PropTypes.func.isRequired,
   doneWithRequest: PropTypes.func.isRequired,
-  open: PropTypes.bool.isRequired
+  open: PropTypes.bool.isRequired,
+  prices: PropTypes.array.isRequired
 };
 
 export default modaldelete;
