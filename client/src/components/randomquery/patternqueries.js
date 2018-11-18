@@ -18,7 +18,7 @@ const queries = [
       "Run this query to make sure that no bars have transactions when they are closed. If true, we will return 1, if false we will return 0. **This could take a minute or so.",
     req: {
       query:
-        "SELECT NOT EXISTS (SELECT * FROM Bills b, Operates o WHERE b.time < o.start AND b.time > o.end) AS no_bills_when_bar_is_closed;"
+        "SELECT NOT EXISTS (SELECT * FROM Bills b, Operates o WHERE b.date = o.date AND b.bar = o.bar AND b.time < o.start AND b.time > o.end) AS no_bills_when_bar_is_closed;"
     }
   },
   {
