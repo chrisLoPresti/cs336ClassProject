@@ -22,6 +22,7 @@
     "axios": "^0.18.0",
     "body-parser": "^1.18.3",
     "concurrently": "^4.0.1",
+    "connect-timeout": "^1.9.0",
     "express": "^4.16.3",
     "mysql": "^2.16.0",
     "node-mysql": "^0.4.2",

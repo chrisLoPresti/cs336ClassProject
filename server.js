@@ -3,11 +3,13 @@ const path = require("path");
 const bodyParser = require("body-parser");
 const schedule = require("node-schedule");
 const axios = require("axios");
+var timeout = require("connect-timeout"); //express v4
 
 //sett up our app
 const app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+app.use(timeout(120000));
 
 //set up routes
 const randomQuery = require("./routes/api/randomQuery");
