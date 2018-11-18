@@ -37,7 +37,7 @@ var j = schedule.scheduleJob("0 5 * * *", function() {
     });
   axios
     .post(
-      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/daily/update/​shifts"
+      "https://xja36rg9of.execute-api.us-east-1.amazonaws.com/dev/v1/daily/update/shifts"
     )
     .then(res => {
       console.log("Updated database at 5:00am");
