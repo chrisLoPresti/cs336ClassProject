@@ -42,7 +42,7 @@ const queries = [
   {
     title: "Bars Cant Sell More Than Whats In Stock",
     description:
-      "Run this query to make sure bars cannot sell more beers of a specific brand than it has in its inventory. If true we will return 1, if not we will return 0. **This could take a minute or so.",
+      "Run this query to make sure bars cannot sell more beers of a specific brand than it has in its inventory. If true we will return 1, if not we will return 0. **This query will most likely time out...We have a ton of tuples. It should pass in MySQL workbench. Heroku only allows for a 30 second call until timeout.",
     req: {
       query:
         'SELECT NOT EXISTS (SELECT * FROM (SELECT SUM(t.quantity) AS quantity_in_transactions, b1.start_quantity FROM (SELECT b.bill_id AS bill_id, i.beer AS beer, b.bar AS bar, b.date AS date, i.startquantity AS start_quantity FROM Inventory i, Bills b WHERE i.bar = b.bar AND i.date = b.date) b1, Transactions t WHERE t.type = "beer" AND b1.bill_id = t.bill_id AND t.item = b1.beer GROUP BY b1.beer, b1.bar, b1.date) c WHERE c.start_quantity < c.quantity_in_transactions) AS not_selling_more_than_have;'
@@ -51,7 +51,7 @@ const queries = [
   {
     title: "Bartenders Can Only Work One Shift A Day",
     description:
-      "Run this query to make sure that no bartender has more then one shift a day. If true we will return 1, if not we will return 0. **This query will most likely time out...We have a ton of tuples. It should pass in MySQL workbench. Heroku only allows for a 30 second call until timeout",
+      "Run this query to make sure that no bartender has more then one shift a day. If true we will return 1, if not we will return 0. **This could take a minute or so.",
     req: {
       query:
         "SELECT NOT EXISTS( SELECT COUNT(*) AS number_of_shifts_a_day FROM Shifts s GROUP BY s.bartender, s.date HAVING number_of_shifts_a_day <> 1) AS no_bartender_has_more_than_one_shift_a_day;"
